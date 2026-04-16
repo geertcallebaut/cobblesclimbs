@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 
-        <!-- Google tag (gtag.js) - Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NMJ87NDBC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-9H693SN34Q');
-</script>
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NMJ87NDBC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9H693SN34Q');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
@@ -25,8 +26,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    
-    <!-- Android Chrome -->
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
 
@@ -54,10 +53,8 @@
     <meta name="geo.region" content="BE-VWV">
     <meta name="geo.placename" content="Flemish Ardennes, Belgium">
 
-    <!-- ── THEME & ICONS ── -->
+    <!-- ── THEME ── -->
     <meta name="theme-color" content="#1a3c34">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- ── STRUCTURED DATA (JSON-LD) ── -->
     <script type="application/ld+json">
@@ -77,8 +74,7 @@
         "sameAs": [
           "https://www.youtube.com/@CobblesClimbs",
           "https://www.instagram.com/CobblesClimbs",
-          "https://www.strava.com/clubs/CobblesClimbs",
-          "https://www.facebook.com/"
+          "https://www.strava.com/clubs/CobblesClimbs"
         ],
         "email": "cobblesclimbs@gmail.com",
         "areaServed": {
@@ -174,6 +170,8 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
+
+        /* Desktop: title centered absolute inside header */
         .logo-center {
             position: absolute;
             left: 50%;
@@ -187,6 +185,12 @@
             white-space: nowrap;
         }
         .logo-center span { color: white; }
+
+        /* Mobile title bar: shown only on small screens */
+        .mobile-title-bar {
+            display: none;
+        }
+
         .social-icons a {
             color: white;
             margin-left: 18px;
@@ -195,7 +199,7 @@
         }
         .social-icons a:hover { color: #a8d5c8; }
 
-        /* ── KPI DASHBOARD ── */
+        /* ── KPI DASHBOARD — sticky below header ── */
         .kpi-dashboard {
             background: #0f0f0f;
             color: white;
@@ -205,6 +209,9 @@
             gap: 12px;
             text-align: center;
             border-bottom: 4px solid var(--cc-dark-green);
+            position: sticky;
+            top: 82px; /* height of header */
+            z-index: 2000;
         }
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p  { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
@@ -322,9 +329,23 @@
 
         /* ── POPUP ── */
         .popup-card { width: 255px; font-size: 0.84rem; }
-        .popup-card img { width: 100%; border-radius: 3px; cursor: pointer; transition: opacity 0.2s; }
-        .popup-card img:hover { opacity: 0.85; }
-        .popup-info { padding: 12px 8px 8px; line-height: 1.35; }
+        /* 16:9 thumbnail container */
+        .popup-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+        .popup-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: block;
+        }
+        .popup-thumb img:hover { opacity: 0.85; }
+        .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
         .yt-link { display: inline-block; margin-top: 10px; color: #1a3c34; text-decoration: none; font-weight: 500; }
         .yt-link:hover { text-decoration: underline; }
 
@@ -335,18 +356,37 @@
 
         /* ── MOBILE STYLES (≤ 768px) ── */
         @media (max-width: 768px) {
-            .top-header { padding: 10px 16px; position: relative; }
+            .top-header { padding: 10px 16px; position: sticky; }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
-            .logo-center {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: clamp(0.75rem, 3.5vw, 1.2rem);
+
+            /* Hide desktop centered title on mobile */
+            .logo-center { display: none; }
+
+            /* Show dedicated mobile title bar instead */
+            .mobile-title-bar {
+                display: block;
+                background: var(--cc-dark-green);
+                color: white;
+                text-align: center;
+                padding: 6px 16px 10px;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 900;
+                font-size: clamp(1rem, 5vw, 1.35rem);
                 letter-spacing: -0.5px;
+                text-decoration: none;
+                position: sticky;
+                top: 60px; /* height of mobile header */
+                z-index: 2999;
             }
+
             .social-icons a { margin-left: 10px; font-size: 1.1rem; }
-            .kpi-dashboard { grid-template-columns: repeat(2, 1fr); padding: 14px 12px; gap: 10px; }
+            .kpi-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 14px 12px;
+                gap: 10px;
+                top: 104px; /* mobile header + mobile title bar */
+            }
             .kpi-card h3 { font-size: 1rem; }
             .kpi-card p  { font-size: 0.5rem; }
             .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
@@ -368,7 +408,6 @@
         }
 
         @media (max-width: 420px) {
-            .logo-center { font-size: clamp(0.65rem, 3vw, 0.95rem); letter-spacing: -0.3px; }
             .social-icons a { margin-left: 8px; font-size: 1rem; }
             .kpi-dashboard { grid-template-columns: repeat(2, 1fr); }
             #map { height: 340px; }
@@ -383,17 +422,22 @@
             <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
+    <!-- Desktop title (hidden on mobile via CSS) -->
     <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">Cobbles <span>&amp;</span> Climbs</a>
     <nav class="nav-right" aria-label="Social media links">
         <div class="social-icons">
             <a href="mailto:cobblesclimbs@gmail.com" aria-label="Send us an email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
             <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Strava"><i class="fa-brands fa-strava" aria-hidden="true"></i></a>
-            <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <!-- Facebook link commented out — no Facebook page yet -->
+            <!-- <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a> -->
             <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
             <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
         </div>
     </nav>
 </header>
+
+<!-- Mobile-only title bar (shown below header on small screens) -->
+<a href="/" class="mobile-title-bar" aria-label="Cobbles & Climbs — home">Cobbles &amp; Climbs</a>
 
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
     <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
@@ -606,10 +650,13 @@
 
             marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
 
+            // Use mqdefault (320×180) for correct 16:9 ratio in popup
             const popupHTML = `
                 <div class="popup-card">
                     <a href="https://www.youtube.com/watch?v=${s.yt}&autoplay=1" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
-                        <img src="https://img.youtube.com/vi/${s.yt}/hqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy" width="480" height="360">
+                        <div class="popup-thumb">
+                            <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy">
+                        </div>
                     </a>
                     <div class="popup-info">
                         <strong>${s.name}</strong><br>
