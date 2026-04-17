@@ -11,7 +11,9 @@
             "avg": "4.6",
             "max": "7.4",
             "time": "5:35",
-            "yt": "6_XqtNJsaqI"
+            "yt": "6_XqtNJsaqI",
+            "title": "",
+            "description": ""
         },
         {
             "id": 1,
@@ -24,7 +26,9 @@
             "avg": "6",
             "max": "9.8",
             "time": "0:00",
-            "yt": "EjfUhXIjEnc"
+            "yt": "EjfUhXIjEnc",
+            "title": "",
+            "description": ""
         },
         {
             "id": 2,
@@ -37,7 +41,9 @@
             "avg": "7.5",
             "max": "11.1",
             "time": "7:24",
-            "yt": "AtJElvBQkns"
+            "yt": "AtJElvBQkns",
+            "title": "",
+            "description": ""
         },
         {
             "id": 3,
@@ -50,7 +56,9 @@
             "avg": "11.4",
             "max": "19.6",
             "time": "3:54",
-            "yt": "v7yWchoAQso"
+            "yt": "v7yWchoAQso",
+            "title": "Flanders deadliest",
+            "description": "There is no mercy on the Koppenberg. Often called the 'Bult van Melden', this is arguably the most feared climb in all of Flanders. It’s a 563-meter battle against gravity where the race isn't won, but frequently lost. With a maximum gradient of 19.6%, these aren't just stones; they are a psychological barrier."
         },
         {
             "id": 4,
@@ -63,7 +71,9 @@
             "avg": "6.2",
             "max": "15.2",
             "time": "3:30",
-            "yt": ""
+            "yt": "",
+            "title": "",
+            "description": ""
         },
         {
             "id": 5,
@@ -76,7 +86,9 @@
             "avg": "4.6",
             "max": "9.2",
             "time": "3:32",
-            "yt": "9BtNmQ47CVI"
+            "yt": "9BtNmQ47CVI",
+            "title": "",
+            "description": ""
         },
         {
             "id": 6,
@@ -89,7 +101,9 @@
             "avg": "5.9",
             "max": "12.8",
             "time": "6:06",
-            "yt": "cERF08kTA2A"
+            "yt": "cERF08kTA2A",
+            "title": "",
+            "description": ""
         },
         {
             "id": 7,
@@ -102,7 +116,9 @@
             "avg": "4.6",
             "max": "10",
             "time": "5:50",
-            "yt": "wXc9kmH9yuU"
+            "yt": "wXc9kmH9yuU",
+            "title": "",
+            "description": ""
         },
         {
             "id": 8,
@@ -115,7 +131,9 @@
             "avg": "13.4",
             "max": "18.8",
             "time": "5:35",
-            "yt": "9uMNclE84jM"
+            "yt": "9uMNclE84jM",
+            "title": "",
+            "description": ""
         },
         {
             "id": 9,
@@ -128,7 +146,9 @@
             "avg": "5.6",
             "max": "12.2",
             "time": "5:22",
-            "yt": "5wg2tb6jnIQ"
+            "yt": "5wg2tb6jnIQ",
+            "title": "",
+            "description": ""
         },
         {
             "id": 10,
@@ -141,7 +161,9 @@
             "avg": "4.6",
             "max": "7.7",
             "time": "7:00",
-            "yt": ""
+            "yt": "",
+            "title": "",
+            "description": ""
         },
         {
             "id": 11,
@@ -154,7 +176,9 @@
             "avg": "7.5",
             "max": "10.6",
             "time": "3:33",
-            "yt": ""
+            "yt": "",
+            "title": "",
+            "description": ""
         },
         {
             "id": 12,
@@ -167,7 +191,9 @@
             "avg": "3.4",
             "max": "7.6",
             "time": "5:00",
-            "yt": ""
+            "yt": "",
+            "title": "",
+            "description": ""
         }
     ]
 }
