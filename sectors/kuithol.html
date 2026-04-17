@@ -1,52 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9H693SN34Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9H693SN34Q');
+    </script>
+
+    <!-- Roboto font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+    <!-- PRIMARY META -->
     <title>Kuithol | Flemish Ardennes Climb (Cobbled Roads & Cycling)</title>
-
     <meta name="description" content="Kuithol is a climb in the Flemish Ardennes with 0.5 km, 40 m elevation gain and an average gradient of 7.5%.">
-
-    <meta property="og:title" content="Kuithol | Flemish Ardennes Climb">
-    <meta property="og:description" content="Kuithol in the Flemish Ardennes cycling region.">
-    <meta property="og:type" content="website">
-
+    <meta name="keywords" content="Flemish Ardennes, Kuithol, cobbles, climbs, cycling, Tour of Flanders, Ronde van Vlaanderen, kasseistroken, berg">
+    <meta name="author" content="Cobbles & Climbs">
     <link rel="canonical" href="https://www.cobblesclimbs.com/sectors/kuithol.html">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Kuithol | Flemish Ardennes Climb">
+    <meta property="og:description" content="Kuithol in the Flemish Ardennes – 0.5 km • 40 m • avg 7.5% gradient">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cobblesclimbs.com/sectors/kuithol.html">
+    <meta property="og:image" content="https://www.cobblesclimbs.com/og-image.jpg">
+
+    <meta name="theme-color" content="#1a3c34">
 
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-        .stats { background:#f4f4f4; padding:12px; margin:20px 0; border-radius:8px; }
-        iframe { width:100%; height:400px; border-radius:8px; }
-        a { color:#1a3c34; }
+        :root {
+            --cc-dark-green: #1a3c34;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: "Roboto", Helvetica, Arial, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        /* === EXACT SAME HEADER AS MAIN PAGE === */
+        .top-header {
+            background: var(--cc-dark-green);
+            color: white;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 3000;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .logo-left {
+            display: flex;
+            align-items: center;
+            height: 54px;
+        }
+        .header-logo {
+            height: 100%;
+            width: auto;
+            max-width: 195px;
+            object-fit: contain;
+            filter: brightness(1.18) contrast(1.12);
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+            transition: transform 0.25s ease;
+        }
+        .header-logo:hover { transform: scale(1.05); }
+
+        .short-title {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 1.45rem;
+            letter-spacing: -1.2px;
+            color: white;
+            display: none;
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Content */
+        .content {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        h1 {
+            font-size: 2.0rem;
+            font-weight: 700;
+            margin: 40px 0 18px 0;
+            color: var(--cc-dark-green);
+            line-height: 1.15;
+        }
+
+        .intro {
+            font-size: 1.08rem;
+            color: #222;
+            margin-bottom: 28px;
+        }
+
+        .stats {
+            background: #f8f8f8;
+            padding: 20px 24px;
+            margin: 32px 0;
+            border-radius: 6px;
+            border-left: 6px solid var(--cc-dark-green);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            font-size: 1.07rem;
+        }
+        .stats strong {
+            color: var(--cc-dark-green);
+            font-weight: 500;
+        }
+
+        /* YouTube embed - responsive + modern look */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin: 35px 0 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: #222;
+            line-height: 1.65;
+        }
+
+        .back-bottom {
+            color: var(--cc-dark-green);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1.02rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-bottom:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile adjustments (same as main page) */
+        @media (max-width: 768px) {
+            .top-header { padding: 10px 16px; }
+            .logo-left { height: 44px; }
+            .header-logo { max-width: 155px; }
+            .short-title { display: block; }
+            .content { padding: 20px 16px 50px; }
+            h1 { font-size: 1.72rem; margin-top: 25px; }
+            .stats { padding: 18px 20px; margin: 25px 0; }
+            .video-container { margin: 25px 0 30px; }
+        }
     </style>
 </head>
 
 <body>
 
-<h1>Kuithol – Flemish Ardennes Climb</h1>
+<header class="top-header" role="banner">
+    <a href="../index.html" class="logo-left" aria-label="Cobbles & Climbs — home">
+        <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
+    </a>
+    <span class="short-title">C&amp;C</span>
+    
+    <a href="../index.html" style="color:white; text-decoration:none; font-weight:500;">← Back to interactive map</a>
+</header>
 
-<p>
-Kuithol is one of the sectors in the Flemish Ardennes region, part of Flanders legendary cycling landscape.
-</p>
+<div class="content">
 
-<div class="stats">
-    <strong>Distance:</strong> 0.5 km<br>
-    <strong>Elevation gain:</strong> 40 m<br>
-    <strong>Average gradient:</strong> 7.5%<br>
-    <strong>Maximum gradient:</strong> 10.6%
+    <h1>Kuithol</h1>
+
+    <p class="intro">
+        Kuithol is one of the sectors in the Flemish Ardennes region, part of Flanders legendary cycling landscape.
+    </p>
+
+    <div class="stats">
+        <strong>Distance:</strong> 0.5 km<br>
+        <strong>Elevation gain:</strong> 40 m<br>
+        <strong>Average gradient:</strong> 7.5%<br>
+        <strong>Maximum gradient:</strong> 10.6%
+    </div>
+
+    <!-- YouTube embed (responsive 16:9) -->
+    <div class="video-container">
+        
+    </div>
+
+    <div class="description">
+        <p>
+            This climb was or is featured in spring classics and races like the Tour of Flanders and is part of the rich cycling road network of the Flemish Ardennes.
+        </p>
+    </div>
+
+    <p style="margin-top: 50px;">
+        <a href="../index.html" class="back-bottom">← Back to the interactive map</a>
+    </p>
+
 </div>
 
-
-
-<p>
-This climb was or is featured in spring classics and races like the Tour of Flanders and is part of the rich cycling road network of the Flemish Ardennes.
-</p>
-
-<p>
-<a href="/index.html">← Back to interactive map</a>
-</p>
+<footer style="text-align:center; padding:40px 20px 50px; font-size:0.85rem; color:#777; border-top:1px solid #eee;">
+    <p>&copy; 2026 Cobbles &amp; Climbs</p>
+</footer>
 
 </body>
 </html>
