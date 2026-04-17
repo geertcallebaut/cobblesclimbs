@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <!-- Google tag (gtag.js) - Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9H693SN34Q"></script>
     <script>
@@ -11,9 +10,11 @@
       gtag('config', 'G-9H693SN34Q');
     </script>
 
+    <!-- Roboto font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
     <!-- ── PRIMARY META ── -->
     <title>Cobbles & Climbs — 4K Archive of Flemish Cycling Roads</title>
     <meta name="description" content="A 4K video archive of the iconic cobbled sectors and climbs of the Flemish Ardennes. Documenting every Tour of Flanders road and hidden local gems for cycling fans worldwide.">
@@ -21,14 +22,12 @@
     <meta name="author" content="Cobbles & Climbs">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.cobblesclimbs.com/">
-
     <!-- FAVICONS -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
-
     <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.cobblesclimbs.com/">
@@ -40,7 +39,6 @@
     <meta property="og:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
     <meta property="og:site_name" content="Cobbles & Climbs">
     <meta property="og:locale" content="en_GB">
-
     <!-- ── TWITTER / X CARD ── -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@CobblesClimbs">
@@ -48,14 +46,11 @@
     <meta name="twitter:description" content="A 4K video archive of the iconic cobbled sectors and climbs of the Flemish Ardennes. Documenting every Tour of Flanders road and hidden local gem.">
     <meta name="twitter:image" content="https://www.cobblesclimbs.com/og-image.jpg">
     <meta name="twitter:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
-
     <!-- ── GEO ── -->
     <meta name="geo.region" content="BE-VWV">
     <meta name="geo.placename" content="Flemish Ardennes, Belgium">
-
     <!-- ── THEME ── -->
     <meta name="theme-color" content="#1a3c34">
-
     <!-- ── STRUCTURED DATA (JSON-LD) ── -->
     <script type="application/ld+json">
     {
@@ -81,46 +76,12 @@
           "@type": "Place",
           "name": "Flemish Ardennes, Belgium"
         }
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.cobblesclimbs.com/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
       }
     }
     </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Cobbles & Climbs — Flemish Cycling Roads",
-      "description": "4K video archive of iconic cobbled sectors and climbs in the Flemish Ardennes, including Tour of Flanders routes.",
-      "thumbnailUrl": "https://www.cobblesclimbs.com/og-image.jpg",
-      "uploadDate": "2024-01-01",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Cobbles & Climbs",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.cobblesclimbs.com/channels4_profile.png"
-        }
-      },
-      "embedUrl": "https://www.youtube.com/@CobblesClimbs"
-    }
-    </script>
-
-    <!-- ── PERFORMANCE ── -->
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://img.youtube.com">
-    <link rel="dns-prefetch" href="https://basemaps.cartocdn.com">
-    <link rel="dns-prefetch" href="https://tile.openstreetmap.org">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <style>
         :root {
             --cc-dark-green: #1a3c34;
@@ -132,7 +93,6 @@
             background: #ffffff;
             color: #111111;
         }
-
         /* ── HEADER ── */
         .top-header {
             background: var(--cc-dark-green);
@@ -171,6 +131,18 @@
         }
         .header-logo:hover { transform: scale(1.05); }
 
+        /* C&C centraal op mobiel */
+        .short-title {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 900;
+            font-size: 1.45rem;
+            letter-spacing: -1.2px;
+            color: white;
+            display: none;
+            flex: 1;
+            text-align: center;
+        }
+
         /* Desktop: title centered absolute inside header */
         .logo-center {
             position: absolute;
@@ -183,12 +155,19 @@
             color: white;
             text-decoration: none;
             white-space: nowrap;
+            text-align: center;
+            line-height: 1.1;
         }
         .logo-center span { color: white; }
 
-        /* Mobile title bar: shown only on small screens */
-        .mobile-title-bar {
+        /* Desktop tagline */
+        .desktop-tagline {
             display: none;
+            font-size: 0.88rem;
+            font-weight: 400;
+            letter-spacing: -0.25px;
+            color: #a8d5c8;
+            margin-top: 6px;
         }
 
         .social-icons a {
@@ -199,7 +178,7 @@
         }
         .social-icons a:hover { color: #a8d5c8; }
 
-        /* ── KPI DASHBOARD — sticky below header ── */
+        /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
             background: #0f0f0f;
             color: white;
@@ -210,11 +189,11 @@
             text-align: center;
             border-bottom: 4px solid var(--cc-dark-green);
             position: sticky;
-            top: 82px; /* height of header */
+            top: 82px;
             z-index: 2000;
         }
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
-        .kpi-card p  { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
+        .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
 
         /* ── HERO ── */
@@ -258,7 +237,6 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-
         /* ── LEGEND ── */
         .legend {
             background: rgba(255, 255, 255, 0.95);
@@ -291,10 +269,9 @@
         .legend.collapsed .legend-body { display: none; }
         .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
-
         /* ── MAP ── */
         .map-section {
-            padding: 0 20px 50px;
+            padding: 0 20px 30px;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
@@ -326,10 +303,8 @@
             touch-action: manipulation;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-
         /* ── POPUP ── */
         .popup-card { width: 255px; font-size: 0.84rem; }
-        /* 16:9 thumbnail container */
         .popup-thumb {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -348,51 +323,30 @@
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
         .yt-link { display: inline-block; margin-top: 10px; color: #1a3c34; text-decoration: none; font-weight: 500; }
         .yt-link:hover { text-decoration: underline; }
-
         /* ── FOOTER ── */
-        footer { text-align: center; padding: 45px 20px; font-size: 0.78rem; color: #777; }
+        footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-
         /* ── MOBILE STYLES (≤ 768px) ── */
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; position: sticky; }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
-
-            /* Hide desktop centered title on mobile */
             .logo-center { display: none; }
-
-            /* Show dedicated mobile title bar instead */
-            .mobile-title-bar {
-                display: block;
-                background: var(--cc-dark-green);
-                color: white;
-                text-align: center;
-                padding: 6px 16px 10px;
-                font-family: 'Roboto', sans-serif;
-                font-weight: 900;
-                font-size: clamp(1rem, 5vw, 1.35rem);
-                letter-spacing: -0.5px;
-                text-decoration: none;
-                position: sticky;
-                top: 60px; /* height of mobile header */
-                z-index: 2999;
-            }
-
+            .short-title { display: block; }
             .social-icons a { margin-left: 10px; font-size: 1.1rem; }
             .kpi-dashboard {
                 grid-template-columns: repeat(2, 1fr);
                 padding: 14px 12px;
                 gap: 10px;
-                top: 104px; /* mobile header + mobile title bar */
+                top: 56px;   /* direct onder header, geen witte ruimte */
             }
             .kpi-card h3 { font-size: 1rem; }
-            .kpi-card p  { font-size: 0.5rem; }
+            .kpi-card p { font-size: 0.5rem; }
             .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
             .hero-text { padding-right: 0; }
             .sidebar { padding: 16px; }
-            .map-section { padding: 0 12px 36px; }
+            .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
             .map-layer-selector {
                 top: auto;
@@ -404,40 +358,46 @@
             .map-layer-btn { padding: 7px 12px; font-size: 0.8rem; min-height: 36px; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
-            footer { padding: 30px 16px; }
+            footer { padding: 25px 16px 30px; }
         }
-
         @media (max-width: 420px) {
             .social-icons a { margin-left: 8px; font-size: 1rem; }
             .kpi-dashboard { grid-template-columns: repeat(2, 1fr); }
             #map { height: 340px; }
         }
+        /* Desktop tagline visible on PC */
+        @media (min-width: 769px) {
+            .desktop-tagline {
+                display: block;
+            }
+            .short-title { display: none; }
+        }
     </style>
 </head>
 <body>
-
 <header class="top-header" role="banner">
     <div class="nav-left">
         <a href="/" class="logo-left" aria-label="Cobbles & Climbs — home">
             <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
-    <!-- Desktop title (hidden on mobile via CSS) -->
-    <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">Cobbles <span>&amp;</span> Climbs</a>
+    <!-- C&C centraal op mobiel -->
+    <span class="short-title">C&amp;C</span>
+
+    <!-- Desktop title with tagline -->
+    <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
+        Cobbles <span>&amp;</span> Climbs
+        <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
+    </a>
     <nav class="nav-right" aria-label="Social media links">
         <div class="social-icons">
-            <a href="mailto:cobblesclimbs@gmail.com" aria-label="Send us an email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
-            <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Strava"><i class="fa-brands fa-strava" aria-hidden="true"></i></a>
-            <!-- Facebook link commented out — no Facebook page yet -->
-            <!-- <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a> -->
-            <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
             <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Strava"><i class="fa-brands fa-strava" aria-hidden="true"></i></a>
+            <a href="mailto:cobblesclimbs@gmail.com" aria-label="Send us an email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
         </div>
     </nav>
 </header>
-
-<!-- Mobile-only title bar (shown below header on small screens) -->
-<a href="/" class="mobile-title-bar" aria-label="Cobbles & Climbs — home">Cobbles &amp; Climbs</a>
 
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
     <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
@@ -449,7 +409,6 @@
     <div class="kpi-card"><p>IMAGE</p><h3>4K</h3></div>
     <div class="kpi-card"><p>SOUND</p><h3>RAW</h3></div>
 </div>
-
 <main>
     <section class="hero" aria-label="About Cobbles & Climbs">
         <div class="hero-text">
@@ -476,7 +435,6 @@
             </select>
         </aside>
     </section>
-
     <section class="map-section" aria-label="Interactive map of Flemish cycling sectors">
         <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Map of cobbled sectors and climbs in the Flemish Ardennes</h2>
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors in the Flemish Ardennes"></div>
@@ -488,12 +446,10 @@
         </div>
     </section>
 </main>
-
 <footer role="contentinfo">
     <p>&copy; 2026 Cobbles &amp; Climbs •
-    <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
+    <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
 </footer>
-
 <script>
     let archiveData = { sectors: [] };
     let map = null;
@@ -501,7 +457,6 @@
     const markers = {};
     const dropdown = document.getElementById('climbDropdown');
     let bounds = L.latLngBounds();
-
     async function loadSectors() {
         try {
             const response = await fetch('sectors.json');
@@ -513,14 +468,12 @@
             console.error("❌ Fout bij laden van sectors.json:", error);
         }
     }
-
     function getMarkerColor(type) {
-        if (type === "cobbles")       return "#8c8c8c";
-        if (type === "climb")         return "#1a3c34";
+        if (type === "cobbles") return "#8c8c8c";
+        if (type === "climb") return "#1a3c34";
         if (type === "cobbled_climb") return "#c62828";
         return "#1a3c34";
     }
-
     function addLegend() {
         const legend = L.control({ position: 'bottomright' });
         legend.onAdd = function () {
@@ -540,13 +493,12 @@
         };
         legend.addTo(map);
     }
-
     function switchLayer(layerName) {
         const layers = {
-            light:     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
-            osm:       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',             { attribution: '&copy; OpenStreetMap' }),
+            light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
             satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
-            terrain:   L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',               { attribution: '© OpenTopoMap' })
+            terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' })
         };
         const newLayer = layers[layerName];
         if (!newLayer) return;
@@ -559,86 +511,77 @@
             btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
     }
-
     function timeToSeconds(t) {
         if (!t || !t.includes(':')) return 0;
         const [m, s] = t.split(':').map(Number);
         return m * 60 + s;
     }
-
     function secondsToTime(total) {
         const h = Math.floor(total / 3600);
         const m = Math.floor((total % 3600) / 60);
         const s = total % 60;
         return h ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}` : `${m}:${s.toString().padStart(2,'0')}`;
     }
-
     function calculateTotals() {
         const s = archiveData.sectors;
-        const totalDist   = s.reduce((a,b) => a + b.dist, 0).toFixed(1);
+        const totalDist = s.reduce((a,b) => a + b.dist, 0).toFixed(1);
         const totalAscent = s.reduce((a,b) => a + b.ascent, 0);
-        const totalSec    = s.reduce((sum,sec) => sum + timeToSeconds(sec.time), 0);
-        const avgGrade    = (s.reduce((a,b) => a + parseFloat(b.avg), 0) / s.length).toFixed(1);
-        const avgMax      = (s.reduce((a,b) => a + parseFloat(b.max), 0) / s.length).toFixed(1);
+        const totalSec = s.reduce((sum,sec) => sum + timeToSeconds(sec.time), 0);
+        const avgGrade = (s.reduce((a,b) => a + parseFloat(b.avg || 0), 0) / s.length).toFixed(1);
+        const avgMax = (s.reduce((a,b) => a + parseFloat(b.max || 0), 0) / s.length).toFixed(1);
         archiveData.computed = { count: s.length, dist: totalDist, totalAscent, avgGrade, avgMaxGrade: avgMax, totalDuration: secondsToTime(totalSec) };
     }
-
     function updateDashboard(data) {
         if (data === 'reset') {
             const c = archiveData.computed || {};
-            document.getElementById('val-1').innerText   = c.count || '-';
+            document.getElementById('val-1').innerText = c.count || '-';
             document.getElementById('label-1').innerText = "SECTORS";
-            document.getElementById('val-2').innerHTML   = (c.dist || '0') + '<span class="unit">km</span>';
+            document.getElementById('val-2').innerHTML = (c.dist || '0') + '<span class="unit">km</span>';
             document.getElementById('label-2').innerText = "TOTAL LENGTH";
-            document.getElementById('val-3').innerHTML   = (c.totalAscent || '0') + '<span class="unit">m</span>';
+            document.getElementById('val-3').innerHTML = (c.totalAscent || '0') + '<span class="unit">m</span>';
             document.getElementById('label-3').innerText = "TOTAL ASCENT";
-            document.getElementById('val-4').innerHTML   = (c.avgGrade || '0') + '<span class="unit">%</span>';
+            document.getElementById('val-4').innerHTML = (c.avgGrade || '0') + '<span class="unit">%</span>';
             document.getElementById('label-4').innerText = "AVG GRADE";
-            document.getElementById('val-5').innerHTML   = (c.avgMaxGrade || '0') + '<span class="unit">%</span>';
+            document.getElementById('val-5').innerHTML = (c.avgMaxGrade || '0') + '<span class="unit">%</span>';
             document.getElementById('label-5').innerText = "AVG MAX GRADE";
-            document.getElementById('val-6').innerHTML   = c.totalDuration || '-';
+            document.getElementById('val-6').innerHTML = c.totalDuration || '-';
             document.getElementById('label-6').innerText = "TOTAL DURATION";
         } else {
-            document.getElementById('val-1').innerText   = data.name;
+            document.getElementById('val-1').innerText = data.name;
             document.getElementById('label-1').innerText = "SECTOR NAME";
-            document.getElementById('val-2').innerHTML   = data.dist + '<span class="unit">km</span>';
+            document.getElementById('val-2').innerHTML = data.dist + '<span class="unit">km</span>';
             document.getElementById('label-2').innerText = "LENGTH";
-            document.getElementById('val-3').innerHTML   = data.ascent + '<span class="unit">m</span>';
+            document.getElementById('val-3').innerHTML = data.ascent + '<span class="unit">m</span>';
             document.getElementById('label-3').innerText = "ASCENT";
-            document.getElementById('val-4').innerHTML   = data.avg + '<span class="unit">%</span>';
+            document.getElementById('val-4').innerHTML = data.avg + '<span class="unit">%</span>';
             document.getElementById('label-4').innerText = "AVG GRADE";
-            document.getElementById('val-5').innerHTML   = data.max + '<span class="unit">%</span>';
+            document.getElementById('val-5').innerHTML = data.max + '<span class="unit">%</span>';
             document.getElementById('label-5').innerText = "MAX GRADE";
-            document.getElementById('val-6').innerHTML   = data.time;
+            document.getElementById('val-6').innerHTML = data.time;
             document.getElementById('label-6').innerText = "DURATION";
         }
     }
-
     function isMobile() {
         return window.innerWidth <= 768;
     }
-
     function centerOnPopup(marker) {
         const latLng = marker.getLatLng();
         const offset = isMobile() ? [0, 40] : [0, 80];
         const target = map.project(latLng).subtract(offset);
         map.panTo(map.unproject(target), { animate: true });
     }
-
     function initMap() {
         const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' });
         map = L.map('map', {
             zoomControl: true,
-            tap: true,
+            tap: false,
             tapTolerance: 15
         });
         currentLayer = light;
         light.addTo(map);
-
         archiveData.sectors.sort((a,b) => a.name.localeCompare(b.name)).forEach(s => {
             const color = getMarkerColor(s.type);
             const radius = isMobile() ? 7 : 5.5;
-
             const marker = L.circleMarker([s.lat, s.lon], {
                 radius,
                 fillColor: color,
@@ -646,50 +589,42 @@
                 weight: 2,
                 fillOpacity: 0.95
             }).addTo(map);
-
             marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
-
-            // Use mqdefault (320×180) for correct 16:9 ratio in popup
+            const typeDisplay = s.type === "cobbled_climb" ? "Cobbled climb" : s.type.toUpperCase().replace('_', ' ');
             const popupHTML = `
                 <div class="popup-card">
-                    <a href="https://www.youtube.com/watch?v=${s.yt}&autoplay=1" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
+                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
                         <div class="popup-thumb">
                             <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy">
                         </div>
                     </a>
                     <div class="popup-info">
                         <strong>${s.name}</strong><br>
-                        ${s.type.toUpperCase().replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
-                        <a href="https://www.youtube.com/watch?v=${s.yt}&autoplay=1" target="_blank" rel="noopener noreferrer" class="yt-link" aria-label="Watch ${s.name} on YouTube">Watch on YouTube</a>
+                        ${typeDisplay} • ${s.dist} km • ${s.ascent} m<br>
+                        Avg grade: ${s.avg}% • Max grade: ${s.max}%<br>
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="yt-link">Watch this on YouTube</a>
                     </div>
                 </div>`;
-
             marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
-
             marker.on('click', () => {
                 centerOnPopup(marker);
                 updateDashboard(s);
             });
             marker.on('popupclose', () => updateDashboard('reset'));
-
             bounds.extend([s.lat, s.lon]);
             markers[s.id] = marker;
-
             const opt = document.createElement('option');
             opt.value = s.id;
             opt.textContent = s.name;
             dropdown.appendChild(opt);
         });
-
         calculateTotals();
         updateDashboard('reset');
         map.setView([50.78, 3.65], 11);
         addLegend();
-
         document.querySelectorAll('.map-layer-btn').forEach(btn => {
             btn.addEventListener('click', () => switchLayer(btn.dataset.layer));
         });
-
         dropdown.addEventListener('change', function() {
             if (!this.value) return;
             const marker = markers[this.value];
@@ -700,13 +635,11 @@
                 updateDashboard(sector);
             }
         });
-
         setTimeout(() => {
             map.invalidateSize();
             if (bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
         }, 300);
     }
-
     loadSectors();
 </script>
 </body>
