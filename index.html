@@ -128,18 +128,31 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
-        /* C&C centraal op mobiel → nu volle titel */
+
+        /* Mobiel titel + tagline */
         .short-title {
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
-            font-size: 1.45rem;
-            letter-spacing: -1.2px;
+            font-size: 1.35rem;
+            letter-spacing: -1.1px;
             color: white;
             flex: 1;
             text-align: center;
             display: none;
+            line-height: 1.1;
         }
-        /* Desktop: title centered absolute inside header */
+        .mobile-tagline {
+            display: none;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: -0.3px;
+            color: #a8d5c8;
+            margin-top: 4px;
+            text-align: center;
+            line-height: 1.25;
+        }
+
+        /* Desktop title */
         .logo-center {
             position: absolute;
             left: 50%;
@@ -155,7 +168,7 @@
             line-height: 1.1;
         }
         .logo-center span { color: white; }
-        /* Desktop tagline */
+
         .desktop-tagline {
             display: none;
             font-size: 0.88rem;
@@ -164,6 +177,7 @@
             color: #a8d5c8;
             margin-top: 6px;
         }
+
         .social-icons a {
             color: white;
             margin-left: 18px;
@@ -172,7 +186,7 @@
         }
         .social-icons a:hover { color: #a8d5c8; }
 
-        /* Mobile menu button & dropdown */
+        /* Mobile menu button */
         .menu-button {
             background: none;
             border: none;
@@ -182,6 +196,8 @@
             padding: 8px;
             display: none;
         }
+
+        /* Mobile dropdown */
         .mobile-social-dropdown {
             position: absolute;
             top: 100%;
@@ -192,7 +208,7 @@
             padding: 12px 16px;
             display: none;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             z-index: 3100;
         }
         .mobile-social-dropdown.show {
@@ -200,11 +216,12 @@
         }
         .mobile-social-dropdown a {
             color: white;
-            font-size: 1.0rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 10px;
             text-decoration: none;
+            white-space: nowrap;
         }
         .mobile-social-dropdown a:hover {
             color: #a8d5c8;
@@ -227,6 +244,7 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
+
         /* ── HERO ── */
         .hero {
             max-width: 1200px;
@@ -268,7 +286,8 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-        /* ── LEGEND ── */
+
+        /* Legend, Map, Popup, Footer (ongewijzigd) */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -300,7 +319,7 @@
         .legend.collapsed .legend-body { display: none; }
         .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
-        /* ── MAP ── */
+
         .map-section {
             padding: 0 20px 30px;
             max-width: 1200px;
@@ -334,7 +353,7 @@
             touch-action: manipulation;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-        /* ── POPUP ── */
+
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb {
             width: 100%;
@@ -354,31 +373,30 @@
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
         .yt-link { display: inline-block; margin-top: 10px; color: #1a3c34; text-decoration: none; font-weight: 500; }
         .yt-link:hover { text-decoration: underline; }
-        /* ── FOOTER ── */
+
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
 
-        /* ── MOBILE STYLES (≤ 768px) ── */
+        /* ── MOBILE STYLES ── */
         @media (max-width: 768px) {
             .top-header { 
                 padding: 10px 16px; 
-                position: sticky; 
             }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
             .logo-center { display: none; }
             
-            /* Volle titel gecentreerd */
             .short-title { 
                 display: block; 
-                font-size: 1.35rem;
             }
 
-            /* Verberg desktop social icons */
+            .mobile-tagline {
+                display: block;
+            }
+
             .nav-right .social-icons { display: none; }
 
-            /* Toon menu button */
             .menu-button {
                 display: block;
             }
@@ -408,17 +426,18 @@
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
             footer { padding: 25px 16px 30px; }
         }
+
         @media (max-width: 420px) {
             .short-title { font-size: 1.25rem; }
+            .mobile-tagline { font-size: 0.73rem; }
             .kpi-dashboard { grid-template-columns: repeat(2, 1fr); }
             #map { height: 340px; }
         }
-        /* Desktop tagline visible on PC */
+
         @media (min-width: 769px) {
-            .desktop-tagline {
-                display: block;
-            }
+            .desktop-tagline { display: block; }
             .short-title { display: none; }
+            .mobile-tagline { display: none; }
         }
     </style>
 </head>
@@ -430,17 +449,19 @@
         </a>
     </div>
 
-    <!-- Volledige titel centraal op mobiel -->
-    <span class="short-title">Cobbles &amp; Climbs</span>
+    <!-- Mobiel titel + tagline -->
+    <div style="flex: 1; text-align: center;">
+        <span class="short-title">Cobbles &amp; Climbs</span>
+        <div class="mobile-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</div>
+    </div>
 
-    <!-- Desktop title with tagline -->
+    <!-- Desktop title -->
     <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
         Cobbles <span>&amp;</span> Climbs
         <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
     </a>
 
     <nav class="nav-right" aria-label="Social media links">
-        <!-- Desktop social icons -->
         <div class="social-icons">
             <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
             <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
@@ -448,13 +469,11 @@
             <a href="mailto:cobblesclimbs@gmail.com" aria-label="Send us an email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
         </div>
 
-        <!-- Mobile menu button -->
         <button class="menu-button" id="menuButton" aria-label="Open social menu">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Mobile dropdown -->
     <div class="mobile-social-dropdown" id="mobileDropdown">
         <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
         <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
@@ -517,7 +536,6 @@
 </footer>
 
 <script>
-    // Mobile menu toggle
     const menuButton = document.getElementById('menuButton');
     const mobileDropdown = document.getElementById('mobileDropdown');
 
@@ -525,7 +543,6 @@
         mobileDropdown.classList.toggle('show');
     });
 
-    // Sluit dropdown als er buiten geklikt wordt
     document.addEventListener('click', (e) => {
         if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) {
             mobileDropdown.classList.remove('show');
