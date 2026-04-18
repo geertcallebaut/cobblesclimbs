@@ -286,7 +286,7 @@
             font-size: 0.95rem;
         }
 
-        /* Legend, Map, Popup, Footer */
+        /* Legend, Map, etc. */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -371,20 +371,20 @@
         .popup-thumb img:hover { opacity: 0.85; }
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
 
-        /* Subtiele YouTube link */
+        /* Subtiele rode YouTube link */
         .popup-yt-link {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
             margin-top: 10px;
-            color: #1a3c34;
+            color: #e60000;           /* Rood YouTube-kleur */
             text-decoration: none;
             font-weight: 500;
             font-size: 0.92rem;
         }
         .popup-yt-link:hover {
-            color: #e60000;
+            color: #cc0000;
         }
         .popup-yt-link i {
             font-size: 1.18rem;
@@ -394,7 +394,7 @@
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
 
-        /* ── MOBILE STYLES ── */
+        /* MOBILE STYLES */
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; }
             .logo-left { height: 40px; }
@@ -691,7 +691,6 @@
 
             let typeDisplay = s.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
 
-            // Eerste volledige zin of max 100 karakters
             let desc = "";
             if (s.description) {
                 const firstSentence = s.description.split('.')[0].trim();
