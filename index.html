@@ -9,10 +9,8 @@
       gtag('js', new Date());
       gtag('config', 'G-9H693SN34Q');
     </script>
-
     <!-- Roboto font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- ── PRIMARY META ── -->
@@ -130,19 +128,17 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
-
-        /* C&C centraal op mobiel */
+        /* C&C centraal op mobiel → nu volle titel */
         .short-title {
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
             font-size: 1.45rem;
             letter-spacing: -1.2px;
             color: white;
-            display: none;
             flex: 1;
             text-align: center;
+            display: none;
         }
-
         /* Desktop: title centered absolute inside header */
         .logo-center {
             position: absolute;
@@ -159,7 +155,6 @@
             line-height: 1.1;
         }
         .logo-center span { color: white; }
-
         /* Desktop tagline */
         .desktop-tagline {
             display: none;
@@ -169,7 +164,6 @@
             color: #a8d5c8;
             margin-top: 6px;
         }
-
         .social-icons a {
             color: white;
             margin-left: 18px;
@@ -177,6 +171,44 @@
             transition: color 0.2s;
         }
         .social-icons a:hover { color: #a8d5c8; }
+
+        /* Mobile menu button & dropdown */
+        .menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            display: none;
+        }
+        .mobile-social-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 16px;
+            background: var(--cc-dark-green);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            padding: 12px 16px;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 3100;
+        }
+        .mobile-social-dropdown.show {
+            display: flex;
+        }
+        .mobile-social-dropdown a {
+            color: white;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .mobile-social-dropdown a:hover {
+            color: #a8d5c8;
+        }
 
         /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
@@ -195,7 +227,6 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
-
         /* ── HERO ── */
         .hero {
             max-width: 1200px;
@@ -327,19 +358,36 @@
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
+
         /* ── MOBILE STYLES (≤ 768px) ── */
         @media (max-width: 768px) {
-            .top-header { padding: 10px 16px; position: sticky; }
+            .top-header { 
+                padding: 10px 16px; 
+                position: sticky; 
+            }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
             .logo-center { display: none; }
-            .short-title { display: block; }
-            .social-icons a { margin-left: 10px; font-size: 1.1rem; }
+            
+            /* Volle titel gecentreerd */
+            .short-title { 
+                display: block; 
+                font-size: 1.35rem;
+            }
+
+            /* Verberg desktop social icons */
+            .nav-right .social-icons { display: none; }
+
+            /* Toon menu button */
+            .menu-button {
+                display: block;
+            }
+
             .kpi-dashboard {
                 grid-template-columns: repeat(2, 1fr);
                 padding: 14px 12px;
                 gap: 10px;
-                top: 56px;   /* direct onder header, geen witte ruimte */
+                top: 56px;
             }
             .kpi-card h3 { font-size: 1rem; }
             .kpi-card p { font-size: 0.5rem; }
@@ -361,7 +409,7 @@
             footer { padding: 25px 16px 30px; }
         }
         @media (max-width: 420px) {
-            .social-icons a { margin-left: 8px; font-size: 1rem; }
+            .short-title { font-size: 1.25rem; }
             .kpi-dashboard { grid-template-columns: repeat(2, 1fr); }
             #map { height: 340px; }
         }
@@ -381,22 +429,38 @@
             <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
-    <!-- C&C centraal op mobiel -->
-    <span class="short-title">C&amp;C</span>
+
+    <!-- Volledige titel centraal op mobiel -->
+    <span class="short-title">Cobbles &amp; Climbs</span>
 
     <!-- Desktop title with tagline -->
     <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
         Cobbles <span>&amp;</span> Climbs
         <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
     </a>
+
     <nav class="nav-right" aria-label="Social media links">
+        <!-- Desktop social icons -->
         <div class="social-icons">
             <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
             <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
             <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Strava"><i class="fa-brands fa-strava" aria-hidden="true"></i></a>
             <a href="mailto:cobblesclimbs@gmail.com" aria-label="Send us an email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
         </div>
+
+        <!-- Mobile menu button -->
+        <button class="menu-button" id="menuButton" aria-label="Open social menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
+
+    <!-- Mobile dropdown -->
+    <div class="mobile-social-dropdown" id="mobileDropdown">
+        <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-strava"></i> Strava</a>
+        <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
+    </div>
 </header>
 
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
@@ -409,6 +473,7 @@
     <div class="kpi-card"><p>IMAGE</p><h3>4K</h3></div>
     <div class="kpi-card"><p>SOUND</p><h3>RAW</h3></div>
 </div>
+
 <main>
     <section class="hero" aria-label="About Cobbles & Climbs">
         <div class="hero-text">
@@ -450,13 +515,30 @@
     <p>&copy; 2026 Cobbles &amp; Climbs •
     <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
 </footer>
+
 <script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById('menuButton');
+    const mobileDropdown = document.getElementById('mobileDropdown');
+
+    menuButton.addEventListener('click', () => {
+        mobileDropdown.classList.toggle('show');
+    });
+
+    // Sluit dropdown als er buiten geklikt wordt
+    document.addEventListener('click', (e) => {
+        if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) {
+            mobileDropdown.classList.remove('show');
+        }
+    });
+
     let archiveData = { sectors: [] };
     let map = null;
     let currentLayer = null;
     const markers = {};
     const dropdown = document.getElementById('climbDropdown');
     let bounds = L.latLngBounds();
+
     async function loadSectors() {
         try {
             const response = await fetch('sectors.json');
@@ -468,12 +550,14 @@
             console.error("❌ Fout bij laden van sectors.json:", error);
         }
     }
+
     function getMarkerColor(type) {
         if (type === "cobbles") return "#8c8c8c";
         if (type === "climb") return "#1a3c34";
         if (type === "cobbled_climb") return "#c62828";
         return "#1a3c34";
     }
+
     function addLegend() {
         const legend = L.control({ position: 'bottomright' });
         legend.onAdd = function () {
@@ -493,6 +577,7 @@
         };
         legend.addTo(map);
     }
+
     function switchLayer(layerName) {
         const layers = {
             light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
@@ -511,17 +596,20 @@
             btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
     }
+
     function timeToSeconds(t) {
         if (!t || !t.includes(':')) return 0;
         const [m, s] = t.split(':').map(Number);
         return m * 60 + s;
     }
+
     function secondsToTime(total) {
         const h = Math.floor(total / 3600);
         const m = Math.floor((total % 3600) / 60);
         const s = total % 60;
         return h ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}` : `${m}:${s.toString().padStart(2,'0')}`;
     }
+
     function calculateTotals() {
         const s = archiveData.sectors;
         const totalDist = s.reduce((a,b) => a + b.dist, 0).toFixed(1);
@@ -531,6 +619,7 @@
         const avgMax = (s.reduce((a,b) => a + parseFloat(b.max || 0), 0) / s.length).toFixed(1);
         archiveData.computed = { count: s.length, dist: totalDist, totalAscent, avgGrade, avgMaxGrade: avgMax, totalDuration: secondsToTime(totalSec) };
     }
+
     function updateDashboard(data) {
         if (data === 'reset') {
             const c = archiveData.computed || {};
@@ -561,15 +650,18 @@
             document.getElementById('label-6').innerText = "DURATION";
         }
     }
+
     function isMobile() {
         return window.innerWidth <= 768;
     }
+
     function centerOnPopup(marker) {
         const latLng = marker.getLatLng();
         const offset = isMobile() ? [0, 40] : [0, 80];
         const target = map.project(latLng).subtract(offset);
         map.panTo(map.unproject(target), { animate: true });
     }
+
     function initMap() {
         const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' });
         map = L.map('map', {
@@ -579,6 +671,7 @@
         });
         currentLayer = light;
         light.addTo(map);
+
         archiveData.sectors.sort((a,b) => a.name.localeCompare(b.name)).forEach(s => {
             const color = getMarkerColor(s.type);
             const radius = isMobile() ? 7 : 5.5;
@@ -590,6 +683,7 @@
                 fillOpacity: 0.95
             }).addTo(map);
             marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
+
             const typeDisplay = s.type === "cobbled_climb" ? "Cobbled climb" : s.type.toUpperCase().replace('_', ' ');
             const popupHTML = `
                 <div class="popup-card">
@@ -606,25 +700,31 @@
                     </div>
                 </div>`;
             marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
+
             marker.on('click', () => {
                 centerOnPopup(marker);
                 updateDashboard(s);
             });
             marker.on('popupclose', () => updateDashboard('reset'));
+
             bounds.extend([s.lat, s.lon]);
             markers[s.id] = marker;
+
             const opt = document.createElement('option');
             opt.value = s.id;
             opt.textContent = s.name;
             dropdown.appendChild(opt);
         });
+
         calculateTotals();
         updateDashboard('reset');
         map.setView([50.78, 3.65], 11);
         addLegend();
+
         document.querySelectorAll('.map-layer-btn').forEach(btn => {
             btn.addEventListener('click', () => switchLayer(btn.dataset.layer));
         });
+
         dropdown.addEventListener('change', function() {
             if (!this.value) return;
             const marker = markers[this.value];
@@ -635,11 +735,13 @@
                 updateDashboard(sector);
             }
         });
+
         setTimeout(() => {
             map.invalidateSize();
             if (bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
         }, 300);
     }
+
     loadSectors();
 </script>
 </body>
