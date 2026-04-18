@@ -128,7 +128,6 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
-
         /* Mobiel titel + tagline */
         .short-title {
             font-family: 'Roboto', sans-serif;
@@ -151,7 +150,6 @@
             text-align: center;
             line-height: 1.25;
         }
-
         /* Desktop title */
         .logo-center {
             position: absolute;
@@ -168,7 +166,6 @@
             line-height: 1.1;
         }
         .logo-center span { color: white; }
-
         .desktop-tagline {
             display: none;
             font-size: 0.88rem;
@@ -177,7 +174,6 @@
             color: #a8d5c8;
             margin-top: 6px;
         }
-
         .social-icons a {
             color: white;
             margin-left: 18px;
@@ -185,7 +181,6 @@
             transition: color 0.2s;
         }
         .social-icons a:hover { color: #a8d5c8; }
-
         /* Mobile menu button */
         .menu-button {
             background: none;
@@ -196,7 +191,6 @@
             padding: 8px;
             display: none;
         }
-
         /* Mobile dropdown */
         .mobile-social-dropdown {
             position: absolute;
@@ -226,7 +220,6 @@
         .mobile-social-dropdown a:hover {
             color: #a8d5c8;
         }
-
         /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
             background: #0f0f0f;
@@ -244,7 +237,6 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
-
         /* ── HERO ── */
         .hero {
             max-width: 1200px;
@@ -286,7 +278,6 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-
         /* Legend, Map, Popup, Footer (ongewijzigd) */
         .legend {
             background: rgba(255, 255, 255, 0.95);
@@ -319,7 +310,6 @@
         .legend.collapsed .legend-body { display: none; }
         .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
-
         .map-section {
             padding: 0 20px 30px;
             max-width: 1200px;
@@ -353,7 +343,6 @@
             touch-action: manipulation;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb {
             width: 100%;
@@ -373,34 +362,28 @@
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
         .yt-link { display: inline-block; margin-top: 10px; color: #1a3c34; text-decoration: none; font-weight: 500; }
         .yt-link:hover { text-decoration: underline; }
-
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-
         /* ── MOBILE STYLES ── */
         @media (max-width: 768px) {
-            .top-header { 
-                padding: 10px 16px; 
+            .top-header {
+                padding: 10px 16px;
             }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
             .logo-center { display: none; }
-            
-            .short-title { 
-                display: block; 
+           
+            .short-title {
+                display: block;
             }
-
             .mobile-tagline {
                 display: block;
             }
-
             .nav-right .social-icons { display: none; }
-
             .menu-button {
                 display: block;
             }
-
             .kpi-dashboard {
                 grid-template-columns: repeat(2, 1fr);
                 padding: 14px 12px;
@@ -426,14 +409,12 @@
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
             footer { padding: 25px 16px 30px; }
         }
-
         @media (max-width: 420px) {
             .short-title { font-size: 1.25rem; }
             .mobile-tagline { font-size: 0.73rem; }
             .kpi-dashboard { grid-template-columns: repeat(2, 1fr); }
             #map { height: 340px; }
         }
-
         @media (min-width: 769px) {
             .desktop-tagline { display: block; }
             .short-title { display: none; }
@@ -448,19 +429,16 @@
             <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
-
     <!-- Mobiel titel + tagline -->
     <div style="flex: 1; text-align: center;">
         <span class="short-title">Cobbles &amp; Climbs</span>
         <div class="mobile-tagline">The legendary spirit of Flemish cycling</div>
     </div>
-
     <!-- Desktop title -->
     <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
         Cobbles <span>&amp;</span> Climbs
         <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
     </a>
-
     <nav class="nav-right" aria-label="Social media links">
         <div class="social-icons">
             <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -468,12 +446,10 @@
             <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Cobbles & Climbs on Strava"><i class="fa-brands fa-strava" aria-hidden="true"></i></a>
             <a href="mailto:cobblesclimbs@gmail.com" aria-label="Send us an email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
         </div>
-
         <button class="menu-button" id="menuButton" aria-label="Open social menu">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
-
     <div class="mobile-social-dropdown" id="mobileDropdown">
         <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
         <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
@@ -481,7 +457,6 @@
         <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
     </div>
 </header>
-
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
     <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
     <div class="kpi-card"><p id="label-2">TOTAL LENGTH</p><h3 id="val-2">-</h3></div>
@@ -492,7 +467,6 @@
     <div class="kpi-card"><p>IMAGE</p><h3>4K</h3></div>
     <div class="kpi-card"><p>SOUND</p><h3>RAW</h3></div>
 </div>
-
 <main>
     <section class="hero" aria-label="About Cobbles & Climbs">
         <div class="hero-text">
@@ -538,11 +512,9 @@
 <script>
     const menuButton = document.getElementById('menuButton');
     const mobileDropdown = document.getElementById('mobileDropdown');
-
     menuButton.addEventListener('click', () => {
         mobileDropdown.classList.toggle('show');
     });
-
     document.addEventListener('click', (e) => {
         if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) {
             mobileDropdown.classList.remove('show');
@@ -701,7 +673,9 @@
             }).addTo(map);
             marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
 
-            const typeDisplay = s.type === "cobbled_climb" ? "Cobbled climb" : s.type.toUpperCase().replace('_', ' ');
+            // Aangepaste regel voor nette weergave (Cobbles, Climb, Cobbled Climb)
+            let typeDisplay = s.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+
             const popupHTML = `
                 <div class="popup-card">
                     <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
