@@ -226,26 +226,6 @@
             color: #a8d5c8;
         }
 
-        /* Popup verbeteringen */
-        .popup-yt-btn {
-            display: block;
-            margin: 12px auto 0;
-            padding: 9px 18px;
-            background-color: #e60000;
-            color: white;
-            text-align: center;
-            border-radius: 20px;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.93rem;
-            width: fit-content;
-            transition: all 0.2s ease;
-        }
-        .popup-yt-btn:hover {
-            background-color: #cc0000;
-            transform: translateY(-1px);
-        }
-
         /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
             background: #0f0f0f;
@@ -264,7 +244,7 @@
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
 
-        /* ── HERO, LEGEND, MAP, etc. (ongewijzigd) */
+        /* ── HERO ── */
         .hero {
             max-width: 1200px;
             margin: 0 auto;
@@ -306,6 +286,7 @@
             font-size: 0.95rem;
         }
 
+        /* Legend, Map, Popup, Footer */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -389,11 +370,31 @@
         }
         .popup-thumb img:hover { opacity: 0.85; }
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
+
+        /* Subtiele YouTube link */
+        .popup-yt-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 10px;
+            color: #1a3c34;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+        }
+        .popup-yt-link:hover {
+            color: #e60000;
+        }
+        .popup-yt-link i {
+            font-size: 1.18rem;
+        }
+
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
 
-        /* MOBILE STYLES */
+        /* ── MOBILE STYLES ── */
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; }
             .logo-left { height: 40px; }
@@ -713,17 +714,13 @@
                         <a href="https://www.youtube.com/watch?v=${s.yt}" 
                            target="_blank" 
                            rel="noopener noreferrer" 
-                           class="popup-yt-btn">
-                            ▶ Bekijk de video op YouTube
+                           class="popup-yt-link">
+                            <i class="fab fa-youtube"></i> Bekijk op YouTube
                         </a>
                     </div>
                 </div>`;
 
-            marker.bindPopup(popupHTML, { 
-                closeButton: true, 
-                offset: L.point(0, -5), 
-                maxWidth: isMobile() ? 240 : 270 
-            });
+            marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
 
             marker.on('click', () => {
                 centerOnPopup(marker);
