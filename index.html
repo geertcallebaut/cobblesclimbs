@@ -673,8 +673,11 @@
             }).addTo(map);
             marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
 
-            // Aangepaste regel voor nette weergave (Cobbles, Climb, Cobbled Climb)
             let typeDisplay = s.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+            // Nieuwe popup opbouw zoals gevraagd
+            let desc = (s.description || "").substring(0, 150);
+            if (desc.length === 150) desc += "...";
 
             const popupHTML = `
                 <div class="popup-card">
@@ -685,11 +688,12 @@
                     </a>
                     <div class="popup-info">
                         <strong>${s.name}</strong><br>
-                        ${typeDisplay} • ${s.dist} km • ${s.ascent} m<br>
-                        Avg grade: ${s.avg}% • Max grade: ${s.max}%<br>
-                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="yt-link">Watch this on YouTube</a>
+                        ${typeDisplay} • ${s.dist} km • ${s.ascent} m • ${s.avg}% • ${s.max}%<br>
+                        ${desc}
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="yt-link" style="margin-top:8px;display:block;">Watch this on YouTube</a>
                     </div>
                 </div>`;
+
             marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
 
             marker.on('click', () => {
