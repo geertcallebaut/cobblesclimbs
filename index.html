@@ -128,6 +128,7 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
+
         /* Mobiel titel + tagline */
         .short-title {
             font-family: 'Roboto', sans-serif;
@@ -150,6 +151,7 @@
             text-align: center;
             line-height: 1.25;
         }
+
         /* Desktop title */
         .logo-center {
             position: absolute;
@@ -174,6 +176,7 @@
             color: #a8d5c8;
             margin-top: 6px;
         }
+
         .social-icons a {
             color: white;
             margin-left: 18px;
@@ -181,6 +184,7 @@
             transition: color 0.2s;
         }
         .social-icons a:hover { color: #a8d5c8; }
+
         /* Mobile menu button */
         .menu-button {
             background: none;
@@ -191,6 +195,7 @@
             padding: 8px;
             display: none;
         }
+
         /* Mobile dropdown */
         .mobile-social-dropdown {
             position: absolute;
@@ -220,6 +225,27 @@
         .mobile-social-dropdown a:hover {
             color: #a8d5c8;
         }
+
+        /* Popup verbeteringen */
+        .popup-yt-btn {
+            display: block;
+            margin: 12px auto 0;
+            padding: 9px 18px;
+            background-color: #e60000;
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.93rem;
+            width: fit-content;
+            transition: all 0.2s ease;
+        }
+        .popup-yt-btn:hover {
+            background-color: #cc0000;
+            transform: translateY(-1px);
+        }
+
         /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
             background: #0f0f0f;
@@ -237,7 +263,8 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
-        /* ── HERO ── */
+
+        /* ── HERO, LEGEND, MAP, etc. (ongewijzigd) */
         .hero {
             max-width: 1200px;
             margin: 0 auto;
@@ -278,7 +305,7 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-        /* Legend, Map, Popup, Footer (ongewijzigd) */
+
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -310,6 +337,7 @@
         .legend.collapsed .legend-body { display: none; }
         .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
+
         .map-section {
             padding: 0 20px 30px;
             max-width: 1200px;
@@ -343,6 +371,7 @@
             touch-action: manipulation;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
+
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb {
             width: 100%;
@@ -360,38 +389,26 @@
         }
         .popup-thumb img:hover { opacity: 0.85; }
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
-        .yt-link { display: inline-block; margin-top: 10px; color: #1a3c34; text-decoration: none; font-weight: 500; }
-        .yt-link:hover { text-decoration: underline; }
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-        /* ── MOBILE STYLES ── */
+
+        /* MOBILE STYLES */
         @media (max-width: 768px) {
-            .top-header {
-                padding: 10px 16px;
-            }
+            .top-header { padding: 10px 16px; }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
             .logo-center { display: none; }
-           
-            .short-title {
-                display: block;
-            }
-            .mobile-tagline {
-                display: block;
-            }
+            .short-title { display: block; }
+            .mobile-tagline { display: block; }
             .nav-right .social-icons { display: none; }
-            .menu-button {
-                display: block;
-            }
+            .menu-button { display: block; }
             .kpi-dashboard {
                 grid-template-columns: repeat(2, 1fr);
                 padding: 14px 12px;
                 gap: 10px;
                 top: 56px;
             }
-            .kpi-card h3 { font-size: 1rem; }
-            .kpi-card p { font-size: 0.5rem; }
             .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
             .hero-text { padding-right: 0; }
             .sidebar { padding: 16px; }
@@ -402,7 +419,6 @@
                 bottom: 10px;
                 left: 50%;
                 transform: translateX(-50%);
-                white-space: nowrap;
             }
             .map-layer-btn { padding: 7px 12px; font-size: 0.8rem; min-height: 36px; }
             .popup-card { width: 220px; }
@@ -412,7 +428,6 @@
         @media (max-width: 420px) {
             .short-title { font-size: 1.25rem; }
             .mobile-tagline { font-size: 0.73rem; }
-            .kpi-dashboard { grid-template-columns: repeat(2, 1fr); }
             #map { height: 340px; }
         }
         @media (min-width: 769px) {
@@ -429,12 +444,10 @@
             <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
-    <!-- Mobiel titel + tagline -->
     <div style="flex: 1; text-align: center;">
         <span class="short-title">Cobbles &amp; Climbs</span>
         <div class="mobile-tagline">The legendary spirit of Flemish cycling</div>
     </div>
-    <!-- Desktop title -->
     <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
         Cobbles <span>&amp;</span> Climbs
         <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
@@ -457,6 +470,7 @@
         <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
     </div>
 </header>
+
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
     <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
     <div class="kpi-card"><p id="label-2">TOTAL LENGTH</p><h3 id="val-2">-</h3></div>
@@ -467,6 +481,7 @@
     <div class="kpi-card"><p>IMAGE</p><h3>4K</h3></div>
     <div class="kpi-card"><p>SOUND</p><h3>RAW</h3></div>
 </div>
+
 <main>
     <section class="hero" aria-label="About Cobbles & Climbs">
         <div class="hero-text">
@@ -695,11 +710,20 @@
                         <strong>${s.name}</strong><br>
                         ${typeDisplay} • ${s.dist} km • ${s.ascent} m • ${s.avg}% • ${s.max}%<br>
                         ${desc}
-                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="yt-link" style="margin-top:8px;display:block;">Watch this on YouTube</a>
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="popup-yt-btn">
+                            ▶ Bekijk de video op YouTube
+                        </a>
                     </div>
                 </div>`;
 
-            marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
+            marker.bindPopup(popupHTML, { 
+                closeButton: true, 
+                offset: L.point(0, -5), 
+                maxWidth: isMobile() ? 240 : 270 
+            });
 
             marker.on('click', () => {
                 centerOnPopup(marker);
