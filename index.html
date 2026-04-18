@@ -675,9 +675,14 @@
 
             let typeDisplay = s.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
 
-            // Nieuwe popup opbouw zoals gevraagd
-            let desc = (s.description || "").substring(0, 150);
-            if (desc.length === 150) desc += "...";
+            // Eerste volledige zin of max 100 karakters
+            let desc = "";
+            if (s.description) {
+                const firstSentence = s.description.split('.')[0].trim();
+                desc = firstSentence.length > 100 
+                    ? firstSentence.substring(0, 100) + "..." 
+                    : firstSentence + ".";
+            }
 
             const popupHTML = `
                 <div class="popup-card">
