@@ -226,7 +226,7 @@
             color: #a8d5c8;
         }
 
-        /* ── KPI DASHBOARD ── */
+        /* KPI DASHBOARD */
         .kpi-dashboard {
             background: #0f0f0f;
             color: white;
@@ -244,7 +244,7 @@
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
 
-        /* ── HERO ── */
+        /* HERO */
         .hero {
             max-width: 1200px;
             margin: 0 auto;
@@ -286,7 +286,7 @@
             font-size: 0.95rem;
         }
 
-        /* Legend, Map, etc. */
+        /* Legend, Map, Popup */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -376,18 +376,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            margin-top: 10px;
-            color: #e60000;           /* Rood YouTube-kleur */
+            gap: 7px;
+            margin-top: 12px;
+            color: #e60000 !important;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.92rem;
+            font-size: 0.93rem;
         }
         .popup-yt-link:hover {
-            color: #cc0000;
+            color: #cc0000 !important;
         }
         .popup-yt-link i {
-            font-size: 1.18rem;
+            font-size: 1.22rem;
         }
 
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
@@ -404,24 +404,13 @@
             .mobile-tagline { display: block; }
             .nav-right .social-icons { display: none; }
             .menu-button { display: block; }
-            .kpi-dashboard {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 14px 12px;
-                gap: 10px;
-                top: 56px;
-            }
+            .kpi-dashboard { grid-template-columns: repeat(2, 1fr); padding: 14px 12px; gap: 10px; top: 56px; }
             .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
             .hero-text { padding-right: 0; }
             .sidebar { padding: 16px; }
             .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
-            .map-layer-selector {
-                top: auto;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .map-layer-btn { padding: 7px 12px; font-size: 0.8rem; min-height: 36px; }
+            .map-layer-selector { bottom: 10px; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
             footer { padding: 25px 16px 30px; }
@@ -701,7 +690,7 @@
 
             const popupHTML = `
                 <div class="popup-card">
-                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
+                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
                         <div class="popup-thumb">
                             <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy">
                         </div>
