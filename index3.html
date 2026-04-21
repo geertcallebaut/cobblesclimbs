@@ -325,28 +325,40 @@
     position: absolute;
     top: 18px;
     right: 12px;
+    z-index: 1000;
+}
+
+/* klikbaar icoon */
+.map-layer-header {
     background: white;
     border-radius: 10px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    z-index: 1000;
-    overflow: hidden;
-}
-
-.map-layer-header {
+    padding: 8px 10px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    padding: 8px 10px;
-    font-size: 1rem;
 }
 
+/* dropdown container */
 .map-layer-content {
     display: none;
-    flex-direction: column;
-    padding: 6px;
+    margin-top: 6px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    padding: 4px;
 }
 
+/* open state */
+.map-layer-selector.open .map-layer-content {
+    display: flex;
+}
+
+/* 🔥 BELANGRIJK: laat je originele styling intact */
+.map-layer-content .map-layer-btn {
+    padding: 7px 16px;   /* ← terug naar origineel */
+}
 .map-layer-selector.open .map-layer-content {
     display: flex;
 }
@@ -418,14 +430,13 @@
             border-top: 3px dashed #e07b00;
             flex-shrink: 0;
         }
-        @media (max-width: 768px) {
-            .theme-toggle {
-                top: auto;
-                bottom: 52px;
-                right: 8px;
-                padding: 6px 8px;
-            }
-        }
+@media (max-width: 768px) {
+    .map-layer-selector {
+        top: auto;
+        bottom: 10px;
+        right: 8px;
+    }
+}
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb {
             width: 100%;
