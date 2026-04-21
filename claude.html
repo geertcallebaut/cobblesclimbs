@@ -385,7 +385,7 @@
                 <p class="planner-info" id="plannerInfo">Click a marker → &quot;+ Add to Planner&quot;</p>
                 <div class="selected-list" id="selectedList"></div>
                 <button class="btn-action btn-primary" id="btnBuild" onclick="buildRoute()">
-                    <i class="fa-solid fa-person-cycling"></i> Build Route
+                    <i class="fa-solid fa-person-cycling"></i> Create ride
                 </button>
                 <button class="btn-action btn-secondary" onclick="downloadGPX()">
                     <i class="fa-solid fa-file-export"></i> Export GPX
@@ -698,7 +698,7 @@ function initMap() {
                     <div class="popup-info">
                         <strong>${s.name}</strong><br>
                         ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
-                        <button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">+ Add to Route Planner</button>
+                        <button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">+ Add to routeplanner</button>
                         <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>
                     </div>
                 </div>`;
