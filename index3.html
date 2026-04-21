@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) - Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9H693SN34Q"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,24 +8,20 @@
       gtag('js', new Date());
       gtag('config', 'G-9H693SN34Q');
     </script>
-    <!-- Roboto font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <!-- ── PRIMARY META ── -->
     <title>Cobbles & Climbs — Interactive map and immersive footage of Flemish cycling</title>
     <meta name="description" content="Interactive map and immersive footage to explore and discover Flanders' most iconic cobbles and climbs. Documenting every Tour of Flanders road and hidden local gems for cycling fans worldwide.">
     <meta name="keywords" content="Flemish Ardennes, cobbles, climbs, bergs, cycling, Tour of Flanders, Ronde van Vlaanderen, Flanders, Flanders, Fiandre, cobbled roads, cycling, cycling video, Flemish cycling, kasseistrook">
     <meta name="author" content="Cobbles & Climbs">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.cobblesclimbs.com/">
-    <!-- FAVICONS -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
-    <!-- ── OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ── -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.cobblesclimbs.com/">
     <meta property="og:title" content="Cobbles & Climbs — 4K Archive of Flemish Cycling Roads">
@@ -37,19 +32,15 @@
     <meta property="og:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
     <meta property="og:site_name" content="Cobbles & Climbs">
     <meta property="og:locale" content="en_GB">
-    <!-- ── TWITTER / X CARD ── -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@CobblesClimbs">
     <meta name="twitter:title" content="Cobbles & Climbs — 4K Archive of Flemish Cycling Roads">
     <meta name="twitter:description" content="A 4K video archive of the iconic cobbled sectors and climbs of the Flemish Ardennes. Documenting every Tour of Flanders road and hidden local gem.">
     <meta name="twitter:image" content="https://www.cobblesclimbs.com/og-image.jpg">
     <meta name="twitter:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
-    <!-- ── GEO ── -->
     <meta name="geo.region" content="BE-VWV">
     <meta name="geo.placename" content="Flemish Ardennes, Belgium">
-    <!-- ── THEME ── -->
     <meta name="theme-color" content="#1a3c34">
-    <!-- ── STRUCTURED DATA (JSON-LD) ── -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -128,7 +119,6 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
-        /* Mobiel titel + tagline */
         .short-title {
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
@@ -150,7 +140,6 @@
             text-align: center;
             line-height: 1.25;
         }
-        /* Desktop title */
         .logo-center {
             position: absolute;
             left: 50%;
@@ -181,7 +170,6 @@
             transition: color 0.2s;
         }
         .social-icons a:hover { color: #a8d5c8; }
-        /* Mobile menu button */
         .menu-button {
             background: none;
             border: none;
@@ -191,7 +179,6 @@
             padding: 8px;
             display: none;
         }
-        /* Mobile dropdown */
         .mobile-social-dropdown {
             position: absolute;
             top: 100%;
@@ -205,9 +192,7 @@
             gap: 10px;
             z-index: 3100;
         }
-        .mobile-social-dropdown.show {
-            display: flex;
-        }
+        .mobile-social-dropdown.show { display: flex; }
         .mobile-social-dropdown a {
             color: white;
             font-size: 0.9rem;
@@ -217,9 +202,8 @@
             text-decoration: none;
             white-space: nowrap;
         }
-        .mobile-social-dropdown a:hover {
-            color: #a8d5c8;
-        }
+        .mobile-social-dropdown a:hover { color: #a8d5c8; }
+
         /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
             background: #0f0f0f;
@@ -237,6 +221,7 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
+
         /* ── HERO ── */
         .hero {
             max-width: 1200px;
@@ -278,7 +263,109 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-        /* Legend, Map, Popup, Footer (ongewijzigd) */
+
+        /* ── MAP SECTION ── */
+        .map-section {
+            padding: 0 20px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        #map {
+            height: 620px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .map-layer-selector {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+            padding: 4px;
+            z-index: 1000;
+            display: flex;
+            font-size: 0.85rem;
+        }
+        .map-layer-btn {
+            padding: 7px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 30px;
+            touch-action: manipulation;
+        }
+        .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
+
+        /* ── THEME TOGGLE (UPDATED) ── */
+        .theme-toggle {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .theme-toggle-btn {
+            background: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--cc-dark-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .theme-toggle-btn:hover { background: #f8f8f8; transform: scale(1.05); }
+        .theme-menu {
+            display: none;
+            background: white;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            flex-direction: column;
+            gap: 8px;
+            min-width: 170px;
+        }
+        .theme-toggle.open .theme-menu { display: flex; }
+        .theme-toggle-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #666;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 4px;
+        }
+        .theme-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 5px 9px;
+            cursor: pointer;
+            font-size: 0.78rem;
+            color: #333;
+            transition: all 0.18s;
+            white-space: nowrap;
+        }
+        .theme-btn.active { color: white; border-color: transparent; }
+        .theme-btn .theme-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+        .theme-btn .theme-dash { width: 18px; height: 0; border-top: 3px dashed #e07b00; flex-shrink: 0; }
+
+        /* ── LEGEND, POPUP, FOOTER ── */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -310,146 +397,12 @@
         .legend.collapsed .legend-body { display: none; }
         .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
-        .map-section {
-            padding: 0 20px 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        #map {
-            height: 620px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-.map-layer-selector {
-    position: absolute;
-    top: 18px;
-    right: 12px;
-    z-index: 1000;
-}
 
-/* klikbaar icoon */
-.map-layer-header {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    padding: 8px 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* dropdown container */
-.map-layer-content {
-    display: none;
-    margin-top: 6px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    padding: 4px;
-}
-
-/* open state */
-.map-layer-selector.open .map-layer-content {
-    display: flex;
-}
-
-/* 🔥 BELANGRIJK: laat je originele styling intact */
-.map-layer-content .map-layer-btn {
-    padding: 7px 16px;   /* ← terug naar origineel */
-}
-.map-layer-selector.open .map-layer-content {
-    display: flex;
-}
-
-        .map-layer-btn {
-            padding: 7px 16px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            border-radius: 30px;
-            touch-action: manipulation;
-        }
-        .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-        /* ── THEME TOGGLE ── */
-        .theme-toggle {
-            position: absolute;
-    top: 70px;
-    right: 12px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-            padding: 8px 10px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 0.78rem;
-        }
-        .theme-toggle-title {
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #666;
-            margin-bottom: 2px;
-        }
-        .theme-btn {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            background: none;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 5px 9px;
-            cursor: pointer;
-            font-size: 0.78rem;
-            color: #333;
-            transition: all 0.18s;
-            white-space: nowrap;
-        }
-        .theme-btn.active {
-            border-color: transparent;
-            color: white;
-        }
-        .theme-btn .theme-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        .theme-btn .theme-dash {
-            width: 18px;
-            height: 0;
-            border-top: 3px dashed #e07b00;
-            flex-shrink: 0;
-        }
-@media (max-width: 768px) {
-    .map-layer-selector {
-        top: auto;
-        bottom: 10px;
-        right: 8px;
-    }
-}
         .popup-card { width: 255px; font-size: 0.84rem; }
-        .popup-thumb {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            border-radius: 3px;
-        }
-        .popup-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: pointer;
-            transition: opacity 0.2s;
-            display: block;
-        }
+        .popup-thumb { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 3px; }
+        .popup-thumb img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: opacity 0.2s; display: block; }
         .popup-thumb img:hover { opacity: 0.85; }
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
-        /* Subtiele rode YouTube link */
         .popup-yt-link {
             display: flex;
             align-items: center;
@@ -461,19 +414,13 @@
             font-weight: 500;
             font-size: 0.93rem;
         }
-        .popup-yt-link:hover {
-            color: #cc0000 !important;
-        }
-        .popup-yt-link i {
-            font-size: 1.22rem;
-        }
-        /* ── LEAFLET SVG PATHS: geen focus-outline ── */
-        .leaflet-interactive:focus {
-            outline: none !important;
-        }
+        .popup-yt-link:hover { color: #cc0000 !important; }
+        .popup-yt-link i { font-size: 1.22rem; }
+        .leaflet-interactive:focus { outline: none !important; }
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
+
         /* ── MOBILE STYLES ── */
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; }
@@ -497,12 +444,15 @@
             .sidebar { padding: 16px; }
             .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
-.map-layer-selector {
-    top: auto;
-    bottom: 10px;
-    right: 8px;
-}
+            .map-layer-selector {
+                top: auto;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                white-space: nowrap;
+            }
             .map-layer-btn { padding: 7px 12px; font-size: 0.8rem; min-height: 36px; }
+            .theme-toggle { top: 12px; right: 12px; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
             footer { padding: 25px 16px 30px; }
@@ -527,12 +477,10 @@
             <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
-    <!-- Mobiel titel + tagline -->
     <div style="flex: 1; text-align: center;">
         <span class="short-title">Cobbles &amp; Climbs</span>
         <div class="mobile-tagline">The legendary spirit of Flemish cycling</div>
     </div>
-    <!-- Desktop title -->
     <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
         Cobbles <span>&amp;</span> Climbs
         <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
@@ -601,32 +549,32 @@
     <section class="map-section" aria-label="Interactive map of Flemish cycling sectors">
         <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Map of cobbled sectors and climbs in the Flemish Ardennes</h2>
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors in the Flemish Ardennes"></div>
-<div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
-    <div class="map-layer-header" id="layerToggle">
-        <i class="fa-solid fa-layer-group"></i>
-    </div>
+        
+        <div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
+            <button class="map-layer-btn active" data-layer="light" aria-pressed="true">Light</button>
+            <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
+            <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
+            <button class="map-layer-btn" data-layer="terrain" aria-pressed="false">Terrain</button>
+        </div>
 
-    <div class="map-layer-content">
-        <button class="map-layer-btn active" data-layer="light" aria-pressed="true">Light</button>
-        <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
-        <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
-        <button class="map-layer-btn" data-layer="terrain" aria-pressed="false">Terrain</button>
-    </div>
-</div>
-        <div class="theme-toggle" id="themeToggle" role="group" aria-label="Toggle map layers">
-            <div class="theme-toggle-title">Show</div>
-            <button class="theme-btn active" data-theme="cobbles" style="background:#8c8c8c;">
-                <span class="theme-dot" style="background:#fff;border:1px solid #8c8c8c;"></span> Cobbles
+        <div class="theme-toggle" id="themeToggle" role="group" aria-label="Toggle map filters">
+            <button class="theme-toggle-btn" id="themeMainBtn" aria-label="Filter layers">
+                <i class="fa-solid fa-layer-group"></i>
             </button>
-            <button class="theme-btn active" data-theme="climb" style="background:#1a3c34;">
-                <span class="theme-dot" style="background:#fff;border:1px solid #1a3c34;"></span> Climbs
-            </button>
-            <button class="theme-btn active" data-theme="cobbled_climb" style="background:#c62828;">
-                <span class="theme-dot" style="background:#fff;border:1px solid #c62828;"></span> Cobbled climbs
-            </button>
-            <button class="theme-btn active" data-theme="routes" style="background:#e07b00;">
-                <span class="theme-dash"></span> Routes
-            </button>
+            <div class="theme-menu" id="themeMenu">
+                <div class="theme-toggle-title">Show</div>
+                <button class="theme-btn active" data-theme="cobbles" style="background:#8c8c8c;">
+                    <span class="theme-dot" style="background:#fff;border:1px solid #8c8c8c;"></span> Cobbles
+                </button>
+                <button class="theme-btn active" data-theme="climb" style="background:#1a3c34;">
+                    <span class="theme-dot" style="background:#fff;border:1px solid #1a3c34;"></span> Climbs
+                </button>
+                <button class="theme-btn active" data-theme="cobbled_climb" style="background:#c62828;">
+                    <span class="theme-dot" style="background:#fff;border:1px solid #c62828;"></span> Cobbled climbs
+                </button>
+                <button class="theme-btn active" data-theme="routes" style="background:#e07b00;">
+                    <span class="theme-dash"></span> Routes
+                </button>
             </div>
         </div>
     </section>
@@ -635,6 +583,7 @@
     <p>&copy; 2026 Cobbles &amp; Climbs •
     <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
 </footer>
+
 <script>
     const menuButton = document.getElementById('menuButton');
     const mobileDropdown = document.getElementById('mobileDropdown');
@@ -646,20 +595,16 @@
             mobileDropdown.classList.remove('show');
         }
     });
-    /* ⬇️ HIER TOEVOEGEN */
-const layerToggle = document.getElementById('layerToggle');
-const layerSelector = document.getElementById('layerSelector');
 
-layerToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    layerSelector.classList.toggle('open');
-});
-
-document.addEventListener('click', (e) => {
-    if (!layerSelector.contains(e.target)) {
-        layerSelector.classList.remove('open');
-    }
-});
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMainBtn = document.getElementById('themeMainBtn');
+    themeMainBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themeToggle.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+        if (!themeToggle.contains(e.target)) themeToggle.classList.remove('open');
+    });
 
     let archiveData = { sectors: [] };
     let map = null;
@@ -673,7 +618,6 @@ document.addEventListener('click', (e) => {
     let bounds = L.latLngBounds();
     let activeRouteId = null;
 
-    // ── THEME VISIBILITY ──────────────────────────────────────
     const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: true };
 
     function applyTheme(theme) {
@@ -697,7 +641,7 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    document.getElementById('themeToggle').addEventListener('click', (e) => {
+    document.getElementById('themeMenu').addEventListener('click', (e) => {
         const btn = e.target.closest('.theme-btn');
         if (btn) applyTheme(btn.dataset.theme);
     });
@@ -817,9 +761,7 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
+    function isMobile() { return window.innerWidth <= 768; }
 
     function centerOnPopup(marker) {
         const latLng = marker.getLatLng ? marker.getLatLng() : marker.getBounds().getCenter();
@@ -838,193 +780,104 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    // ── ROUTES laden (vóór markers zodat routes onder markers liggen) ──
     async function loadRoutes() {
         try {
             const response = await fetch('routes.geojson');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const geojson = await response.json();
-
-            geojson.features.sort((a, b) =>
-                a.properties.name.localeCompare(b.properties.name)
-            );
-
+            geojson.features.sort((a, b) => a.properties.name.localeCompare(b.properties.name));
             geojson.features.forEach(feature => {
                 const p = feature.properties;
-
                 const routeLayer = L.geoJSON(feature, {
-                    style: {
-                        color: '#e07b00',
-                        weight: 3,
-                        opacity: 0.85,
-                        dashArray: '6, 4',
-                        // FIX: geen zwart kader bij selectie
-                        outline: 'none'
-                    },
-                    // FIX: verhinder dat Leaflet een focus-outline toont op het path-element
+                    style: { color: '#e07b00', weight: 3, opacity: 0.85, dashArray: '6, 4', outline: 'none' },
                     onEachFeature: function(feat, layer) {
                         if (layer._path) layer._path.setAttribute('outline', 'none');
                     }
                 });
-
-                // FIX: verwijder focus-outline via CSS op alle SVG paths van routes
                 routeLayer.on('add', function() {
                     routeLayer.eachLayer(l => {
-                        if (l._path) {
-                            l._path.style.outline = 'none';
-                            l._path.setAttribute('focusable', 'false');
-                        }
+                        if (l._path) { l._path.style.outline = 'none'; l._path.setAttribute('focusable', 'false'); }
                     });
                 });
-
                 const popupHTML = `
                     <div class="popup-card">
-                        ${p.yt ? `
-                        <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
-                            <div class="popup-thumb">
-                                <img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg"
-                                     alt="${p.name}" loading="lazy">
-                            </div>
-                        </a>` : ''}
+                        ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer"><div class="popup-thumb"><img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg" alt="${p.name}" loading="lazy"></div></a>` : ''}
                         <div class="popup-info">
-                            <strong>${p.name}</strong><br>
-                            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>
-                            ${p.description || ''}
-                            ${p.yt ? `
-                            <a href="https://www.youtube.com/watch?v=${p.yt}"
-                               target="_blank" rel="noopener noreferrer"
-                               class="popup-yt-link">
-                                <i class="fab fa-youtube"></i> Watch on YouTube
-                            </a>` : ''}
+                            <strong>${p.name}</strong><br>Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>${p.description || ''}
+                            ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>` : ''}
                         </div>
                     </div>`;
-
-                routeLayer.bindPopup(popupHTML, {
-                    closeButton: true,
-                    maxWidth: isMobile() ? 240 : 270
-                });
-
-                routeLayer.bindTooltip(p.name, {
-                    permanent: false,
-                    direction: 'top',
-                    sticky: true
-                });
-
+                routeLayer.bindPopup(popupHTML, { closeButton: true, maxWidth: isMobile() ? 240 : 270 });
+                routeLayer.bindTooltip(p.name, { permanent: false, direction: 'top', sticky: true });
                 routeLayer.on('click', function(e) {
                     highlightRoute(p.id);
                     routeDropdown.value = p.id;
                     updateDashboard({ ...p, type: 'route' });
                     map.panTo(e.latlng, { animate: true });
                 });
-
                 routeLayer.on('popupclose', () => {
                     updateDashboard('reset');
                     routeDropdown.value = '';
-                    if (activeRouteId === p.id) {
-                        routeLayers[p.id].setStyle({ weight: 3, opacity: 0.85 });
-                        activeRouteId = null;
-                    }
+                    if (activeRouteId === p.id) { routeLayers[p.id].setStyle({ weight: 3, opacity: 0.85 }); activeRouteId = null; }
                 });
-
                 routeLayer.addTo(map);
                 routeLayers[p.id] = routeLayer;
                 routeProperties[p.id] = p;
-
                 const opt = document.createElement('option');
-                opt.value = p.id;
-                opt.textContent = p.name;
+                opt.value = p.id; opt.textContent = p.name;
                 routeDropdown.appendChild(opt);
             });
-
             routeDropdown.addEventListener('change', function() {
                 if (!this.value) return;
                 const layer = routeLayers[this.value];
                 const p = routeProperties[this.value];
                 if (!layer || !p) return;
-                // FIX: sluit eventuele open popup eerst, dan fit bounds
                 map.closePopup();
                 setTimeout(() => {
                     map.fitBounds(layer.getBounds(), { padding: [60, 60], maxZoom: 14 });
-                    setTimeout(() => {
-                        layer.openPopup(layer.getBounds().getCenter());
-                    }, 350);
+                    setTimeout(() => { layer.openPopup(layer.getBounds().getCenter()); }, 350);
                 }, 50);
                 highlightRoute(this.value);
                 updateDashboard({ ...p, type: 'route' });
             });
-
-        } catch (error) {
-            console.error("❌ Fout bij laden van routes.geojson:", error);
-        }
+        } catch (error) { console.error("❌ Fout bij laden van routes.geojson:", error); }
     }
 
     function initMap() {
         const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' });
-        map = L.map('map', {
-            zoomControl: true,
-            tap: false,
-            tapTolerance: 15
-        });
+        map = L.map('map', { zoomControl: true, tap: false, tapTolerance: 15 });
         currentLayer = light;
         light.addTo(map);
-
-        // FIX: routes EERST laden zodat ze onder de markers vallen
-        // Markers worden erna toegevoegd en liggen dus bovenop
         map.setView([50.78, 3.65], 11);
 
-        // Routes laden (laag onder markers)
         loadRoutes().then(() => {
-            // Markers toevoegen NA routes
             archiveData.sectors.sort((a,b) => a.name.localeCompare(b.name)).forEach(s => {
                 const color = getMarkerColor(s.type);
                 const radius = isMobile() ? 7 : 5.5;
-                const marker = L.circleMarker([s.lat, s.lon], {
-                    radius,
-                    fillColor: color,
-                    color: "#ffffff",
-                    weight: 2,
-                    fillOpacity: 0.95
-                }).addTo(map);
+                const marker = L.circleMarker([s.lat, s.lon], { radius, fillColor: color, color: "#ffffff", weight: 2, fillOpacity: 0.95 }).addTo(map);
                 marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
                 let typeDisplay = s.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
                 let desc = "";
                 if (s.description) {
                     const firstSentence = s.description.split('.')[0].trim();
-                    desc = firstSentence.length > 100
-                        ? firstSentence.substring(0, 100) + "..."
-                        : firstSentence + ".";
+                    desc = firstSentence.length > 100 ? firstSentence.substring(0, 100) + "..." : firstSentence + ".";
                 }
                 const popupHTML = `
                     <div class="popup-card">
-                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
-                            <div class="popup-thumb">
-                                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy">
-                            </div>
-                        </a>
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube"><div class="popup-thumb"><img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy"></div></a>
                         <div class="popup-info">
-                            <strong>${s.name}</strong><br>
-                            ${typeDisplay} • ${s.dist} km • ${s.ascent} m • ${s.avg}% • ${s.max}%<br>
-                            ${desc}
-                            <a href="https://www.youtube.com/watch?v=${s.yt}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="popup-yt-link">
-                                <i class="fab fa-youtube"></i> Watch on YouTube
-                            </a>
+                            <strong>${s.name}</strong><br>${typeDisplay} • ${s.dist} km • ${s.ascent} m • ${s.avg}% • ${s.max}%<br>${desc}
+                            <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>
                         </div>
                     </div>`;
                 marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
-                marker.on('click', () => {
-                    centerOnPopup(marker);
-                    updateDashboard(s);
-                });
+                marker.on('click', () => { centerOnPopup(marker); updateDashboard(s); });
                 marker.on('popupclose', () => updateDashboard('reset'));
                 bounds.extend([s.lat, s.lon]);
                 markers[s.id] = marker;
                 if (markersByType[s.type]) markersByType[s.type].push(marker);
                 const opt = document.createElement('option');
-                opt.value = s.id;
-                opt.textContent = s.name;
+                opt.value = s.id; opt.textContent = s.name;
                 dropdown.appendChild(opt);
             });
 
