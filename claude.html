@@ -186,11 +186,19 @@
         .map-section { padding: 0 20px 30px; max-width: 1200px; margin: 0 auto; position: relative; }
         #map { height: 620px; border-radius: 8px; border: 1px solid #ddd; z-index: 1; }
 
-        /* MAP LAYER PILLS (Fixed position mobile) */
+        /* MAP LAYER PILLS (Strictly constrained to map container) */
         .map-layer-selector {
-            position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
-            background: white; border-radius: 30px; box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-            padding: 4px; z-index: 1000; display: flex; font-size: 0.85rem;
+            position: absolute; 
+            bottom: 45px; /* Geplaatst boven de Leaflet attribution voor de zekerheid */
+            left: 50%; 
+            transform: translateX(-50%);
+            background: white; 
+            border-radius: 30px; 
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+            padding: 4px; 
+            z-index: 1000; 
+            display: flex; 
+            font-size: 0.85rem;
         }
         .map-layer-btn {
             padding: 7px 16px; border: none; background: transparent;
@@ -237,14 +245,14 @@
         .popup-yt-link:hover { color: #cc0000 !important; }
         .popup-yt-link i { font-size: 1.22rem; }
 
-        /* ── ELEVATION CHART ── */
+        /* ── ELEVATION CHART (Geoptimaliseerd tegen uitrekken) ── */
         .chart-box {
             margin: 20px auto 0; background: white; padding: 20px 20px 14px;
             border-radius: 8px; border: 1px solid #eee; display: none;
-            max-width: 1200px; height: 300px;
+            max-width: 1200px;
         }
         .chart-box h3 { margin: 0 0 8px 0; font-size: 0.95rem; color: #333; }
-        #elevationChart { width: 100% !important; height: 230px !important; }
+        .chart-wrapper { position: relative; height: 200px; width: 100%; }
 
         /* ── VIDEO STRIP ── */
         #videoContainer {
@@ -278,15 +286,14 @@
             .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
             .map-layer-selector { 
-                top: auto; bottom: 12px; 
+                bottom: 25px; 
                 width: calc(100% - 30px); max-width: 320px;
                 white-space: nowrap; font-size: 0.75rem; 
             }
             .map-layer-btn { padding: 7px 8px; flex: 1; text-align: center; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
-            .chart-box { height: 260px; }
-            #elevationChart { height: 185px !important; }
+            .chart-wrapper { height: 160px; }
         }
         @media (max-width: 420px) {
             .short-title { font-size: 1.25rem; }
@@ -351,7 +358,6 @@
             <p style="font-size:1.25rem;margin:0.8rem 0 1.5rem;opacity:0.95;">Interactive map • Immersive footage • Explore, discover and plan Flanders</p>
             <p>Deep in the heart of the Flemish Ardennes, we capture the region's most iconic cobbles and climbs — from the brutal cobbles and majestic climbs to hidden local gems.</p>
             <p>Experience the raw power and legendary spirit of Flemish cycling through our interactive map and immersive cinematic footage.</p>
-            <p>Subscribe to support our journey, join us on Strava and Instagram or drop us a message. We'd love to hear from you!</p>
             <div class="subscribe-container">
                 <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="yt-subscribe-btn" aria-label="Subscribe on YouTube">
                     <i class="fab fa-youtube"></i> Subscribe on YouTube
@@ -391,7 +397,6 @@
     </section>
 
     <section class="map-section" aria-label="Interactive map">
-        <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Map of cobbled sectors and climbs in the Flemish Ardennes</h2>
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors"></div>
 
         <div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
@@ -403,7 +408,9 @@
 
         <div class="chart-box" id="chartBox">
             <h3>Route Elevation Profile</h3>
-            <canvas id="elevationChart"></canvas>
+            <div class="chart-wrapper">
+                <canvas id="elevationChart"></canvas>
+            </div>
         </div>
 
         <div id="videoContainer"></div>
@@ -446,7 +453,7 @@ const ORS_KEY = '5b3ce3597851110001cf624809fc31f2fa624a95a6c3439d4e6eec25';
 const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: false };
 
 // ═══════════════════════════════════════════════════════
-//  MOBILE MENU
+//  NAV & HELPERS
 // ═══════════════════════════════════════════════════════
 menuButton.addEventListener('click', () => mobileDropdown.classList.toggle('show'));
 document.addEventListener('click', (e) => {
@@ -454,52 +461,20 @@ document.addEventListener('click', (e) => {
         mobileDropdown.classList.remove('show');
 });
 
-// ═══════════════════════════════════════════════════════
-//  MAP LAYERS
-// ═══════════════════════════════════════════════════════
-function switchLayer(layerName) {
-    const layers = {
-        light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
-        osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
-        satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
-        terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' })
-    };
-    const newLayer = layers[layerName];
-    if (!newLayer) return;
-    if (currentLayer && map.hasLayer(currentLayer)) map.removeLayer(currentLayer);
-    newLayer.addTo(map);
-    currentLayer = newLayer;
-    document.querySelectorAll('.map-layer-btn').forEach(btn => {
-        const isActive = btn.dataset.layer === layerName;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-}
-
-// ═══════════════════════════════════════════════════════
-//  THEME / VISIBILITY
-// ═══════════════════════════════════════════════════════
-function applyTheme(theme) {
-    themeVisible[theme] = !themeVisible[theme];
-    const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
-    if (legItem) legItem.classList.toggle('inactive', !themeVisible[theme]);
-
-    if (theme === 'routes') {
-        Object.values(geoRouteLayers).forEach(l =>
-            themeVisible.routes ? l.addTo(map) : map.removeLayer(l)
-        );
-    } else {
-        markersByType[theme].forEach(m =>
-            themeVisible[theme] ? m.addTo(map) : map.removeLayer(m)
-        );
-    }
-}
-
-// ═══════════════════════════════════════════════════════
-//  HELPERS
-// ═══════════════════════════════════════════════════════
 function isMobile() { return window.innerWidth <= 768; }
 
+function centerOnLatLng(latLng) {
+    const offset = isMobile() ? [0, 40] : [0, 80];
+    map.panTo(map.unproject(map.project(latLng).subtract(offset)), { animate: true });
+}
+
+function getMarkerColor(type) {
+    return { cobbles: '#8c8c8c', climb: '#1a3c34', cobbled_climb: '#c62828' }[type] || '#1a3c34';
+}
+
+// ═══════════════════════════════════════════════════════
+//  KPI DASHBOARD
+// ═══════════════════════════════════════════════════════
 function timeToSeconds(t) {
     if (!t || !t.includes(':')) return 0;
     const p = t.split(':').map(Number);
@@ -511,18 +486,6 @@ function secondsToTime(sec) {
     return h ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${m}:${String(s).padStart(2,'0')}`;
 }
 
-function getMarkerColor(type) {
-    return { cobbles: '#8c8c8c', climb: '#1a3c34', cobbled_climb: '#c62828' }[type] || '#1a3c34';
-}
-
-function centerOnLatLng(latLng) {
-    const offset = isMobile() ? [0, 40] : [0, 80];
-    map.panTo(map.unproject(map.project(latLng).subtract(offset)), { animate: true });
-}
-
-// ═══════════════════════════════════════════════════════
-//  KPI DASHBOARD
-// ═══════════════════════════════════════════════════════
 function set(n, label, val, unit) {
     const lblEl = document.getElementById(`label-${n}`);
     const valEl = document.getElementById(`val-${n}`);
@@ -564,8 +527,43 @@ function updateDashboard(data) {
 }
 
 // ═══════════════════════════════════════════════════════
-//  LEGEND
+//  MAP LAYERS & FILTERS
 // ═══════════════════════════════════════════════════════
+function switchLayer(layerName) {
+    const layers = {
+        light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
+        osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
+        satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
+        terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' })
+    };
+    const newLayer = layers[layerName];
+    if (!newLayer) return;
+    if (currentLayer && map.hasLayer(currentLayer)) map.removeLayer(currentLayer);
+    newLayer.addTo(map);
+    currentLayer = newLayer;
+    document.querySelectorAll('.map-layer-btn').forEach(btn => {
+        const isActive = btn.dataset.layer === layerName;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+}
+
+function applyTheme(theme) {
+    themeVisible[theme] = !themeVisible[theme];
+    const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
+    if (legItem) legItem.classList.toggle('inactive', !themeVisible[theme]);
+
+    if (theme === 'routes') {
+        Object.values(geoRouteLayers).forEach(l =>
+            themeVisible.routes ? l.addTo(map) : map.removeLayer(l)
+        );
+    } else {
+        markersByType[theme].forEach(m =>
+            themeVisible[theme] ? m.addTo(map) : map.removeLayer(m)
+        );
+    }
+}
+
 function addLegend() {
     const legend = L.control({ position: 'bottomright' });
     legend.onAdd = () => {
@@ -591,7 +589,7 @@ function addLegend() {
 }
 
 // ═══════════════════════════════════════════════════════
-//  LOAD GEOJSON ROUTES
+//  ROUTE LOADING (Fixed Routes)
 // ═══════════════════════════════════════════════════════
 async function loadGeoRoutes() {
     try {
@@ -621,7 +619,7 @@ async function loadGeoRoutes() {
                         </div>
                     </div>`;
                 layer.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 270 });
-                layer.on('click', (e) => {
+                layer.on('click', () => {
                     highlightGeoRoute(p.id);
                     routeDropdown.value = p.id;
                     updateDashboard({ ...p, type: 'route' });
@@ -652,7 +650,7 @@ async function loadGeoRoutes() {
             highlightGeoRoute(this.value);
             updateDashboard({ ...routeProperties[this.value], type: 'route' });
         });
-    } catch (err) { console.info('routes.geojson not loaded'); }
+    } catch (err) { console.info('routes.geojson not found'); }
 }
 
 function highlightGeoRoute(id) {
@@ -665,7 +663,7 @@ function highlightGeoRoute(id) {
 }
 
 // ═══════════════════════════════════════════════════════
-//  LOAD SECTORS + INIT MAP
+//  INIT MAP & SECTORS
 // ═══════════════════════════════════════════════════════
 async function loadSectors() {
     try {
@@ -744,7 +742,7 @@ function initMap() {
 }
 
 // ═══════════════════════════════════════════════════════
-//  ROUTE PLANNER
+//  ROUTE PLANNER LOGIC
 // ═══════════════════════════════════════════════════════
 window.addToPlanner = function(id) {
     const sector = archiveData.sectors.find(s => s.id === id);
@@ -776,7 +774,7 @@ function updatePlannerUI() {
 }
 
 window.buildRoute = async function() {
-    if (selectedPoints.length < 2) return;
+    if (selectedPoints.length < 2) { alert('Add at least 2 sectors.'); return; }
     const btn = document.getElementById('btnBuild');
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculating…';
     btn.disabled = true;
@@ -789,15 +787,23 @@ window.buildRoute = async function() {
         const data = await res.json();
         const route = data.features[0];
         if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
-        // Custom route kleur aangepast naar Blauw (#3498db)
-        plannerRouteLayer = L.geoJSON(route, { style: { color: 'var(--cc-custom-blue)', weight: 5, opacity: 0.9 } }).addTo(map);
+        
+        plannerRouteLayer = L.geoJSON(route, { 
+            style: { color: 'var(--cc-custom-blue)', weight: 5, opacity: 0.9 } 
+        }).addTo(map);
+        
         map.fitBounds(plannerRouteLayer.getBounds(), { padding: [50, 50] });
         lastRouteCoords = route.geometry.coordinates;
         document.getElementById('chartBox').style.display = 'block';
         drawElevationChart(lastRouteCoords);
         showVideos();
-    } catch (err) { alert('Calculation failed.'); }
-    finally { btn.innerHTML = '<i class="fa-solid fa-person-cycling"></i> Build Route'; btn.disabled = false; }
+    } catch (err) { 
+        console.error(err);
+        alert('Could not calculate route.'); 
+    } finally { 
+        btn.innerHTML = '<i class="fa-solid fa-person-cycling"></i> Build Route'; 
+        btn.disabled = false; 
+    }
 };
 
 function drawElevationChart(coords) {
@@ -811,6 +817,7 @@ function drawElevationChart(coords) {
         }
         return dist.toFixed(1);
     });
+    
     elevChart = new Chart(document.getElementById('elevationChart'), {
         type: 'line',
         data: {
@@ -824,22 +831,33 @@ function drawElevationChart(coords) {
                 tension: 0.3
             }]
         },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false, // Belangrijk tegen uitrekken
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { maxTicksLimit: 8, font: { size: 10 } }, grid: { display: false } },
+                y: { ticks: { font: { size: 10 } } }
+            }
+        }
     });
 }
 
 function showVideos() {
     document.getElementById('videoContainer').innerHTML = selectedClimbs
         .filter(s => s.yt)
-        .map(s => `<iframe src="https://www.youtube.com/embed/${s.yt}" frameborder="0" allowfullscreen></iframe>`)
+        .map(s => `<iframe src="https://www.youtube.com/embed/${s.yt}" title="${s.name}" frameborder="0" allowfullscreen loading="lazy"></iframe>`)
         .join('');
 }
 
 window.downloadGPX = function() {
-    if (!lastRouteCoords) return;
+    if (!lastRouteCoords) { alert('Build a route first.'); return; }
     const pts = lastRouteCoords.map(c => `<trkpt lat="${c[1]}" lon="${c[0]}"><ele>${c[2] || 0}</ele></trkpt>`).join('');
     const gpx = `<?xml version="1.0" encoding="UTF-8"?><gpx version="1.1" creator="Cobbles & Climbs"><trk><trkseg>${pts}</trkseg></trk></gpx>`;
-    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([gpx], { type: 'application/gpx+xml' })), download: 'route.gpx' });
+    const a = Object.assign(document.createElement('a'), { 
+        href: URL.createObjectURL(new Blob([gpx], { type: 'application/gpx+xml' })), 
+        download: 'route.gpx' 
+    });
     a.click();
 };
 
