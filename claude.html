@@ -67,7 +67,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        :root { --cc-dark-green: #1a3c34; }
+        :root { 
+            --cc-dark-green: #1a3c34; 
+            --cc-route-orange: #e07b00;
+            --cc-custom-blue: #3498db;
+        }
         html, body { height: 100%; margin: 0; font-family: "Roboto", Helvetica, Arial, sans-serif; background: #fff; color: #111; }
 
         /* ── HEADER ── */
@@ -146,13 +150,15 @@
         }
         .yt-subscribe-btn:hover { background-color: #cc0000; transform: translateY(-2px); }
 
-        /* ── SIDEBAR ── */
-        .sidebar { background: #f8f8f8; padding: 22px; border: 1px solid #eee; border-radius: 5px; }
-        .climb-select { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; box-sizing: border-box; }
+        /* ── SIDEBAR (Uniform Look) ── */
+        .sidebar { background: #f8f8f8; padding: 22px; border: 1px solid #eee; border-radius: 8px; }
+        .sidebar-section {
+            background: white; padding: 16px; border-radius: 8px; border: 1px solid #ddd;
+            margin-bottom: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .sidebar-section h2 { font-size: 1rem; margin: 0 0 10px 0; color: var(--cc-dark-green); display: flex; align-items: center; gap: 8px; }
+        .climb-select { width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem; box-sizing: border-box; background: white; }
 
-        /* ── ROUTE PLANNER BOX ── */
-        .planner-box { background: white; padding: 16px; border-radius: 6px; border: 1px solid #ddd; margin-top: 18px; }
-        .planner-box h2 { font-size: 1rem; margin: 0 0 8px 0; color: var(--cc-dark-green); }
         .planner-info { font-size: 0.82rem; color: #888; margin-bottom: 6px; min-height: 16px; }
         .selected-list { max-height: 175px; overflow-y: auto; border-top: 1px solid #eee; margin: 6px 0; }
         .selected-item {
@@ -165,7 +171,7 @@
             font-size: 0.85rem; flex-shrink: 0; line-height: 1;
         }
         .btn-action {
-            width: 100%; padding: 10px; margin-top: 8px; border-radius: 5px; border: none;
+            width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: none;
             font-weight: 600; cursor: pointer; transition: background 0.2s;
             display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.88rem;
         }
@@ -178,12 +184,12 @@
 
         /* ── MAP SECTION ── */
         .map-section { padding: 0 20px 30px; max-width: 1200px; margin: 0 auto; position: relative; }
-        #map { height: 620px; border-radius: 6px; border: 1px solid #ddd; }
+        #map { height: 620px; border-radius: 8px; border: 1px solid #ddd; z-index: 1; }
 
-        /* MAP LAYER PILLS */
+        /* MAP LAYER PILLS (Fixed position mobile) */
         .map-layer-selector {
-            position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
-            background: white; border-radius: 30px; box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+            position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+            background: white; border-radius: 30px; box-shadow: 0 3px 12px rgba(0,0,0,0.15);
             padding: 4px; z-index: 1000; display: flex; font-size: 0.85rem;
         }
         .map-layer-btn {
@@ -247,9 +253,6 @@
         }
         #videoContainer iframe { flex: 0 0 300px; height: 170px; border-radius: 8px; background: #000; border: none; }
 
-        /* ── SVG FOCUS FIX ── */
-        .leaflet-interactive:focus { outline: none !important; }
-
         /* ── FOOTER ── */
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
@@ -270,11 +273,16 @@
             .kpi-card p { font-size: 0.5rem; }
             .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
             .hero-text { padding-right: 0; }
-            .sidebar { padding: 16px; }
+            .sidebar { padding: 12px; }
+            .sidebar-section { padding: 12px; margin-bottom: 12px; }
             .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
-            .map-layer-selector { top: auto; bottom: 10px; white-space: nowrap; }
-            .map-layer-btn { padding: 7px 12px; font-size: 0.8rem; min-height: 36px; }
+            .map-layer-selector { 
+                top: auto; bottom: 12px; 
+                width: calc(100% - 30px); max-width: 320px;
+                white-space: nowrap; font-size: 0.75rem; 
+            }
+            .map-layer-btn { padding: 7px 8px; flex: 1; text-align: center; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
             .chart-box { height: 260px; }
@@ -351,17 +359,21 @@
             </div>
         </div>
         <aside class="sidebar" aria-label="Sector and route selector">
-            <h2 style="margin-top:0;font-size:1rem;">Discover the cobbles and climbs</h2>
-            <select id="climbDropdown" class="climb-select">
-                <option value="">— Select a sector —</option>
-            </select>
+            <div class="sidebar-section">
+                <h2><i class="fa-solid fa-mountain"></i> Discover</h2>
+                <select id="climbDropdown" class="climb-select">
+                    <option value="">— Select a sector —</option>
+                </select>
+            </div>
 
-            <h2 style="font-size:1rem;margin-top:16px;">Routes</h2>
-            <select id="routeDropdown" class="climb-select">
-                <option value="">— Select a route —</option>
-            </select>
+            <div class="sidebar-section">
+                <h2><i class="fa-solid fa-map-location-dot"></i> Routes</h2>
+                <select id="routeDropdown" class="climb-select">
+                    <option value="">— Select a route —</option>
+                </select>
+            </div>
 
-            <div class="planner-box">
+            <div class="sidebar-section planner-box">
                 <h2><i class="fa-solid fa-route"></i> Route Planner</h2>
                 <p class="planner-info" id="plannerInfo">Click a marker → &quot;+ Add to Planner&quot;</p>
                 <div class="selected-list" id="selectedList"></div>
@@ -512,8 +524,10 @@ function centerOnLatLng(latLng) {
 //  KPI DASHBOARD
 // ═══════════════════════════════════════════════════════
 function set(n, label, val, unit) {
-    document.getElementById(`label-${n}`).innerText = label;
-    document.getElementById(`val-${n}`).innerHTML = val + (unit ? `<span class="unit">${unit}</span>` : '');
+    const lblEl = document.getElementById(`label-${n}`);
+    const valEl = document.getElementById(`val-${n}`);
+    if (lblEl) lblEl.innerText = label;
+    if (valEl) valEl.innerHTML = val + (unit ? `<span class="unit">${unit}</span>` : '');
 }
 
 function calculateTotals() {
@@ -563,7 +577,7 @@ function addLegend() {
                 <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1a3c34"></span> Climb</div>
                 <div class="legend-item" data-theme="cobbled_climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
                 <div class="legend-item inactive" data-theme="routes">
-                    <span style="display:inline-block;width:18px;height:0;border-top:3px dashed #e07b00;vertical-align:middle;"></span> Route
+                    <span style="display:inline-block;width:18px;height:0;border-top:3px dashed var(--cc-route-orange);vertical-align:middle;"></span> Route
                 </div>
             </div>`;
         L.DomEvent.disableClickPropagation(div);
@@ -590,7 +604,7 @@ async function loadGeoRoutes() {
             .forEach(feature => {
                 const p = feature.properties;
                 const layer = L.geoJSON(feature, {
-                    style: { color: '#e07b00', weight: 3, opacity: 0.85, dashArray: '6,4' }
+                    style: { color: 'var(--cc-route-orange)', weight: 3, opacity: 0.85, dashArray: '6,4' }
                 });
                 const popupHTML = `
                     <div class="popup-card">
@@ -775,7 +789,8 @@ window.buildRoute = async function() {
         const data = await res.json();
         const route = data.features[0];
         if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
-        plannerRouteLayer = L.geoJSON(route, { style: { color: '#e07b00', weight: 5 } }).addTo(map);
+        // Custom route kleur aangepast naar Blauw (#3498db)
+        plannerRouteLayer = L.geoJSON(route, { style: { color: 'var(--cc-custom-blue)', weight: 5, opacity: 0.9 } }).addTo(map);
         map.fitBounds(plannerRouteLayer.getBounds(), { padding: [50, 50] });
         lastRouteCoords = route.geometry.coordinates;
         document.getElementById('chartBox').style.display = 'block';
@@ -800,7 +815,14 @@ function drawElevationChart(coords) {
         type: 'line',
         data: {
             labels,
-            datasets: [{ data: elevations, borderColor: '#1a3c34', backgroundColor: 'rgba(26,60,52,0.12)', pointRadius: 0, fill: true }]
+            datasets: [{ 
+                data: elevations, 
+                borderColor: 'var(--cc-dark-green)', 
+                backgroundColor: 'rgba(26,60,52,0.12)', 
+                pointRadius: 0, 
+                fill: true,
+                tension: 0.3
+            }]
         },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     });
