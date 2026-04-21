@@ -503,15 +503,15 @@
             <select id="climbDropdown" class="climb-select">
                 <option value="">— Select a sector —</option>
             </select>
-            <h2 style="font-size: 1rem; margin-top: 16px;">Explore the routes</h2>
+            <h2 style="font-size: 1rem; margin-top: 16px;">Routes</h2>
             <select id="routeDropdown" class="climb-select">
                 <option value="">— Select a route —</option>
             </select>
             <h2 style="font-size: 1rem; margin-top: 16px;">Plan your own</h2>
-    <a href="https://www.komoot.com/plan" target="_blank" class="yt-subscribe-btn" style="width: 100%; justify-content: center; background-color: var(--cc-dark-green); box-sizing: border-box; text-decoration: none; font-size: 0.95rem;">
-        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
-        Plan your route
-    </a>
+            <a href="https://www.komoot.com/plan" target="_blank" class="yt-subscribe-btn" style="width: 100%; justify-content: center; background-color: var(--cc-dark-green); box-sizing: border-box; text-decoration: none; font-size: 0.95rem;">
+                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                Plan your route
+            </a>
         </aside>
     </section>
     <section class="map-section" aria-label="Interactive map of Flemish cycling sectors">
@@ -554,7 +554,8 @@
     let activeRouteId = null;
 
     // ── THEME VISIBILITY ──────────────────────────────────────
-    const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: true };
+    // ROUTES STAAT NU STANDAARD OP FALSE
+    const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: false };
 
     function applyTheme(theme) {
         themeVisible[theme] = !themeVisible[theme];
@@ -600,12 +601,12 @@
             div.setAttribute('role', 'note');
             div.setAttribute('aria-label', 'Map legend');
             div.innerHTML = `
-                <strong>Map layers</strong>
+                <strong>Filters</strong>
                 <div class="legend-body">
                     <div class="legend-item" data-theme="cobbles"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbles</div>
                     <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1a3c34"></span> Climb</div>
                     <div class="legend-item" data-theme="cobbled_climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
-                    <div class="legend-item" data-theme="routes">
+                    <div class="legend-item inactive" data-theme="routes">
                         <span style="display:inline-block;width:18px;height:0;border-top:3px dashed #e07b00;margin-right:2px;vertical-align:middle;"></span> Route
                     </div>
                 </div>`;
@@ -662,7 +663,7 @@
     }
 
     function calculateTotals() {
-        const s = archiveData.sectors;
+        const s = archiveData.sectors; // GEEN ROUTES HIER
         const totalDist = s.reduce((a,b) => a + b.dist, 0).toFixed(1);
         const totalAscent = s.reduce((a,b) => a + b.ascent, 0);
         const totalSec = s.reduce((sum,sec) => sum + timeToSeconds(sec.time), 0);
@@ -789,7 +790,7 @@
                     }
                 });
 
-                routeLayer.addTo(map);
+                // HIER IS .addTo(map) VERWIJDERD OM ZE STANDAARD TE VERBERGEN
                 routeLayers[p.id] = routeLayer;
                 routeProperties[p.id] = p;
 
@@ -804,6 +805,12 @@
                 const layer = routeLayers[this.value];
                 const p = routeProperties[this.value];
                 if (!layer || !p) return;
+                
+                // FORCEER DAT DE ROUTE OP DE KAART VERSCHIJNT BIJ SELECTIE
+                if (!map.hasLayer(layer)) {
+                    layer.addTo(map);
+                }
+
                 map.closePopup();
                 setTimeout(() => {
                     map.fitBounds(layer.getBounds(), { padding: [60, 60], maxZoom: 14 });
