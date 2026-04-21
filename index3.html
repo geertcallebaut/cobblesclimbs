@@ -119,6 +119,7 @@
             transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
+        /* Mobiel titel + tagline */
         .short-title {
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
@@ -140,6 +141,7 @@
             text-align: center;
             line-height: 1.25;
         }
+        /* Desktop title */
         .logo-center {
             position: absolute;
             left: 50%;
@@ -170,6 +172,7 @@
             transition: color 0.2s;
         }
         .social-icons a:hover { color: #a8d5c8; }
+        /* Mobile menu button */
         .menu-button {
             background: none;
             border: none;
@@ -179,6 +182,7 @@
             padding: 8px;
             display: none;
         }
+        /* Mobile dropdown */
         .mobile-social-dropdown {
             position: absolute;
             top: 100%;
@@ -192,7 +196,9 @@
             gap: 10px;
             z-index: 3100;
         }
-        .mobile-social-dropdown.show { display: flex; }
+        .mobile-social-dropdown.show {
+            display: flex;
+        }
         .mobile-social-dropdown a {
             color: white;
             font-size: 0.9rem;
@@ -202,8 +208,9 @@
             text-decoration: none;
             white-space: nowrap;
         }
-        .mobile-social-dropdown a:hover { color: #a8d5c8; }
-
+        .mobile-social-dropdown a:hover {
+            color: #a8d5c8;
+        }
         /* ── KPI DASHBOARD ── */
         .kpi-dashboard {
             background: #0f0f0f;
@@ -221,7 +228,6 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
-
         /* ── HERO ── */
         .hero {
             max-width: 1200px;
@@ -263,8 +269,46 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-
-        /* ── MAP SECTION ── */
+        /* Legend, Map, Popup, Footer (ongewijzigd) */
+        .legend {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            font-size: 0.78rem;
+            line-height: 1.5;
+            color: #222;
+            min-width: 120px;
+        }
+        .legend strong {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
+            color: var(--cc-dark-green);
+            font-size: 0.82rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        .legend strong::after {
+            content: '▾';
+            font-size: 0.7rem;
+            transition: transform 0.2s;
+            margin-left: 6px;
+        }
+        .legend.collapsed strong::after { transform: rotate(-90deg); }
+        .legend-body { margin-top: 5px; }
+        .legend.collapsed .legend-body { display: none; }
+        .legend-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            margin-bottom: 3px; 
+            cursor: pointer; 
+            transition: opacity 0.2s;
+        }
+        .legend-item.inactive { opacity: 0.3; }
+        .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
         .map-section {
             padding: 0 20px 30px;
             max-width: 1200px;
@@ -298,57 +342,85 @@
             touch-action: manipulation;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-
-        /* ── LEGEND ── */
-        .legend {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 6px 10px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        /* ── THEME TOGGLE ── */
+        .theme-toggle {
+            position: absolute;
+            top: 18px;
+            right: 12px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+            padding: 8px 10px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
             font-size: 0.78rem;
-            line-height: 1.5;
-            color: #222;
-            min-width: 140px;
         }
-        .legend strong {
+        .theme-toggle-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        .theme-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            color: var(--cc-dark-green);
-            font-size: 0.82rem;
+            gap: 7px;
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 5px 9px;
             cursor: pointer;
-            user-select: none;
+            font-size: 0.78rem;
+            color: #333;
+            transition: all 0.18s;
+            white-space: nowrap;
         }
-        .legend strong::after {
-            content: '▾';
-            font-size: 0.7rem;
-            transition: transform 0.2s;
-            margin-left: 6px;
+        .theme-btn.active {
+            border-color: transparent;
+            color: white;
         }
-        .legend.collapsed strong::after { transform: rotate(-90deg); }
-        .legend-body { margin-top: 5px; }
-        .legend.collapsed .legend-body { display: none; }
-        
-        /* Filterable Legend Items */
-        .legend-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            margin-bottom: 3px; 
+        .theme-btn .theme-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .theme-btn .theme-dash {
+            width: 18px;
+            height: 0;
+            border-top: 3px dashed #e07b00;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: auto;
+                bottom: 52px;
+                right: 8px;
+                padding: 6px 8px;
+            }
+        }
+        .popup-card { width: 255px; font-size: 0.84rem; }
+        .popup-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+        .popup-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             cursor: pointer;
             transition: opacity 0.2s;
+            display: block;
         }
-        .legend-item:hover { opacity: 0.7; }
-        .legend-item.inactive { opacity: 0.3; }
-        .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
-        .legend-dash { width: 18px; height: 0; border-top: 3px dashed #e07b00; margin-right: 2px; vertical-align: middle; flex-shrink: 0; }
-
-        /* ── POPUP, FOOTER ── */
-        .popup-card { width: 255px; font-size: 0.84rem; }
-        .popup-thumb { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 3px; }
-        .popup-thumb img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: opacity 0.2s; display: block; }
         .popup-thumb img:hover { opacity: 0.85; }
         .popup-info { padding: 10px 8px 8px; line-height: 1.35; }
+        /* Subtiele rode YouTube link */
         .popup-yt-link {
             display: flex;
             align-items: center;
@@ -360,13 +432,19 @@
             font-weight: 500;
             font-size: 0.93rem;
         }
-        .popup-yt-link:hover { color: #cc0000 !important; }
-        .popup-yt-link i { font-size: 1.22rem; }
-        .leaflet-interactive:focus { outline: none !important; }
+        .popup-yt-link:hover {
+            color: #cc0000 !important;
+        }
+        .popup-yt-link i {
+            font-size: 1.22rem;
+        }
+        /* ── LEAFLET SVG PATHS: geen focus-outline ── */
+        .leaflet-interactive:focus {
+            outline: none !important;
+        }
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-
         /* ── MOBILE STYLES ── */
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; }
@@ -492,13 +570,28 @@
         </aside>
     </section>
     <section class="map-section" aria-label="Interactive map of Flemish cycling sectors">
+        <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Map of cobbled sectors and climbs in the Flemish Ardennes</h2>
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors in the Flemish Ardennes"></div>
-        
         <div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
             <button class="map-layer-btn active" data-layer="light" aria-pressed="true">Light</button>
             <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
             <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
             <button class="map-layer-btn" data-layer="terrain" aria-pressed="false">Terrain</button>
+        </div>
+        <div class="theme-toggle" id="themeToggle" role="group" aria-label="Toggle map layers">
+            <div class="theme-toggle-title">Show</div>
+            <button class="theme-btn active" data-theme="cobbles" style="background:#8c8c8c;">
+                <span class="theme-dot" style="background:#fff;border:1px solid #8c8c8c;"></span> Cobbles
+            </button>
+            <button class="theme-btn active" data-theme="climb" style="background:#1a3c34;">
+                <span class="theme-dot" style="background:#fff;border:1px solid #1a3c34;"></span> Climbs
+            </button>
+            <button class="theme-btn active" data-theme="cobbled_climb" style="background:#c62828;">
+                <span class="theme-dot" style="background:#fff;border:1px solid #c62828;"></span> Cobbled climbs
+            </button>
+            <button class="theme-btn active" data-theme="routes" style="background:#e07b00;">
+                <span class="theme-dash"></span> Routes
+            </button>
         </div>
     </section>
 </main>
@@ -506,17 +599,18 @@
     <p>&copy; 2026 Cobbles &amp; Climbs •
     <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
 </footer>
-
 <script>
-    // Header logic
     const menuButton = document.getElementById('menuButton');
     const mobileDropdown = document.getElementById('mobileDropdown');
-    menuButton.addEventListener('click', () => mobileDropdown.classList.toggle('show'));
+    menuButton.addEventListener('click', () => {
+        mobileDropdown.classList.toggle('show');
+    });
     document.addEventListener('click', (e) => {
-        if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) mobileDropdown.classList.remove('show');
+        if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) {
+            mobileDropdown.classList.remove('show');
+        }
     });
 
-    // Map & Data state
     let archiveData = { sectors: [] };
     let map = null;
     let currentLayer = null;
@@ -529,18 +623,25 @@
     let bounds = L.latLngBounds();
     let activeRouteId = null;
 
-    // Filter state
+    // ── THEME VISIBILITY ──────────────────────────────────────
     const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: true };
 
-    function toggleFilter(theme) {
+    function applyTheme(theme) {
         themeVisible[theme] = !themeVisible[theme];
-        const item = document.querySelector(`.legend-item[data-theme="${theme}"]`);
         
+        // Update de ThemeToggle knoppen
+        const btn = document.querySelector(`.theme-btn[data-theme="${theme}"]`);
         if (themeVisible[theme]) {
-            item.classList.remove('inactive');
+            btn.classList.add('active');
+            btn.style.opacity = '1';
         } else {
-            item.classList.add('inactive');
+            btn.classList.remove('active');
+            btn.style.opacity = '0.45';
         }
+
+        // Update de Legende items
+        const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
+        if (legItem) legItem.classList.toggle('inactive', !themeVisible[theme]);
 
         if (theme === 'routes') {
             Object.values(routeLayers).forEach(layer => {
@@ -553,12 +654,21 @@
         }
     }
 
+    document.getElementById('themeToggle').addEventListener('click', (e) => {
+        const btn = e.target.closest('.theme-btn');
+        if (btn) applyTheme(btn.dataset.theme);
+    });
+
     async function loadSectors() {
         try {
             const response = await fetch('sectors.json');
-            archiveData = await response.json();
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            archiveData = data;
             initMap();
-        } catch (error) { console.error("Fout bij laden sectors:", error); }
+        } catch (error) {
+            console.error("❌ Fout bij laden van sectors.json:", error);
+        }
     }
 
     function getMarkerColor(type) {
@@ -571,30 +681,30 @@
     function addLegend() {
         const legend = L.control({ position: 'bottomright' });
         legend.onAdd = function () {
-            // Standaard collapsed bij laden
             const div = L.DomUtil.create('div', 'legend collapsed');
+            div.setAttribute('role', 'note');
+            div.setAttribute('aria-label', 'Map legend');
             div.innerHTML = `
-                <strong id="legendHeader">Legend</strong>
+                <strong>Legend</strong>
                 <div class="legend-body">
                     <div class="legend-item" data-theme="cobbles"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbles</div>
                     <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1a3c34"></span> Climb</div>
                     <div class="legend-item" data-theme="cobbled_climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
-                    <div class="legend-item" data-theme="routes"><span class="legend-dash"></span> Route</div>
+                    <div class="legend-item" data-theme="routes">
+                        <span style="display:inline-block;width:18px;height:0;border-top:3px dashed #e07b00;margin-right:2px;vertical-align:middle;"></span> Route
+                    </div>
                 </div>`;
-            
             L.DomEvent.disableClickPropagation(div);
             
-            // Klik op titel = in/uitklappen
-            div.querySelector('#legendHeader').addEventListener('click', () => div.classList.toggle('collapsed'));
+            div.querySelector('strong').addEventListener('click', () => div.classList.toggle('collapsed'));
             
-            // Klik op items = filteren
             div.querySelectorAll('.legend-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    toggleFilter(item.dataset.theme);
+                    applyTheme(item.dataset.theme);
                 });
             });
-
+            
             return div;
         };
         legend.addTo(map);
@@ -612,7 +722,11 @@
         if (currentLayer && map.hasLayer(currentLayer)) map.removeLayer(currentLayer);
         newLayer.addTo(map);
         currentLayer = newLayer;
-        document.querySelectorAll('.map-layer-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.layer === layerName));
+        document.querySelectorAll('.map-layer-btn').forEach(btn => {
+            const isActive = btn.dataset.layer === layerName;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
     }
 
     function timeToSeconds(t) {
@@ -647,29 +761,31 @@
             document.getElementById('label-2').innerText = "TOTAL LENGTH";
             document.getElementById('val-3').innerHTML = (c.totalAscent || '0') + '<span class="unit">m</span>';
             document.getElementById('label-3').innerText = "TOTAL ASCENT";
-            document.getElementById('val-4').innerHTML = (c.avgGrade || '0') + '<span class="unit">%</span>';
+            document.getElementById('val-4').innerHTML = (c.avgGrade || '0') + '<span class=\"unit\">%</span>';
             document.getElementById('label-4').innerText = "AVG GRADE";
-            document.getElementById('val-5').innerHTML = (c.avgMaxGrade || '0') + '<span class="unit">%</span>';
+            document.getElementById('val-5').innerHTML = (c.avgMaxGrade || '0') + '<span class=\"unit\">%</span>';
             document.getElementById('label-5').innerText = "AVG MAX GRADE";
             document.getElementById('val-6').innerHTML = c.totalDuration || '-';
             document.getElementById('label-6').innerText = "TOTAL DURATION";
         } else {
             document.getElementById('val-1').innerText = data.name;
             document.getElementById('label-1').innerText = data.type === 'route' ? "ROUTE NAME" : "SECTOR NAME";
-            document.getElementById('val-2').innerHTML = data.dist + '<span class="unit">km</span>';
+            document.getElementById('val-2').innerHTML = data.dist + '<span class=\"unit\">km</span>';
             document.getElementById('label-2').innerText = "LENGTH";
-            document.getElementById('val-3').innerHTML = (data.ascent || '-') + (data.ascent ? '<span class="unit">m</span>' : '');
+            document.getElementById('val-3').innerHTML = (data.ascent || '-') + (data.ascent ? '<span class=\"unit\">m</span>' : '');
             document.getElementById('label-3').innerText = "ASCENT";
-            document.getElementById('val-4').innerHTML = data.avg ? data.avg + '<span class="unit">%</span>' : '-';
+            document.getElementById('val-4').innerHTML = data.avg ? data.avg + '<span class=\"unit\">%</span>' : '-';
             document.getElementById('label-4').innerText = "AVG GRADE";
-            document.getElementById('val-5').innerHTML = data.max ? data.max + '<span class="unit">%</span>' : '-';
+            document.getElementById('val-5').innerHTML = data.max ? data.max + '<span class=\"unit\">%</span>' : '-';
             document.getElementById('label-5').innerText = "MAX GRADE";
             document.getElementById('val-6').innerHTML = data.time || '-';
             document.getElementById('label-6').innerText = "DURATION";
         }
     }
 
-    function isMobile() { return window.innerWidth <= 768; }
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
 
     function centerOnPopup(marker) {
         const latLng = marker.getLatLng ? marker.getLatLng() : marker.getBounds().getCenter();
@@ -679,7 +795,9 @@
     }
 
     function highlightRoute(id) {
-        if (activeRouteId && routeLayers[activeRouteId]) routeLayers[activeRouteId].setStyle({ weight: 3, opacity: 0.85 });
+        if (activeRouteId && routeLayers[activeRouteId]) {
+            routeLayers[activeRouteId].setStyle({ weight: 3, opacity: 0.85 });
+        }
         if (routeLayers[id]) {
             routeLayers[id].setStyle({ weight: 5, opacity: 1 });
             activeRouteId = id;
@@ -689,67 +807,207 @@
     async function loadRoutes() {
         try {
             const response = await fetch('routes.geojson');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const geojson = await response.json();
-            geojson.features.sort((a, b) => a.properties.name.localeCompare(b.properties.name));
+
+            geojson.features.sort((a, b) =>
+                a.properties.name.localeCompare(b.properties.name)
+            );
+
             geojson.features.forEach(feature => {
                 const p = feature.properties;
-                const routeLayer = L.geoJSON(feature, { style: { color: '#e07b00', weight: 3, opacity: 0.85, dashArray: '6, 4' } });
-                const popupHTML = `<div class="popup-card">
-                    <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank"><div class="popup-thumb"><img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg"></div></a>
-                    <div class="popup-info"><strong>${p.name}</strong><br>Route • ${p.dist} km<br>
-                    <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a></div></div>`;
-                routeLayer.bindPopup(popupHTML);
-                routeLayer.on('click', () => { highlightRoute(p.id); routeDropdown.value = p.id; updateDashboard({...p, type:'route'}); });
-                routeLayer.on('popupclose', () => { updateDashboard('reset'); if(activeRouteId===p.id) routeLayers[p.id].setStyle({weight:3}); });
+
+                const routeLayer = L.geoJSON(feature, {
+                    style: {
+                        color: '#e07b00',
+                        weight: 3,
+                        opacity: 0.85,
+                        dashArray: '6, 4',
+                        outline: 'none'
+                    },
+                    onEachFeature: function(feat, layer) {
+                        if (layer._path) layer._path.setAttribute('outline', 'none');
+                    }
+                });
+
+                routeLayer.on('add', function() {
+                    routeLayer.eachLayer(l => {
+                        if (l._path) {
+                            l._path.style.outline = 'none';
+                            l._path.setAttribute('focusable', 'false');
+                        }
+                    });
+                });
+
+                const popupHTML = `
+                    <div class="popup-card">
+                        ${p.yt ? `
+                        <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
+                            <div class="popup-thumb">
+                                <img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg"
+                                     alt="${p.name}" loading="lazy">
+                            </div>
+                        </a>` : ''}
+                        <div class="popup-info">
+                            <strong>${p.name}</strong><br>
+                            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>
+                            ${p.description || ''}
+                            ${p.yt ? `
+                            <a href="https://www.youtube.com/watch?v=${p.yt}"
+                               target="_blank" rel="noopener noreferrer"
+                               class="popup-yt-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>` : ''}
+                        </div>
+                    </div>`;
+
+                routeLayer.bindPopup(popupHTML, {
+                    closeButton: true,
+                    maxWidth: isMobile() ? 240 : 270
+                });
+
+                routeLayer.bindTooltip(p.name, {
+                    permanent: false,
+                    direction: 'top',
+                    sticky: true
+                });
+
+                routeLayer.on('click', function(e) {
+                    highlightRoute(p.id);
+                    routeDropdown.value = p.id;
+                    updateDashboard({ ...p, type: 'route' });
+                    map.panTo(e.latlng, { animate: true });
+                });
+
+                routeLayer.on('popupclose', () => {
+                    updateDashboard('reset');
+                    routeDropdown.value = '';
+                    if (activeRouteId === p.id) {
+                        routeLayers[p.id].setStyle({ weight: 3, opacity: 0.85 });
+                        activeRouteId = null;
+                    }
+                });
+
                 routeLayer.addTo(map);
                 routeLayers[p.id] = routeLayer;
                 routeProperties[p.id] = p;
-                const opt = document.createElement('option'); opt.value = p.id; opt.textContent = p.name; routeDropdown.appendChild(opt);
+
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = p.name;
+                routeDropdown.appendChild(opt);
             });
+
             routeDropdown.addEventListener('change', function() {
                 if (!this.value) return;
                 const layer = routeLayers[this.value];
-                map.fitBounds(layer.getBounds(), { padding: [60, 60] });
-                layer.openPopup(layer.getBounds().getCenter());
+                const p = routeProperties[this.value];
+                if (!layer || !p) return;
+                map.closePopup();
+                setTimeout(() => {
+                    map.fitBounds(layer.getBounds(), { padding: [60, 60], maxZoom: 14 });
+                    setTimeout(() => {
+                        layer.openPopup(layer.getBounds().getCenter());
+                    }, 350);
+                }, 50);
                 highlightRoute(this.value);
-                updateDashboard({...routeProperties[this.value], type:'route'});
+                updateDashboard({ ...p, type: 'route' });
             });
-        } catch (e) { console.error(e); }
+
+        } catch (error) {
+            console.error("❌ Fout bij laden van routes.geojson:", error);
+        }
     }
 
     function initMap() {
-        map = L.map('map', { zoomControl: true, tap: false });
-        switchLayer('light');
+        const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' });
+        map = L.map('map', {
+            zoomControl: true,
+            tap: false,
+            tapTolerance: 15
+        });
+        currentLayer = light;
+        light.addTo(map);
+
         map.setView([50.78, 3.65], 11);
 
         loadRoutes().then(() => {
-            archiveData.sectors.sort((a,b)=>a.name.localeCompare(b.name)).forEach(s => {
+            archiveData.sectors.sort((a,b) => a.name.localeCompare(b.name)).forEach(s => {
                 const color = getMarkerColor(s.type);
-                const marker = L.circleMarker([s.lat, s.lon], { radius: 6, fillColor: color, color: "#fff", weight: 2, fillOpacity: 0.95 }).addTo(map);
-                marker.bindTooltip(s.name);
-                const popupHTML = `<div class="popup-card">
-                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank"><div class="popup-thumb"><img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg"></div></a>
-                    <div class="popup-info"><strong>${s.name}</strong><br>${s.dist} km • ${s.ascent} m<br>
-                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a></div></div>`;
-                marker.bindPopup(popupHTML);
-                marker.on('click', () => { centerOnPopup(marker); updateDashboard(s); });
+                const radius = isMobile() ? 7 : 5.5;
+                const marker = L.circleMarker([s.lat, s.lon], {
+                    radius,
+                    fillColor: color,
+                    color: "#ffffff",
+                    weight: 2,
+                    fillOpacity: 0.95
+                }).addTo(map);
+                marker.bindTooltip(s.name, { permanent: false, direction: "top", offset: [0, -8] });
+                let typeDisplay = s.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+                let desc = "";
+                if (s.description) {
+                    const firstSentence = s.description.split('.')[0].trim();
+                    desc = firstSentence.length > 100
+                        ? firstSentence.substring(0, 100) + "..."
+                        : firstSentence + ".";
+                }
+                const popupHTML = `
+                    <div class="popup-card">
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
+                            <div class="popup-thumb">
+                                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy">
+                            </div>
+                        </a>
+                        <div class="popup-info">
+                            <strong>${s.name}</strong><br>
+                            ${typeDisplay} • ${s.dist} km • ${s.ascent} m • ${s.avg}% • ${s.max}%<br>
+                            ${desc}
+                            <a href="https://www.youtube.com/watch?v=${s.yt}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="popup-yt-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>`;
+                marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
+                marker.on('click', () => {
+                    centerOnPopup(marker);
+                    updateDashboard(s);
+                });
                 marker.on('popupclose', () => updateDashboard('reset'));
                 bounds.extend([s.lat, s.lon]);
                 markers[s.id] = marker;
                 if (markersByType[s.type]) markersByType[s.type].push(marker);
-                const opt = document.createElement('option'); opt.value = s.id; opt.textContent = s.name; dropdown.appendChild(opt);
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.name;
+                dropdown.appendChild(opt);
             });
 
             calculateTotals();
             updateDashboard('reset');
             addLegend();
 
-            document.querySelectorAll('.map-layer-btn').forEach(btn => btn.addEventListener('click', () => switchLayer(btn.dataset.layer)));
-            dropdown.addEventListener('change', function() {
-                const marker = markers[this.value];
-                if (marker) { marker.openPopup(); centerOnPopup(marker); updateDashboard(archiveData.sectors.find(x=>x.id==this.value)); }
+            document.querySelectorAll('.map-layer-btn').forEach(btn => {
+                btn.addEventListener('click', () => switchLayer(btn.dataset.layer));
             });
-            if (bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50] });
+
+            dropdown.addEventListener('change', function() {
+                if (!this.value) return;
+                const marker = markers[this.value];
+                const sector = archiveData.sectors.find(sec => sec.id == this.value);
+                if (marker && sector) {
+                    marker.openPopup();
+                    centerOnPopup(marker);
+                    updateDashboard(sector);
+                }
+            });
+
+            setTimeout(() => {
+                map.invalidateSize();
+                if (bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
+            }, 300);
         });
     }
 
