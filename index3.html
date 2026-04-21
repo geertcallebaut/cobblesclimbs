@@ -299,7 +299,7 @@
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
 
-        /* ── LEGEND (FILTER INTEGRATED) ── */
+        /* ── LEGEND ── */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -329,6 +329,7 @@
         .legend-body { margin-top: 5px; }
         .legend.collapsed .legend-body { display: none; }
         
+        /* Filterable Legend Items */
         .legend-item { 
             display: flex; 
             align-items: center; 
@@ -339,10 +340,10 @@
         }
         .legend-item:hover { opacity: 0.7; }
         .legend-item.inactive { opacity: 0.3; }
-        
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
-        .legend-dash { width: 15px; height: 0; border-top: 3px dashed #e07b00; flex-shrink: 0; margin-right: 2px; }
+        .legend-dash { width: 18px; height: 0; border-top: 3px dashed #e07b00; margin-right: 2px; vertical-align: middle; flex-shrink: 0; }
 
+        /* ── POPUP, FOOTER ── */
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 3px; }
         .popup-thumb img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: opacity 0.2s; display: block; }
@@ -460,22 +461,39 @@
 <main>
     <section class="hero" aria-label="About Cobbles & Climbs">
         <div class="hero-text">
-            <h1 style="margin-top:0; font-size: 2rem; line-height: 1.15;">Feel the raw beauty of Flemish cycling</h1>
-            <p style="font-size: 1.25rem; margin: 0.8rem 0 1.5rem; opacity: 0.95;">Interactive map • Immersive footage • Explore, discover and plan Flanders</p>
+            <h1 style="margin-top:0; font-size: 2rem; line-height: 1.15;">
+                Feel the raw beauty of Flemish cycling
+            </h1>
+            <p style="font-size: 1.25rem; margin: 0.8rem 0 1.5rem; opacity: 0.95;">
+                Interactive map • Immersive footage • Explore, discover and plan Flanders
+            </p>
             <p>Deep in the heart of the Flemish Ardennes, we capture the region's most iconic cobbles and climbs — from the brutal cobbles and majestic climbs to hidden local gems.</p>
+            <p>Experience the raw power and legendary spirit of Flemish cycling through our interactive map and immersive cinematic footage.</p>
+            <p>Subscribe to support our journey, join us on Strava and Instagram or drop us a message. We'd love to hear from you!</p>
             <div class="subscribe-container">
-                <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="yt-subscribe-btn"><i class="fab fa-youtube" aria-hidden="true"></i> Subscribe on YouTube</a>
+                <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1"
+                   target="_blank" rel="noopener noreferrer"
+                   class="yt-subscribe-btn"
+                   aria-label="Subscribe to Cobbles & Climbs on YouTube">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    Subscribe on YouTube
+                </a>
             </div>
         </div>
         <aside class="sidebar" aria-label="Sector selector">
             <h2 style="margin-top:0; font-size: 1rem;">Discover the cobbles and climbs</h2>
-            <select id="climbDropdown" class="climb-select"><option value="">— Select a sector —</option></select>
+            <select id="climbDropdown" class="climb-select">
+                <option value="">— Select a sector —</option>
+            </select>
             <h2 style="font-size: 1rem; margin-top: 16px;">Routes</h2>
-            <select id="routeDropdown" class="climb-select"><option value="">— Select a route —</option></select>
+            <select id="routeDropdown" class="climb-select">
+                <option value="">— Select a route —</option>
+            </select>
         </aside>
     </section>
     <section class="map-section" aria-label="Interactive map of Flemish cycling sectors">
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors in the Flemish Ardennes"></div>
+        
         <div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
             <button class="map-layer-btn active" data-layer="light" aria-pressed="true">Light</button>
             <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
@@ -485,14 +503,20 @@
     </section>
 </main>
 <footer role="contentinfo">
-    <p>&copy; 2026 Cobbles &amp; Climbs • <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
+    <p>&copy; 2026 Cobbles &amp; Climbs •
+    <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Check out Cobbles &amp; Climbs on YouTube</a></p>
 </footer>
 
 <script>
+    // Header logic
     const menuButton = document.getElementById('menuButton');
     const mobileDropdown = document.getElementById('mobileDropdown');
     menuButton.addEventListener('click', () => mobileDropdown.classList.toggle('show'));
+    document.addEventListener('click', (e) => {
+        if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) mobileDropdown.classList.remove('show');
+    });
 
+    // Map & Data state
     let archiveData = { sectors: [] };
     let map = null;
     let currentLayer = null;
@@ -505,12 +529,13 @@
     let bounds = L.latLngBounds();
     let activeRouteId = null;
 
-    // Filter status
+    // Filter state
     const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: true };
 
-    function toggleLayer(theme) {
+    function toggleFilter(theme) {
         themeVisible[theme] = !themeVisible[theme];
         const item = document.querySelector(`.legend-item[data-theme="${theme}"]`);
+        
         if (themeVisible[theme]) {
             item.classList.remove('inactive');
         } else {
@@ -533,35 +558,43 @@
             const response = await fetch('sectors.json');
             archiveData = await response.json();
             initMap();
-        } catch (error) { console.error(error); }
+        } catch (error) { console.error("Fout bij laden sectors:", error); }
+    }
+
+    function getMarkerColor(type) {
+        if (type === "cobbles") return "#8c8c8c";
+        if (type === "climb") return "#1a3c34";
+        if (type === "cobbled_climb") return "#c62828";
+        return "#1a3c34";
     }
 
     function addLegend() {
         const legend = L.control({ position: 'bottomright' });
         legend.onAdd = function () {
-            const div = L.DomUtil.create('div', 'legend');
+            // Standaard collapsed bij laden
+            const div = L.DomUtil.create('div', 'legend collapsed');
             div.innerHTML = `
-                <strong id="legendTitle">Legend</strong>
-                <div class="legend-body" id="legendBody">
+                <strong id="legendHeader">Legend</strong>
+                <div class="legend-body">
                     <div class="legend-item" data-theme="cobbles"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbles</div>
                     <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1a3c34"></span> Climb</div>
                     <div class="legend-item" data-theme="cobbled_climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
-                    <div class="legend-item" data-theme="routes"><span class="legend-dash"></span> Routes</div>
+                    <div class="legend-item" data-theme="routes"><span class="legend-dash"></span> Route</div>
                 </div>`;
             
             L.DomEvent.disableClickPropagation(div);
             
-            // Toggle collapse logic
-            div.querySelector('#legendTitle').addEventListener('click', () => div.classList.toggle('collapsed'));
+            // Klik op titel = in/uitklappen
+            div.querySelector('#legendHeader').addEventListener('click', () => div.classList.toggle('collapsed'));
             
-            // Toggle layer logic
+            // Klik op items = filteren
             div.querySelectorAll('.legend-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    toggleLayer(item.dataset.theme);
+                    toggleFilter(item.dataset.theme);
                 });
             });
-            
+
             return div;
         };
         legend.addTo(map);
@@ -569,48 +602,87 @@
 
     function switchLayer(layerName) {
         const layers = {
-            light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'),
-            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
-            satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
-            terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png')
+            light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
+            osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
+            satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
+            terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' })
         };
-        if (currentLayer) map.removeLayer(currentLayer);
-        layers[layerName].addTo(map);
-        currentLayer = layers[layerName];
+        const newLayer = layers[layerName];
+        if (!newLayer) return;
+        if (currentLayer && map.hasLayer(currentLayer)) map.removeLayer(currentLayer);
+        newLayer.addTo(map);
+        currentLayer = newLayer;
         document.querySelectorAll('.map-layer-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.layer === layerName));
+    }
+
+    function timeToSeconds(t) {
+        if (!t || !t.includes(':')) return 0;
+        const [m, s] = t.split(':').map(Number);
+        return m * 60 + s;
+    }
+
+    function secondsToTime(total) {
+        const h = Math.floor(total / 3600);
+        const m = Math.floor((total % 3600) / 60);
+        const s = total % 60;
+        return h ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}` : `${m}:${s.toString().padStart(2,'0')}`;
     }
 
     function calculateTotals() {
         const s = archiveData.sectors;
-        const totalSec = s.reduce((sum,sec) => sum + (sec.time.split(':').reduce((m,s)=>m*60+ +s)), 0);
-        archiveData.computed = {
-            count: s.length,
-            dist: s.reduce((a,b)=>a+b.dist,0).toFixed(1),
-            totalAscent: s.reduce((a,b)=>a+b.ascent,0),
-            avgGrade: (s.reduce((a,b)=>a+parseFloat(b.avg||0),0)/s.length).toFixed(1),
-            avgMaxGrade: (s.reduce((a,b)=>a+parseFloat(b.max||0),0)/s.length).toFixed(1),
-            totalDuration: Math.floor(totalSec/3600) + ":" + Math.floor((totalSec%3600)/60).toString().padStart(2,'0')
-        };
+        const totalDist = s.reduce((a,b) => a + b.dist, 0).toFixed(1);
+        const totalAscent = s.reduce((a,b) => a + b.ascent, 0);
+        const totalSec = s.reduce((sum,sec) => sum + timeToSeconds(sec.time), 0);
+        const avgGrade = (s.reduce((a,b) => a + parseFloat(b.avg || 0), 0) / s.length).toFixed(1);
+        const avgMax = (s.reduce((a,b) => a + parseFloat(b.max || 0), 0) / s.length).toFixed(1);
+        archiveData.computed = { count: s.length, dist: totalDist, totalAscent, avgGrade, avgMaxGrade: avgMax, totalDuration: secondsToTime(totalSec) };
     }
 
     function updateDashboard(data) {
         if (data === 'reset') {
-            const c = archiveData.computed;
-            document.getElementById('val-1').innerText = c.count;
+            const c = archiveData.computed || {};
+            document.getElementById('val-1').innerText = c.count || '-';
             document.getElementById('label-1').innerText = "SECTORS";
-            document.getElementById('val-2').innerHTML = c.dist + '<span class="unit">km</span>';
-            document.getElementById('val-3').innerHTML = c.totalAscent + '<span class="unit">m</span>';
-            document.getElementById('val-4').innerHTML = c.avgGrade + '<span class="unit">%</span>';
-            document.getElementById('val-5').innerHTML = c.avgMaxGrade + '<span class="unit">%</span>';
-            document.getElementById('val-6').innerText = c.totalDuration;
+            document.getElementById('val-2').innerHTML = (c.dist || '0') + '<span class="unit">km</span>';
+            document.getElementById('label-2').innerText = "TOTAL LENGTH";
+            document.getElementById('val-3').innerHTML = (c.totalAscent || '0') + '<span class="unit">m</span>';
+            document.getElementById('label-3').innerText = "TOTAL ASCENT";
+            document.getElementById('val-4').innerHTML = (c.avgGrade || '0') + '<span class="unit">%</span>';
+            document.getElementById('label-4').innerText = "AVG GRADE";
+            document.getElementById('val-5').innerHTML = (c.avgMaxGrade || '0') + '<span class="unit">%</span>';
+            document.getElementById('label-5').innerText = "AVG MAX GRADE";
+            document.getElementById('val-6').innerHTML = c.totalDuration || '-';
+            document.getElementById('label-6').innerText = "TOTAL DURATION";
         } else {
             document.getElementById('val-1').innerText = data.name;
-            document.getElementById('label-1').innerText = data.type === 'route' ? "ROUTE" : "SECTOR";
+            document.getElementById('label-1').innerText = data.type === 'route' ? "ROUTE NAME" : "SECTOR NAME";
             document.getElementById('val-2').innerHTML = data.dist + '<span class="unit">km</span>';
-            document.getElementById('val-3').innerHTML = (data.ascent || '-') + '<span class="unit">m</span>';
-            document.getElementById('val-4').innerHTML = (data.avg || '-') + '<span class="unit">%</span>';
-            document.getElementById('val-5').innerHTML = (data.max || '-') + '<span class="unit">%</span>';
-            document.getElementById('val-6').innerText = data.time || '-';
+            document.getElementById('label-2').innerText = "LENGTH";
+            document.getElementById('val-3').innerHTML = (data.ascent || '-') + (data.ascent ? '<span class="unit">m</span>' : '');
+            document.getElementById('label-3').innerText = "ASCENT";
+            document.getElementById('val-4').innerHTML = data.avg ? data.avg + '<span class="unit">%</span>' : '-';
+            document.getElementById('label-4').innerText = "AVG GRADE";
+            document.getElementById('val-5').innerHTML = data.max ? data.max + '<span class="unit">%</span>' : '-';
+            document.getElementById('label-5').innerText = "MAX GRADE";
+            document.getElementById('val-6').innerHTML = data.time || '-';
+            document.getElementById('label-6').innerText = "DURATION";
+        }
+    }
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function centerOnPopup(marker) {
+        const latLng = marker.getLatLng ? marker.getLatLng() : marker.getBounds().getCenter();
+        const offset = isMobile() ? [0, 40] : [0, 80];
+        const target = map.project(latLng).subtract(offset);
+        map.panTo(map.unproject(target), { animate: true });
+    }
+
+    function highlightRoute(id) {
+        if (activeRouteId && routeLayers[activeRouteId]) routeLayers[activeRouteId].setStyle({ weight: 3, opacity: 0.85 });
+        if (routeLayers[id]) {
+            routeLayers[id].setStyle({ weight: 5, opacity: 1 });
+            activeRouteId = id;
         }
     }
 
@@ -618,15 +690,29 @@
         try {
             const response = await fetch('routes.geojson');
             const geojson = await response.json();
-            geojson.features.forEach(f => {
-                const p = f.properties;
-                const layer = L.geoJSON(f, { style: { color: '#e07b00', weight: 3, dashArray: '6,4' } }).addTo(map);
-                const popupHTML = `<div class="popup-card"><strong>${p.name}</strong><br>${p.dist} km<br><a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch Video</a></div>`;
-                layer.bindPopup(popupHTML);
-                layer.on('click', () => updateDashboard({...p, type:'route'}));
-                routeLayers[p.id] = layer;
+            geojson.features.sort((a, b) => a.properties.name.localeCompare(b.properties.name));
+            geojson.features.forEach(feature => {
+                const p = feature.properties;
+                const routeLayer = L.geoJSON(feature, { style: { color: '#e07b00', weight: 3, opacity: 0.85, dashArray: '6, 4' } });
+                const popupHTML = `<div class="popup-card">
+                    <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank"><div class="popup-thumb"><img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg"></div></a>
+                    <div class="popup-info"><strong>${p.name}</strong><br>Route • ${p.dist} km<br>
+                    <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a></div></div>`;
+                routeLayer.bindPopup(popupHTML);
+                routeLayer.on('click', () => { highlightRoute(p.id); routeDropdown.value = p.id; updateDashboard({...p, type:'route'}); });
+                routeLayer.on('popupclose', () => { updateDashboard('reset'); if(activeRouteId===p.id) routeLayers[p.id].setStyle({weight:3}); });
+                routeLayer.addTo(map);
+                routeLayers[p.id] = routeLayer;
                 routeProperties[p.id] = p;
                 const opt = document.createElement('option'); opt.value = p.id; opt.textContent = p.name; routeDropdown.appendChild(opt);
+            });
+            routeDropdown.addEventListener('change', function() {
+                if (!this.value) return;
+                const layer = routeLayers[this.value];
+                map.fitBounds(layer.getBounds(), { padding: [60, 60] });
+                layer.openPopup(layer.getBounds().getCenter());
+                highlightRoute(this.value);
+                updateDashboard({...routeProperties[this.value], type:'route'});
             });
         } catch (e) { console.error(e); }
     }
@@ -637,15 +723,20 @@
         map.setView([50.78, 3.65], 11);
 
         loadRoutes().then(() => {
-            archiveData.sectors.forEach(s => {
-                const color = s.type==='cobbles'?'#8c8c8c':(s.type==='climb'?'#1a3c34':'#c62828');
+            archiveData.sectors.sort((a,b)=>a.name.localeCompare(b.name)).forEach(s => {
+                const color = getMarkerColor(s.type);
                 const marker = L.circleMarker([s.lat, s.lon], { radius: 6, fillColor: color, color: "#fff", weight: 2, fillOpacity: 0.95 }).addTo(map);
-                marker.bindPopup(`<strong>${s.name}</strong><br>${s.dist} km<br><a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank">Watch Video</a>`);
-                marker.on('click', () => updateDashboard(s));
+                marker.bindTooltip(s.name);
+                const popupHTML = `<div class="popup-card">
+                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank"><div class="popup-thumb"><img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg"></div></a>
+                    <div class="popup-info"><strong>${s.name}</strong><br>${s.dist} km • ${s.ascent} m<br>
+                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a></div></div>`;
+                marker.bindPopup(popupHTML);
+                marker.on('click', () => { centerOnPopup(marker); updateDashboard(s); });
                 marker.on('popupclose', () => updateDashboard('reset'));
                 bounds.extend([s.lat, s.lon]);
-                markersByType[s.type].push(marker);
                 markers[s.id] = marker;
+                if (markersByType[s.type]) markersByType[s.type].push(marker);
                 const opt = document.createElement('option'); opt.value = s.id; opt.textContent = s.name; dropdown.appendChild(opt);
             });
 
@@ -654,7 +745,10 @@
             addLegend();
 
             document.querySelectorAll('.map-layer-btn').forEach(btn => btn.addEventListener('click', () => switchLayer(btn.dataset.layer)));
-            dropdown.addEventListener('change', function() { if(markers[this.value]) { markers[this.value].openPopup(); map.panTo(markers[this.value].getLatLng()); } });
+            dropdown.addEventListener('change', function() {
+                const marker = markers[this.value];
+                if (marker) { marker.openPopup(); centerOnPopup(marker); updateDashboard(archiveData.sectors.find(x=>x.id==this.value)); }
+            });
             if (bounds.isValid()) map.fitBounds(bounds, { padding: [50, 50] });
         });
     }
