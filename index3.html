@@ -269,7 +269,7 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
-        /* Legend, Map, Popup, Footer (ongewijzigd) */
+        /* Legend, Map, Popup, Footer */
         .legend {
             background: rgba(255, 255, 255, 0.95);
             padding: 6px 10px;
@@ -279,6 +279,7 @@
             line-height: 1.5;
             color: #222;
             min-width: 120px;
+            user-select: none;
         }
         .legend strong {
             display: flex;
@@ -288,7 +289,6 @@
             color: var(--cc-dark-green);
             font-size: 0.82rem;
             cursor: pointer;
-            user-select: none;
         }
         .legend strong::after {
             content: '▾';
@@ -307,7 +307,7 @@
             cursor: pointer; 
             transition: opacity 0.2s;
         }
-        .legend-item.inactive { opacity: 0.3; }
+        .legend-item.inactive { opacity: 0.35; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
         .map-section {
             padding: 0 20px 30px;
@@ -342,67 +342,7 @@
             touch-action: manipulation;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-        /* ── THEME TOGGLE ── */
-        .theme-toggle {
-            position: absolute;
-            top: 18px;
-            right: 12px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-            padding: 8px 10px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 0.78rem;
-        }
-        .theme-toggle-title {
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #666;
-            margin-bottom: 2px;
-        }
-        .theme-btn {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            background: none;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 5px 9px;
-            cursor: pointer;
-            font-size: 0.78rem;
-            color: #333;
-            transition: all 0.18s;
-            white-space: nowrap;
-        }
-        .theme-btn.active {
-            border-color: transparent;
-            color: white;
-        }
-        .theme-btn .theme-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        .theme-btn .theme-dash {
-            width: 18px;
-            height: 0;
-            border-top: 3px dashed #e07b00;
-            flex-shrink: 0;
-        }
-        @media (max-width: 768px) {
-            .theme-toggle {
-                top: auto;
-                bottom: 52px;
-                right: 8px;
-                padding: 6px 8px;
-            }
-        }
+
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb {
             width: 100%;
@@ -578,21 +518,6 @@
             <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
             <button class="map-layer-btn" data-layer="terrain" aria-pressed="false">Terrain</button>
         </div>
-        <div class="theme-toggle" id="themeToggle" role="group" aria-label="Toggle map layers">
-            <div class="theme-toggle-title">Show</div>
-            <button class="theme-btn active" data-theme="cobbles" style="background:#8c8c8c;">
-                <span class="theme-dot" style="background:#fff;border:1px solid #8c8c8c;"></span> Cobbles
-            </button>
-            <button class="theme-btn active" data-theme="climb" style="background:#1a3c34;">
-                <span class="theme-dot" style="background:#fff;border:1px solid #1a3c34;"></span> Climbs
-            </button>
-            <button class="theme-btn active" data-theme="cobbled_climb" style="background:#c62828;">
-                <span class="theme-dot" style="background:#fff;border:1px solid #c62828;"></span> Cobbled climbs
-            </button>
-            <button class="theme-btn active" data-theme="routes" style="background:#e07b00;">
-                <span class="theme-dash"></span> Routes
-            </button>
-        </div>
     </section>
 </main>
 <footer role="contentinfo">
@@ -629,17 +554,7 @@
     function applyTheme(theme) {
         themeVisible[theme] = !themeVisible[theme];
         
-        // Update de ThemeToggle knoppen
-        const btn = document.querySelector(`.theme-btn[data-theme="${theme}"]`);
-        if (themeVisible[theme]) {
-            btn.classList.add('active');
-            btn.style.opacity = '1';
-        } else {
-            btn.classList.remove('active');
-            btn.style.opacity = '0.45';
-        }
-
-        // Update de Legende items
+        // Update Legende UI
         const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
         if (legItem) legItem.classList.toggle('inactive', !themeVisible[theme]);
 
@@ -653,11 +568,6 @@
             });
         }
     }
-
-    document.getElementById('themeToggle').addEventListener('click', (e) => {
-        const btn = e.target.closest('.theme-btn');
-        if (btn) applyTheme(btn.dataset.theme);
-    });
 
     async function loadSectors() {
         try {
@@ -694,17 +604,21 @@
                         <span style="display:inline-block;width:18px;height:0;border-top:3px dashed #e07b00;margin-right:2px;vertical-align:middle;"></span> Route
                     </div>
                 </div>`;
+            
             L.DomEvent.disableClickPropagation(div);
             
-            div.querySelector('strong').addEventListener('click', () => div.classList.toggle('collapsed'));
-            
+            div.querySelector('strong').addEventListener('click', (e) => {
+                e.stopPropagation();
+                div.classList.toggle('collapsed');
+            });
+
             div.querySelectorAll('.legend-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopPropagation();
                     applyTheme(item.dataset.theme);
                 });
             });
-            
+
             return div;
         };
         legend.addTo(map);
@@ -761,22 +675,22 @@
             document.getElementById('label-2').innerText = "TOTAL LENGTH";
             document.getElementById('val-3').innerHTML = (c.totalAscent || '0') + '<span class="unit">m</span>';
             document.getElementById('label-3').innerText = "TOTAL ASCENT";
-            document.getElementById('val-4').innerHTML = (c.avgGrade || '0') + '<span class=\"unit\">%</span>';
+            document.getElementById('val-4').innerHTML = (c.avgGrade || '0') + '<span class="unit">%</span>';
             document.getElementById('label-4').innerText = "AVG GRADE";
-            document.getElementById('val-5').innerHTML = (c.avgMaxGrade || '0') + '<span class=\"unit\">%</span>';
+            document.getElementById('val-5').innerHTML = (c.avgMaxGrade || '0') + '<span class="unit">%</span>';
             document.getElementById('label-5').innerText = "AVG MAX GRADE";
             document.getElementById('val-6').innerHTML = c.totalDuration || '-';
             document.getElementById('label-6').innerText = "TOTAL DURATION";
         } else {
             document.getElementById('val-1').innerText = data.name;
             document.getElementById('label-1').innerText = data.type === 'route' ? "ROUTE NAME" : "SECTOR NAME";
-            document.getElementById('val-2').innerHTML = data.dist + '<span class=\"unit\">km</span>';
+            document.getElementById('val-2').innerHTML = data.dist + '<span class="unit">km</span>';
             document.getElementById('label-2').innerText = "LENGTH";
-            document.getElementById('val-3').innerHTML = (data.ascent || '-') + (data.ascent ? '<span class=\"unit\">m</span>' : '');
+            document.getElementById('val-3').innerHTML = (data.ascent || '-') + (data.ascent ? '<span class="unit">m</span>' : '');
             document.getElementById('label-3').innerText = "ASCENT";
-            document.getElementById('val-4').innerHTML = data.avg ? data.avg + '<span class=\"unit\">%</span>' : '-';
+            document.getElementById('val-4').innerHTML = data.avg ? data.avg + '<span class="unit">%</span>' : '-';
             document.getElementById('label-4').innerText = "AVG GRADE";
-            document.getElementById('val-5').innerHTML = data.max ? data.max + '<span class=\"unit\">%</span>' : '-';
+            document.getElementById('val-5').innerHTML = data.max ? data.max + '<span class="unit">%</span>' : '-';
             document.getElementById('label-5').innerText = "MAX GRADE";
             document.getElementById('val-6').innerHTML = data.time || '-';
             document.getElementById('label-6').innerText = "DURATION";
@@ -816,7 +730,6 @@
 
             geojson.features.forEach(feature => {
                 const p = feature.properties;
-
                 const routeLayer = L.geoJSON(feature, {
                     style: {
                         color: '#e07b00',
@@ -841,36 +754,19 @@
 
                 const popupHTML = `
                     <div class="popup-card">
-                        ${p.yt ? `
-                        <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
-                            <div class="popup-thumb">
-                                <img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg"
-                                     alt="${p.name}" loading="lazy">
-                            </div>
+                        ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
+                            <div class="popup-thumb"><img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg" alt="${p.name}" loading="lazy"></div>
                         </a>` : ''}
                         <div class="popup-info">
                             <strong>${p.name}</strong><br>
                             Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>
                             ${p.description || ''}
-                            ${p.yt ? `
-                            <a href="https://www.youtube.com/watch?v=${p.yt}"
-                               target="_blank" rel="noopener noreferrer"
-                               class="popup-yt-link">
-                                <i class="fab fa-youtube"></i> Watch on YouTube
-                            </a>` : ''}
+                            ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>` : ''}
                         </div>
                     </div>`;
 
-                routeLayer.bindPopup(popupHTML, {
-                    closeButton: true,
-                    maxWidth: isMobile() ? 240 : 270
-                });
-
-                routeLayer.bindTooltip(p.name, {
-                    permanent: false,
-                    direction: 'top',
-                    sticky: true
-                });
+                routeLayer.bindPopup(popupHTML, { closeButton: true, maxWidth: isMobile() ? 240 : 270 });
+                routeLayer.bindTooltip(p.name, { permanent: false, direction: 'top', sticky: true });
 
                 routeLayer.on('click', function(e) {
                     highlightRoute(p.id);
@@ -947,27 +843,18 @@
                 let desc = "";
                 if (s.description) {
                     const firstSentence = s.description.split('.')[0].trim();
-                    desc = firstSentence.length > 100
-                        ? firstSentence.substring(0, 100) + "..."
-                        : firstSentence + ".";
+                    desc = firstSentence.length > 100 ? firstSentence.substring(0, 100) + "..." : firstSentence + ".";
                 }
                 const popupHTML = `
                     <div class="popup-card">
-                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${s.name} on YouTube">
-                            <div class="popup-thumb">
-                                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name} — Flemish cycling sector" loading="lazy">
-                            </div>
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
+                            <div class="popup-thumb"><img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name}" loading="lazy"></div>
                         </a>
                         <div class="popup-info">
                             <strong>${s.name}</strong><br>
                             ${typeDisplay} • ${s.dist} km • ${s.ascent} m • ${s.avg}% • ${s.max}%<br>
                             ${desc}
-                            <a href="https://www.youtube.com/watch?v=${s.yt}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="popup-yt-link">
-                                <i class="fab fa-youtube"></i> Watch on YouTube
-                            </a>
+                            <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>
                         </div>
                     </div>`;
                 marker.bindPopup(popupHTML, { closeButton: true, offset: L.point(0, -5), maxWidth: isMobile() ? 240 : 270 });
