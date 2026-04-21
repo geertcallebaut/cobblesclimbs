@@ -199,47 +199,6 @@
         .legend-item.inactive { opacity: 0.35; }
         .legend-dot { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #444; flex-shrink: 0; }
 
-        /* ── MAP CONTROLS (layer + filter icons) ── */
-        .map-layer-selector { position: absolute; top: 10px; left: 10px; z-index: 1000; }
-        .map-filter-selector { position: absolute; top: 10px; right: 10px; z-index: 1000; }
-        .map-ctrl-btn {
-            width: 34px; height: 34px; background: white; border: none; border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.18); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; color: #444; transition: background 0.15s;
-        }
-        .map-ctrl-btn:hover { background: #f0f0f0; }
-        .map-ctrl-dropdown {
-            display: none; flex-direction: column; margin-top: 4px; background: white;
-            border-radius: 8px; box-shadow: 0 3px 12px rgba(0,0,0,0.14); overflow: hidden; min-width: 110px;
-        }
-        .map-ctrl-dropdown.open { display: flex; }
-        .map-layer-btn {
-            padding: 8px 14px; border: none; background: transparent; cursor: pointer;
-            font-size: 0.82rem; text-align: left; color: #333; transition: background 0.12s;
-            touch-action: manipulation; white-space: nowrap;
-        }
-        .map-layer-btn:hover { background: #f5f5f5; }
-        .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
-        .filter-dropdown {
-            display: none; flex-direction: column; margin-top: 4px; background: white;
-            border-radius: 8px; box-shadow: 0 3px 12px rgba(0,0,0,0.14);
-            padding: 6px 8px; gap: 4px; min-width: 148px;
-            /* align to right edge of button */
-            position: absolute; right: 0;
-        }
-        .filter-dropdown.open { display: flex; }
-        .filter-title { font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #888; padding: 2px 2px 4px; }
-        .filter-btn {
-            display: flex; align-items: center; gap: 7px; background: none;
-            border: 1px solid #e0e0e0; border-radius: 5px; padding: 5px 9px;
-            cursor: pointer; font-size: 0.78rem; color: #333; transition: all 0.15s; white-space: nowrap;
-        }
-        .filter-btn.active { border-color: transparent; color: white; }
-        .filter-btn:not(.active) { opacity: 0.48; }
-        .filter-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-        .filter-dash { width: 18px; height: 0; border-top: 3px dashed #e07b00; flex-shrink: 0; }
-
         /* ── POPUPS ── */
         .popup-card { width: 255px; font-size: 0.84rem; }
         .popup-thumb { width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: 3px; }
@@ -321,7 +280,6 @@
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <header class="top-header" role="banner">
     <div class="nav-left">
         <a href="/" class="logo-left" aria-label="Cobbles & Climbs — home">
@@ -353,7 +311,6 @@
     </div>
 </header>
 
-<!-- ── KPI DASHBOARD ── -->
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
     <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
     <div class="kpi-card"><p id="label-2">TOTAL LENGTH</p><h3 id="val-2">-</h3></div>
@@ -366,13 +323,12 @@
 </div>
 
 <main>
-    <!-- ── HERO ── -->
     <section class="hero" aria-label="About Cobbles & Climbs">
         <div class="hero-text">
             <h1 style="margin-top:0;font-size:2rem;line-height:1.15;">Feel the raw beauty of Flemish cycling</h1>
-            <p style="font-size:1.25rem;margin:0.8rem 0 1.5rem;opacity:0.95;">Interactive map • Immersive footage • Explore and discover Flanders • Build custom routes</p>
+            <p style="font-size:1.25rem;margin:0.8rem 0 1.5rem;opacity:0.95;">Interactive map • Immersive footage • Explore, discover and plan Flanders</p>
             <p>Deep in the heart of the Flemish Ardennes, we capture the region's most iconic cobbles and climbs — from the brutal cobbles and majestic climbs to hidden local gems.</p>
-            <p>Experience the raw power and legendary spirit of Flemish cycling through our interactive map and immersive cinematic footage. Explore and discover the sectors and routes or create your own custom ride through Flanders.</p>
+            <p>Experience the raw power and legendary spirit of Flemish cycling through our interactive map and immersive cinematic footage.</p>
             <p>Subscribe to support our journey, join us on Strava and Instagram or drop us a message. We'd love to hear from you!</p>
             <div class="subscribe-container">
                 <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="yt-subscribe-btn" aria-label="Subscribe on YouTube">
@@ -391,7 +347,6 @@
                 <option value="">— Select a route —</option>
             </select>
 
-            <!-- Route Planner -->
             <div class="planner-box">
                 <h2><i class="fa-solid fa-route"></i> Route Planner</h2>
                 <p class="planner-info" id="plannerInfo">Click a marker → &quot;+ Add to Planner&quot;</p>
@@ -409,49 +364,15 @@
         </aside>
     </section>
 
-    <!-- ── MAP ── -->
     <section class="map-section" aria-label="Interactive map">
         <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Map of cobbled sectors and climbs in the Flemish Ardennes</h2>
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors"></div>
 
-        <!-- Layer selector — top left -->
-        <div class="map-layer-selector" id="layerSelector">
-            <button class="map-ctrl-btn" id="layerToggleBtn" title="Map style"><i class="fa-solid fa-layer-group"></i></button>
-            <div class="map-ctrl-dropdown" id="layerDropdown">
-                <button class="map-layer-btn active" data-layer="light">Light</button>
-                <button class="map-layer-btn" data-layer="osm">OSM</button>
-                <button class="map-layer-btn" data-layer="satellite">Satellite</button>
-                <button class="map-layer-btn" data-layer="terrain">Terrain</button>
-            </div>
-        </div>
-
-        <!-- Filter toggle — top right -->
-        <div class="map-filter-selector" id="filterSelector">
-            <button class="map-ctrl-btn" id="filterToggleBtn" title="Filter layers"><i class="fa-solid fa-sliders"></i></button>
-            <div class="filter-dropdown" id="filterDropdown">
-                <div class="filter-title">Show / hide</div>
-                <button class="filter-btn active" data-theme="cobbles" style="background:#8c8c8c;">
-                    <span class="filter-dot" style="background:#fff;border:1px solid #aaa;"></span> Cobbles
-                </button>
-                <button class="filter-btn active" data-theme="climb" style="background:#1a3c34;">
-                    <span class="filter-dot" style="background:#fff;border:1px solid #1a3c34;"></span> Climbs
-                </button>
-                <button class="filter-btn active" data-theme="cobbled_climb" style="background:#c62828;">
-                    <span class="filter-dot" style="background:#fff;border:1px solid #c62828;"></span> Cobbled climbs
-                </button>
-                <button class="filter-btn" data-theme="routes" style="background:#e07b00;">
-                    <span class="filter-dash"></span> Routes
-                </button>
-            </div>
-        </div>
-
-        <!-- Elevation chart (shown after Build Route) -->
         <div class="chart-box" id="chartBox">
             <h3>Route Elevation Profile</h3>
             <canvas id="elevationChart"></canvas>
         </div>
 
-        <!-- Video strip -->
         <div id="videoContainer"></div>
     </section>
 </main>
@@ -469,10 +390,6 @@ const menuButton       = document.getElementById('menuButton');
 const mobileDropdown   = document.getElementById('mobileDropdown');
 const sectorDropdown   = document.getElementById('climbDropdown');
 const routeDropdown    = document.getElementById('routeDropdown');
-const layerToggleBtn   = document.getElementById('layerToggleBtn');
-const layerDropdownEl  = document.getElementById('layerDropdown');
-const filterToggleBtn  = document.getElementById('filterToggleBtn');
-const filterDropdownEl = document.getElementById('filterDropdown');
 
 let archiveData   = { sectors: [] };
 let map           = null;
@@ -507,46 +424,10 @@ document.addEventListener('click', (e) => {
 });
 
 // ═══════════════════════════════════════════════════════
-//  MAP CONTROL DROPDOWNS
-// ═══════════════════════════════════════════════════════
-layerToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    layerDropdownEl.classList.toggle('open');
-    filterDropdownEl.classList.remove('open');
-});
-filterToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    filterDropdownEl.classList.toggle('open');
-    layerDropdownEl.classList.remove('open');
-});
-document.addEventListener('click', (e) => {
-    if (!document.getElementById('layerSelector').contains(e.target))
-        layerDropdownEl.classList.remove('open');
-    if (!document.getElementById('filterSelector').contains(e.target))
-        filterDropdownEl.classList.remove('open');
-});
-
-// Layer selection
-layerDropdownEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.map-layer-btn');
-    if (btn) { switchLayer(btn.dataset.layer); layerDropdownEl.classList.remove('open'); }
-});
-
-// Filter selection
-filterDropdownEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-btn');
-    if (btn) applyTheme(btn.dataset.theme);
-});
-
-// ═══════════════════════════════════════════════════════
 //  THEME / VISIBILITY
 // ═══════════════════════════════════════════════════════
 function applyTheme(theme) {
     themeVisible[theme] = !themeVisible[theme];
-
-    // Sync filter button
-    const fbtn = document.querySelector(`.filter-btn[data-theme="${theme}"]`);
-    if (fbtn) fbtn.classList.toggle('active', themeVisible[theme]);
 
     // Sync legend item
     const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
@@ -561,26 +442,6 @@ function applyTheme(theme) {
             themeVisible[theme] ? m.addTo(map) : map.removeLayer(m)
         );
     }
-}
-
-// ═══════════════════════════════════════════════════════
-//  LAYER SWITCHER
-// ═══════════════════════════════════════════════════════
-function switchLayer(name) {
-    const tiles = {
-        light:     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
-        osm:       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }),
-        satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
-        terrain:   L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' })
-    };
-    if (!tiles[name]) return;
-    if (currentLayer) map.removeLayer(currentLayer);
-    tiles[name].addTo(map);
-    currentLayer = tiles[name];
-    document.querySelectorAll('.map-layer-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.layer === name);
-        b.setAttribute('aria-pressed', b.dataset.layer === name ? 'true' : 'false');
-    });
 }
 
 // ═══════════════════════════════════════════════════════
@@ -638,12 +499,15 @@ function updateDashboard(data) {
         set(5, 'AVG MAX GRADE', c.avgMaxGrade || '0',    '%');
         set(6, 'TOTAL DURATION', c.totalDuration || '-', '');
     } else {
-        set(1, data.type === 'route' ? 'ROUTE NAME' : 'SECTOR NAME', data.name, '');
-        set(2, 'LENGTH',    data.dist,           'km');
-        set(3, 'ASCENT',    data.ascent || '-',  data.ascent ? 'm' : '');
-        set(4, 'AVG GRADE', data.avg || '-',     data.avg ? '%' : '');
-        set(5, 'MAX GRADE', data.max || '-',     data.max ? '%' : '');
-        set(6, 'DURATION',  data.time || '-',    '');
+        // Only update if it's a sector, never for a route or custom route
+        if (data.type !== 'route' && data.type !== 'custom_route') {
+            set(1, 'SECTOR NAME', data.name, '');
+            set(2, 'LENGTH',    data.dist,           'km');
+            set(3, 'ASCENT',    data.ascent || '-',  data.ascent ? 'm' : '');
+            set(4, 'AVG GRADE', data.avg || '-',     data.avg ? '%' : '');
+            set(5, 'MAX GRADE', data.max || '-',     data.max ? '%' : '');
+            set(6, 'DURATION',  data.time || '-',    '');
+        }
     }
 }
 
@@ -944,18 +808,7 @@ window.buildRoute = async function() {
 };
 
 function showRouteResults(summary, coords) {
-    let ascent = 0;
-    for (let i = 1; i < coords.length; i++) {
-        const diff = (coords[i][2] || 0) - (coords[i - 1][2] || 0);
-        if (diff > 0) ascent += diff;
-    }
-    set(1, 'ROUTE',          'CUSTOM',                             '');
-    set(2, 'DISTANCE',       (summary.distance / 1000).toFixed(1), 'km');
-    set(3, 'ASCENT',         Math.round(ascent),                   'm');
-    set(4, 'AVG GRADE',      '-',                                  '');
-    set(5, 'MAX GRADE',      '-',                                  '');
-    set(6, 'EST. DURATION',  Math.round(summary.duration / 60),    'min');
-
+    // KPI update skipped to keep Archive stats
     const box = document.getElementById('chartBox');
     box.style.display = 'block';
     drawElevationChart(coords);
@@ -965,7 +818,6 @@ function showRouteResults(summary, coords) {
 function drawElevationChart(coords) {
     if (elevChart) elevChart.destroy();
     const elevations = coords.map(c => c[2] || 0);
-    // Approximate distance labels in km
     let dist = 0;
     const labels = coords.map((c, i) => {
         if (i > 0) {
