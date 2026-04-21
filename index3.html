@@ -321,19 +321,41 @@
             border-radius: 6px;
             border: 1px solid #ddd;
         }
-        .map-layer-selector {
-            position: absolute;
-            top: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-            padding: 4px;
-            z-index: 1000;
-            display: flex;
-            font-size: 0.85rem;
-        }
+.map-layer-selector {
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.map-layer-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 1rem;
+}
+
+.map-layer-content {
+    display: none;
+    flex-direction: column;
+    padding: 6px;
+}
+
+.map-layer-selector.open .map-layer-content {
+    display: flex;
+}
+
+.map-layer-btn {
+    padding: 6px 10px;
+    text-align: left;
+    border-radius: 6px;
+}
         .map-layer-btn {
             padding: 7px 16px;
             border: none;
@@ -469,13 +491,11 @@
             .sidebar { padding: 16px; }
             .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
-            .map-layer-selector {
-                top: auto;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                white-space: nowrap;
-            }
+.map-layer-selector {
+    top: auto;
+    bottom: 10px;
+    right: 8px;
+}
             .map-layer-btn { padding: 7px 12px; font-size: 0.8rem; min-height: 36px; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
@@ -575,7 +595,11 @@
     <section class="map-section" aria-label="Interactive map of Flemish cycling sectors">
         <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;">Map of cobbled sectors and climbs in the Flemish Ardennes</h2>
         <div id="map" role="application" aria-label="Interactive map showing cycling sectors in the Flemish Ardennes"></div>
-        <div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
+<div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
+    <div class="map-layer-header" id="layerToggle">
+        <i class="fa-solid fa-layer-group"></i>
+    </div>
+    <div class="map-layer-content">
             <button class="map-layer-btn active" data-layer="light" aria-pressed="true">Light</button>
             <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
             <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
@@ -595,6 +619,7 @@
             <button class="theme-btn active" data-theme="routes" style="background:#e07b00;">
                 <span class="theme-dash"></span> Routes
             </button>
+            </div>
         </div>
     </section>
 </main>
@@ -613,6 +638,20 @@
             mobileDropdown.classList.remove('show');
         }
     });
+    /* ⬇️ HIER TOEVOEGEN */
+const layerToggle = document.getElementById('layerToggle');
+const layerSelector = document.getElementById('layerSelector');
+
+layerToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    layerSelector.classList.toggle('open');
+});
+
+document.addEventListener('click', (e) => {
+    if (!layerSelector.contains(e.target)) {
+        layerSelector.classList.remove('open');
+    }
+});
 
     let archiveData = { sectors: [] };
     let map = null;
