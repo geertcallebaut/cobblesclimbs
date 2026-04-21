@@ -554,7 +554,6 @@
     let activeRouteId = null;
 
     // ── THEME VISIBILITY ──────────────────────────────────────
-    // ROUTES STAAT NU STANDAARD OP FALSE
     const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: false };
 
     function applyTheme(theme) {
@@ -663,7 +662,7 @@
     }
 
     function calculateTotals() {
-        const s = archiveData.sectors; // GEEN ROUTES HIER
+        const s = archiveData.sectors;
         const totalDist = s.reduce((a,b) => a + b.dist, 0).toFixed(1);
         const totalAscent = s.reduce((a,b) => a + b.ascent, 0);
         const totalSec = s.reduce((sum,sec) => sum + timeToSeconds(sec.time), 0);
@@ -687,9 +686,9 @@
             document.getElementById('label-5').innerText = "AVG MAX GRADE";
             document.getElementById('val-6').innerHTML = c.totalDuration || '-';
             document.getElementById('label-6').innerText = "TOTAL DURATION";
-        } else {
+        } else if (data && data.type !== 'route') { // ZORG DAT ROUTES HIER NIETS DOEN
             document.getElementById('val-1').innerText = data.name;
-            document.getElementById('label-1').innerText = data.type === 'route' ? "ROUTE NAME" : "SECTOR NAME";
+            document.getElementById('label-1').innerText = "SECTOR NAME";
             document.getElementById('val-2').innerHTML = data.dist + '<span class="unit">km</span>';
             document.getElementById('label-2').innerText = "LENGTH";
             document.getElementById('val-3').innerHTML = (data.ascent || '-') + (data.ascent ? '<span class="unit">m</span>' : '');
@@ -777,12 +776,12 @@
                 routeLayer.on('click', function(e) {
                     highlightRoute(p.id);
                     routeDropdown.value = p.id;
-                    updateDashboard({ ...p, type: 'route' });
+                    // GEEN DASHBOARD UPDATE MEER
                     map.panTo(e.latlng, { animate: true });
                 });
 
                 routeLayer.on('popupclose', () => {
-                    updateDashboard('reset');
+                    // GEEN RESET MEER NODIG VOOR DASHBOARD HIER
                     routeDropdown.value = '';
                     if (activeRouteId === p.id) {
                         routeLayers[p.id].setStyle({ weight: 3, opacity: 0.85 });
@@ -790,7 +789,6 @@
                     }
                 });
 
-                // HIER IS .addTo(map) VERWIJDERD OM ZE STANDAARD TE VERBERGEN
                 routeLayers[p.id] = routeLayer;
                 routeProperties[p.id] = p;
 
@@ -806,7 +804,6 @@
                 const p = routeProperties[this.value];
                 if (!layer || !p) return;
                 
-                // FORCEER DAT DE ROUTE OP DE KAART VERSCHIJNT BIJ SELECTIE
                 if (!map.hasLayer(layer)) {
                     layer.addTo(map);
                 }
@@ -819,7 +816,7 @@
                     }, 350);
                 }, 50);
                 highlightRoute(this.value);
-                updateDashboard({ ...p, type: 'route' });
+                // GEEN DASHBOARD UPDATE MEER
             });
 
         } catch (error) {
