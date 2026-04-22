@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9H693SN34Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9H693SN34Q');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Cobbles & Climbs — Interactive map and immersive footage of Flemish cycling</title>
+    <meta name="description" content="Interactive map and immersive footage to explore and discover Flanders' most iconic cobbles and climbs. Documenting every Tour of Flanders road and hidden local gems for cycling fans worldwide.">
+    <meta name="keywords" content="Flemish Ardennes, cobbles, climbs, bergs, cycling, Tour of Flanders, Ronde van Vlaanderen, Flanders, Fiandre, cobbled roads, cycling video, Flemish cycling, kasseistrook">
+    <meta name="author" content="Cobbles & Climbs">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.cobblesclimbs.com/">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cobblesclimbs.com/">
+    <meta property="og:title" content="Cobbles & Climbs — 4K Archive of Flemish Cycling Roads">
+    <meta property="og:description" content="A 4K video archive of the iconic cobbled sectors and climbs of the Flemish Ardennes. Documenting every Tour of Flanders road and hidden local gem.">
+    <meta property="og:image" content="https://www.cobblesclimbs.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
+    <meta property="og:site_name" content="Cobbles & Climbs">
+    <meta property="og:locale" content="en_GB">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CobblesClimbs">
+    <meta name="twitter:title" content="Cobbles & Climbs — 4K Archive of Flemish Cycling Roads">
+    <meta name="twitter:description" content="A 4K video archive of the iconic cobbled sectors and climbs of the Flemish Ardennes. Documenting every Tour of Flanders road and hidden local gem.">
+    <meta name="twitter:image" content="https://www.cobblesclimbs.com/og-image.jpg">
+    <meta name="twitter:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
+
+    <meta name="geo.region" content="BE-VWV">
+    <meta name="geo.placename" content="Flemish Ardennes, Belgium">
+    <meta name="theme-color" content="#102f2b">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Cobbles & Climbs",
+      "url": "https://www.cobblesclimbs.com/",
+      "description": "A 4K video archive of the iconic cobbled sectors and climbs of the Flemish Ardennes.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cobbles & Climbs",
+        "logo": { "@type": "ImageObject", "url": "https://www.cobblesclimbs.com/channels4_profile.png" },
+        "sameAs": [
+          "https://www.youtube.com/@CobblesClimbs",
+          "https://www.instagram.com/CobblesClimbs",
+          "https://www.strava.com/clubs/CobblesClimbs"
+        ],
+        "email": "cobblesclimbs@gmail.com",
+        "areaServed": { "@type": "Place", "name": "Flemish Ardennes, Belgium" }
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --cc-bg: #071311;
+            --cc-bg-soft: #0e1f1c;
+            --cc-bg-card: rgba(255,255,255,0.06);
+            --cc-bg-card-solid: #10231f;
+            --cc-dark-green: #143a33;
+            --cc-green: #1d5a4e;
+            --cc-green-light: #2d7a69;
+            --cc-mint: #9dd3c6;
+            --cc-route-orange: #ef8b17;
+            --cc-route-orange-soft: rgba(239,139,23,0.16);
+            --cc-blue: #3b82f6;
+            --cc-red: #d94e41;
+            --cc-white: #ffffff;
+            --cc-text: #eaf5f2;
+            --cc-text-soft: #a7beb8;
+            --cc-text-muted: #7f9992;
+            --cc-border: rgba(255,255,255,0.10);
+            --cc-shadow: 0 20px 60px rgba(0,0,0,0.28);
+            --cc-radius-xl: 24px;
+            --cc-radius-lg: 18px;
+            --cc-radius-md: 14px;
+            --cc-max: 1320px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(45,122,105,0.22), transparent 30%),
+                radial-gradient(circle at top right, rgba(239,139,23,0.14), transparent 26%),
+                linear-gradient(180deg, #071311 0%, #0a1715 40%, #0d1c19 100%);
+            color: var(--cc-text);
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .site-shell {
+            width: min(calc(100% - 32px), var(--cc-max));
+            margin: 0 auto;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--cc-border);
+            box-shadow: var(--cc-shadow);
+        }
+
+        /* HEADER */
+        .top-header {
+            position: sticky;
+            top: 0;
+            z-index: 4000;
+            padding: 14px 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: linear-gradient(180deg, rgba(7,19,17,0.88), rgba(7,19,17,0.56));
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .header-inner {
+            width: min(calc(100% - 32px), var(--cc-max));
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-left {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .header-logo-wrap {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+            flex-shrink: 0;
+        }
+
+        .header-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-meta {
+            min-width: 0;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            font-size: 1.08rem;
+            line-height: 1;
+            color: #fff;
+        }
+
+        .brand-sub {
+            margin-top: 6px;
+            color: var(--cc-text-soft);
+            font-size: 0.78rem;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .desktop-center-brand {
+            justify-self: center;
+            text-align: center;
+            min-width: 0;
+        }
+
+        .desktop-center-brand .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.76rem;
+            color: var(--cc-mint);
+            border: 1px solid rgba(157,211,198,0.18);
+            background: rgba(157,211,198,0.08);
+            padding: 7px 12px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+        }
+
+        .desktop-center-brand .hero-kicker i {
+            color: var(--cc-route-orange);
+        }
+
+        .desktop-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            color: #fff;
+        }
+
+        .desktop-tagline {
+            margin-top: 8px;
+            font-size: 0.82rem;
+            color: var(--cc-text-soft);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #fff;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-2px);
+            background: rgba(157,211,198,0.12);
+            color: var(--cc-mint);
+        }
+
+        .menu-button {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .mobile-social-dropdown {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 10px);
+            min-width: 200px;
+            border-radius: 18px;
+            padding: 10px;
+            background: rgba(10, 23, 21, 0.96);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .mobile-social-dropdown.show { display: flex; }
+
+        .mobile-social-dropdown a {
+            padding: 12px 14px;
+            border-radius: 12px;
+            color: white;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 0.94rem;
+        }
+
+        .mobile-social-dropdown a:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* HERO */
+        .hero-section {
+            padding: 34px 0 18px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(320px, 420px);
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .hero-main {
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+            min-height: 540px;
+            padding: 34px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background:
+                linear-gradient(140deg, rgba(11,35,31,0.92), rgba(11,35,31,0.55)),
+                url('og-image.jpg') center/cover no-repeat;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+        }
+
+        .hero-main::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 15%, rgba(157,211,198,0.18), transparent 22%),
+                radial-gradient(circle at 78% 24%, rgba(239,139,23,0.20), transparent 18%);
+            pointer-events: none;
+        }
+
+        .hero-main > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-top-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--cc-mint);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .hero-heading {
+            max-width: 720px;
+            margin-top: 22px;
+        }
+
+        .hero-heading h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 4.2vw, 4.6rem);
+            line-height: 0.95;
+            letter-spacing: -0.07em;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .hero-heading p {
+            margin: 18px 0 0;
+            max-width: 760px;
+            font-size: clamp(1rem, 1.35vw, 1.18rem);
+            line-height: 1.65;
+            color: rgba(234,245,242,0.9);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0,1fr));
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .hero-stat {
+            padding: 18px 18px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-stat-label {
+            color: var(--cc-text-soft);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .hero-stat-value {
+            margin-top: 8px;
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: #fff;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn-pill {
+            border: 0;
+            border-radius: 999px;
+            padding: 14px 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-pill:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary-hero {
+            background: linear-gradient(135deg, var(--cc-route-orange), #ff9f2f);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(239,139,23,0.28);
+        }
+
+        .btn-secondary-hero {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        /* CONTROL PANEL */
+        .control-panel {
+            border-radius: 32px;
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .control-head {
+            padding: 8px 6px 2px;
+        }
+
+        .control-kicker {
+            color: var(--cc-mint);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 700;
+        }
+
+        .control-title {
+            margin-top: 8px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: white;
+        }
+
+        .control-sub {
+            margin-top: 8px;
+            color: var(--cc-text-soft);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        .sidebar-section {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 18px;
+        }
+
+        .sidebar-section h2 {
+            margin: 0 0 12px 0;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-section h2 i {
+            color: var(--cc-route-orange);
+        }
+
+        .climb-select {
+            width: 100%;
+            min-height: 50px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            color: white;
+            padding: 12px 14px;
+            font-size: 0.96rem;
+            outline: none;
+        }
+
+        .climb-select option {
+            color: #111;
+        }
+
+        .planner-box {
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04)),
+                rgba(255,255,255,0.03);
+        }
+
+        .planner-info {
+            color: var(--cc-text-soft);
+            font-size: 0.84rem;
+            line-height: 1.55;
+            margin-bottom: 10px;
+        }
+
+        .selected-list {
+            max-height: 172px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 10px 0 14px;
+            padding-right: 2px;
+        }
+
+        .selected-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .selected-list::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.12);
+            border-radius: 999px;
+        }
+
+        .selected-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-radius: 14px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 0.88rem;
+        }
+
+        .selected-item button {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            border: 0;
+            background: rgba(217,78,65,0.18);
+            color: #ffb0a8;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.92rem;
+            flex-shrink: 0;
+        }
+
+        .planner-actions {
+            display: grid;
+            gap: 10px;
+        }
+
+        .planner-actions-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-action {
+            width: 100%;
+            min-height: 46px;
+            border-radius: 14px;
+            border: 1px solid transparent;
+            padding: 12px 14px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-action:hover { transform: translateY(-1px); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cc-green), var(--cc-green-light));
+            color: white;
+            box-shadow: 0 12px 28px rgba(29,90,78,0.28);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.08);
+            color: white;
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        .btn-danger {
+            background: rgba(217,78,65,0.08);
+            color: #ffb9b1;
+            border-color: rgba(217,78,65,0.24);
+        }
+
+        /* KPI STRIP */
+        .kpi-dashboard-wrap {
+            padding: 12px 0 8px;
+        }
+
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0,1fr));
+            gap: 12px;
+        }
+
+        .kpi-card {
+            padding: 16px 16px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+            min-height: 92px;
+        }
+
+        .kpi-card p {
+            margin: 0 0 10px;
+            font-size: 0.72rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--cc-text-soft);
+        }
+
+        .kpi-card h3 {
+            margin: 0;
+            font-size: 1.18rem;
+            line-height: 1.15;
+            letter-spacing: -0.05em;
+            color: white;
+            font-weight: 800;
+        }
+
+        .unit {
+            font-size: 0.72rem;
+            color: var(--cc-text-soft);
+            margin-left: 4px;
+        }
+
+        /* MAP SECTION */
+        .map-stage-section {
+            padding: 18px 0 0;
+        }
+
+        .map-stage {
+            position: relative;
+            padding: 18px;
+            border-radius: 34px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+            overflow: clip;
+        }
+
+        .map-stage-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            padding: 4px 6px 18px;
+        }
+
+        .map-stage-title-wrap h2 {
+            margin: 0;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: white;
+        }
+
+        .map-stage-title-wrap p {
+            margin: 8px 0 0;
+            color: var(--cc-text-soft);
+            line-height: 1.6;
+            font-size: 0.96rem;
+            max-width: 720px;
+        }
+
+        .map-meta-badge {
+            align-self: flex-start;
+            white-space: nowrap;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(239,139,23,0.12);
+            border: 1px solid rgba(239,139,23,0.2);
+            color: #ffcb8c;
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+
+        .map-frame {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: #fff;
+        }
+
+        #map {
+            height: 700px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .map-layer-selector {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1200;
+            display: flex;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 999px;
+            background: rgba(11,35,31,0.86);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.14);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.24);
+        }
+
+        .map-layer-btn {
+            min-width: 92px;
+            padding: 10px 16px;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: rgba(255,255,255,0.82);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        .map-layer-btn:hover {
+            color: #fff;
+        }
+
+        .map-layer-btn.active {
+            background: linear-gradient(135deg, var(--cc-route-orange), #ff9b26);
+            color: white;
+            box-shadow: 0 10px 24px rgba(239,139,23,0.26);
+        }
+
+        /* CHART + VIDEOS */
+        .content-followup {
+            padding: 20px 0 44px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .chart-box,
+        .video-panel {
+            display: none;
+            border-radius: 28px;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .panel-head h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: white;
+        }
+
+        .panel-head p {
+            margin: 6px 0 0;
+            color: var(--cc-text-soft);
+            font-size: 0.9rem;
+        }
+
+        .panel-tag {
+            white-space: nowrap;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--cc-text-soft);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .chart-canvas-wrap {
+            position: relative;
+            height: 260px;
+            width: 100%;
+        }
+
+        #videoContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        #videoContainer iframe {
+            width: 100%;
+            min-height: 186px;
+            border: 0;
+            border-radius: 20px;
+            background: #000;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 10px 0 40px;
+        }
+
+        .footer-card {
+            border-radius: 28px;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: var(--cc-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            color: var(--cc-text-soft);
+            line-height: 1.6;
+            font-size: 0.92rem;
+        }
+
+        .footer-copy strong {
+            color: white;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: white;
+            font-weight: 700;
+        }
+
+        /* LEGEND */
+        .legend {
+            background: rgba(10,23,21,0.92);
+            color: #fff;
+            padding: 10px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 16px 34px rgba(0,0,0,0.22);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            min-width: 152px;
+            user-select: none;
+        }
+
+        .legend strong {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+            font-size: 0.84rem;
+            cursor: pointer;
+        }
+
+        .legend strong::after {
+            content: '▾';
+            font-size: 0.72rem;
+            transition: transform 0.2s;
+            margin-left: 8px;
+            color: var(--cc-text-soft);
+        }
+
+        .legend.collapsed strong::after {
+            transform: rotate(-90deg);
+        }
+
+        .legend-body {
+            margin-top: 8px;
+        }
+
+        .legend.collapsed .legend-body {
+            display: none;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            padding: 2px 0;
+            color: var(--cc-text-soft);
+        }
+
+        .legend-item:hover {
+            opacity: 0.8;
+        }
+
+        .legend-item.inactive {
+            opacity: 0.35;
+        }
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.35);
+            flex-shrink: 0;
+        }
+
+        /* POPUPS */
+        .popup-card {
+            width: 270px;
+            font-family: "Inter", sans-serif;
+            color: #101514;
+        }
+
+        .popup-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #dfe7e5;
+        }
+
+        .popup-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.2s ease;
+        }
+
+        .popup-thumb img:hover {
+            opacity: 0.9;
+        }
+
+        .popup-info {
+            padding: 12px 4px 4px;
+            line-height: 1.45;
+            font-size: 0.88rem;
+            color: #24403a;
+        }
+
+        .popup-info strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1rem;
+            color: #0b1f1b;
+        }
+
+        .popup-add-btn {
+            width: 100%;
+            margin: 12px 0 8px;
+            border: 0;
+            border-radius: 12px;
+            padding: 11px 12px;
+            background: linear-gradient(135deg, var(--cc-green), var(--cc-green-light));
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .popup-yt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d64536 !important;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* LEAFLET OVERRIDES */
+        .leaflet-popup-content-wrapper {
+            border-radius: 18px;
+            box-shadow: 0 16px 34px rgba(0,0,0,0.18);
+        }
+
+        .leaflet-popup-content {
+            margin: 14px 14px 12px;
+        }
+
+        .leaflet-control-zoom a {
+            width: 36px !important;
+            height: 36px !important;
+            line-height: 36px !important;
+            border-radius: 12px !important;
+            color: #143a33 !important;
+        }
+
+        .leaflet-touch .leaflet-control-layers,
+        .leaflet-touch .leaflet-bar {
+            border: none;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        /* MOBILE */
+        @media (max-width: 1160px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-main {
+                min-height: 480px;
+            }
+
+            .kpi-dashboard {
+                grid-template-columns: repeat(4, minmax(0,1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-shell,
+            .header-inner {
+                width: min(calc(100% - 20px), var(--cc-max));
+            }
+
+            .top-header {
+                padding: 10px 0;
+            }
+
+            .desktop-center-brand {
+                display: none;
+            }
+
+            .brand-sub {
+                display: none;
+            }
+
+            .social-icons {
+                display: none;
+            }
+
+            .menu-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-section {
+                padding-top: 18px;
+            }
+
+            .hero-main {
+                min-height: auto;
+                padding: 22px;
+                border-radius: 26px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+            }
+
+            .control-panel {
+                border-radius: 26px;
+                padding: 14px;
+            }
+
+            .sidebar-section {
+                border-radius: 20px;
+                padding: 15px;
+            }
+
+            .planner-actions-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .kpi-dashboard-wrap {
+                padding-top: 10px;
+            }
+
+            .kpi-dashboard {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+                gap: 10px;
+            }
+
+            .kpi-card {
+                min-height: 88px;
+                padding: 14px 14px 12px;
+                border-radius: 18px;
+            }
+
+            .map-stage {
+                padding: 12px;
+                border-radius: 26px;
+            }
+
+            .map-stage-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 4px 4px 14px;
+            }
+
+            .map-frame {
+                border-radius: 22px;
+            }
+
+            #map {
+                height: 420px;
+            }
+
+            .map-layer-selector {
+                top: auto;
+                bottom: 14px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 20px);
+                max-width: 360px;
+                gap: 4px;
+                padding: 5px;
+            }
+
+            .map-layer-btn {
+                min-width: 0;
+                flex: 1;
+                padding: 10px 8px;
+                font-size: 0.74rem;
+            }
+
+            .chart-box,
+            .video-panel {
+                border-radius: 22px;
+                padding: 16px;
+            }
+
+            .chart-canvas-wrap {
+                height: 210px;
+            }
+
+            #videoContainer {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-card {
+                border-radius: 22px;
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .header-logo-wrap {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+            }
+
+            .brand-name {
+                font-size: 1rem;
+            }
+
+            .hero-heading h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-heading p {
+                font-size: 0.98rem;
+            }
+
+            .hero-stat {
+                padding: 14px;
+                border-radius: 16px;
+            }
+
+            .planner-actions-row {
+                grid-template-columns: 1fr;
+            }
+
+            #map {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header" role="banner">
+    <div class="header-inner">
+        <a href="/" class="logo-left" aria-label="Cobbles & Climbs — home">
+            <span class="header-logo-wrap">
+                <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="54" height="54" loading="eager">
+            </span>
+            <span class="brand-meta">
+                <span class="brand-name">Cobbles &amp; Climbs</span>
+                <span class="brand-sub">The legendary spirit of Flemish cycling</span>
+            </span>
+        </a>
+
+        <div class="desktop-center-brand">
+            <div class="hero-kicker"><i class="fa-solid fa-location-dot"></i> Flemish Ardennes • Belgium</div>
+            <div class="desktop-title">Interactive archive of Flanders’ most iconic cycling roads</div>
+            <div class="desktop-tagline">Explore sectors, routes, elevation and immersive footage in one premium map experience.</div>
+        </div>
+
+        <nav class="nav-right" aria-label="Social media links">
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Strava"><i class="fa-brands fa-strava"></i></a>
+                <a href="mailto:cobblesclimbs@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+            <button class="menu-button" id="menuButton" aria-label="Open social menu"><i class="fa-solid fa-bars"></i></button>
+            <div class="mobile-social-dropdown" id="mobileDropdown">
+                <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-strava"></i> Strava</a>
+                <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero-section">
+        <div class="site-shell">
+            <div class="hero-grid">
+                <div class="hero-main" aria-label="About Cobbles & Climbs">
+                    <div>
+                        <div class="hero-top-badge">
+                            <i class="fa-solid fa-play"></i>
+                            4K footage • raw sound • interactive route discovery
+                        </div>
+
+                        <div class="hero-heading">
+                            <h1>Feel the raw beauty of Flemish cycling.</h1>
+                            <p>
+                                Explore the most iconic cobbles, brutal bergs and hidden local gems of the Flemish Ardennes.
+                                Discover sectors and routes, build your own ride, export GPX files and relive each road through immersive video.
+                            </p>
+                        </div>
+
+                        <div class="hero-cta-row">
+                            <a href="#mapExperience" class="btn-pill btn-primary-hero">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                                Explore the map
+                            </a>
+                            <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="btn-pill btn-secondary-hero" aria-label="Subscribe on YouTube">
+                                <i class="fab fa-youtube"></i>
+                                Subscribe on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-label">Coverage</div>
+                            <div class="hero-stat-value">Flanders</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-label">Video quality</div>
+                            <div class="hero-stat-value">4K</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-label">Audio</div>
+                            <div class="hero-stat-value">RAW</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-label">Experience</div>
+                            <div class="hero-stat-value">Interactive</div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="control-panel" aria-label="Sector and route selector">
+                    <div class="control-head">
+                        <div class="control-kicker">Plan • Discover • Ride</div>
+                        <div class="control-title">Build your own Tour of Flanders feeling</div>
+                        <div class="control-sub">
+                            Select legendary sectors, inspect official routes and combine your favourite climbs into a custom ride.
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h2><i class="fa-solid fa-mountain"></i> Discover the cobbles &amp; climbs</h2>
+                        <select id="climbDropdown" class="climb-select">
+                            <option value="">— Select a sector —</option>
+                        </select>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h2><i class="fa-solid fa-map-location-dot"></i> Explore the routes</h2>
+                        <select id="routeDropdown" class="climb-select">
+                            <option value="">— Select a route —</option>
+                        </select>
+                    </div>
+
+                    <div class="sidebar-section planner-box">
+                        <h2><i class="fa-solid fa-route"></i> Create your own ride</h2>
+                        <p class="planner-info" id="plannerInfo">Click a marker or sector popup and add it to your planner. Then generate a connected cycling route instantly.</p>
+                        <div class="selected-list" id="selectedList"></div>
+
+                        <div class="planner-actions">
+                            <button class="btn-action btn-primary" id="btnBuild" onclick="buildRoute()">
+                                <i class="fa-solid fa-person-cycling"></i> Create ride
+                            </button>
+
+                            <div class="planner-actions-row">
+                                <button class="btn-action btn-secondary" onclick="downloadGPX()">
+                                    <i class="fa-solid fa-file-export"></i> Export GPX
+                                </button>
+                                <button class="btn-action btn-danger" onclick="resetRoute()">
+                                    <i class="fa-solid fa-trash"></i> Clear route
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="kpi-dashboard-wrap">
+        <div class="site-shell">
+            <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
+                <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
+                <div class="kpi-card"><p id="label-2">TOTAL LENGTH</p><h3 id="val-2">-</h3></div>
+                <div class="kpi-card"><p id="label-3">TOTAL ASCENT</p><h3 id="val-3">-</h3></div>
+                <div class="kpi-card"><p id="label-4">AVG GRADE</p><h3 id="val-4">-</h3></div>
+                <div class="kpi-card"><p id="label-5">AVG MAX GRADE</p><h3 id="val-5">-</h3></div>
+                <div class="kpi-card"><p id="label-6">TOTAL DURATION</p><h3 id="val-6">-</h3></div>
+                <div class="kpi-card"><p>IMAGE</p><h3>4K</h3></div>
+                <div class="kpi-card"><p>SOUND</p><h3>RAW</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-stage-section" id="mapExperience">
+        <div class="site-shell">
+            <div class="map-stage">
+                <div class="map-stage-head">
+                    <div class="map-stage-title-wrap">
+                        <h2>Map experience</h2>
+                        <p>
+                            Switch layers, discover sectors, inspect classic routes and build a fully connected custom ride with elevation and video references.
+                        </p>
+                    </div>
+                    <div class="map-meta-badge">Interactive road archive</div>
+                </div>
+
+                <div class="map-frame">
+                    <div id="map" role="application" aria-label="Interactive map showing cycling sectors"></div>
+
+                    <div class="map-layer-selector" id="layerSelector" role="group" aria-label="Map layer selector">
+                        <button class="map-layer-btn active" data-layer="light" aria-pressed="true">Light</button>
+                        <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
+                        <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
+                        <button class="map-layer-btn" data-layer="terrain" aria-pressed="false">Terrain</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-followup">
+                <div class="chart-box" id="chartBox">
+                    <div class="panel-head">
+                        <div>
+                            <h3>Route elevation profile</h3>
+                            <p>Elevation data for your generated ride.</p>
+                        </div>
+                        <div class="panel-tag">Live route analytics</div>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="elevationChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="video-panel" id="videoPanel">
+                    <div class="panel-head">
+                        <div>
+                            <h3>Related route footage</h3>
+                            <p>Watch the selected sectors in immersive video.</p>
+                        </div>
+                        <div class="panel-tag">YouTube archive</div>
+                    </div>
+                    <div id="videoContainer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <div class="site-shell">
+        <div class="footer-card">
+            <div class="footer-copy">
+                <strong>&copy; 2026 Cobbles &amp; Climbs</strong><br>
+                Your digital gateway to the raw beauty and legendary spirit of Flemish cycling.
+            </div>
+            <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="footer-link">
+                <i class="fab fa-youtube"></i>
+                Check out Cobbles &amp; Climbs on YouTube
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// GLOBALS
+// ═══════════════════════════════════════════════════════
+const menuButton = document.getElementById('menuButton');
+const mobileDropdown = document.getElementById('mobileDropdown');
+const sectorDropdown = document.getElementById('climbDropdown');
+const routeDropdown = document.getElementById('routeDropdown');
+const chartBox = document.getElementById('chartBox');
+const videoPanel = document.getElementById('videoPanel');
+const videoContainer = document.getElementById('videoContainer');
+
+let archiveData = { sectors: [] };
+let map = null;
+let currentLayer = null;
+let activeGeoRouteId = null;
+let bounds = L.latLngBounds();
+
+const markers = {};
+const markersByType = { cobbles: [], climb: [], cobbled_climb: [] };
+const geoRouteLayers = {};
+const routeProperties = {};
+
+let selectedClimbs = [];
+let selectedPoints = [];
+let lastRouteCoords = null;
+let plannerRouteLayer = null;
+let elevChart = null;
+
+const ORS_KEY = '5b3ce3597851110001cf624809fc31f2fa624a95a6c3439d4e6eec25';
+const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: false };
+
+// ═══════════════════════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════════════════════
+menuButton?.addEventListener('click', () => {
+    mobileDropdown.classList.toggle('show');
+});
+
+document.addEventListener('click', (e) => {
+    if (!menuButton || !mobileDropdown) return;
+    if (!menuButton.contains(e.target) && !mobileDropdown.contains(e.target)) {
+        mobileDropdown.classList.remove('show');
+    }
+});
+
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+function centerOnLatLng(latLng) {
+    const offset = isMobile() ? [0, 40] : [0, 120];
+    map.panTo(map.unproject(map.project(latLng).subtract(offset)), { animate: true });
+}
+
+function getMarkerColor(type) {
+    return {
+        cobbles: '#8c8c8c',
+        climb: '#143a33',
+        cobbled_climb: '#c62828'
+    }[type] || '#143a33';
+}
+
+function timeToSeconds(t) {
+    if (!t || !t.includes(':')) return 0;
+    const p = t.split(':').map(Number);
+    return p.length === 3 ? p[0] * 3600 + p[1] * 60 + p[2] : p[0] * 60 + p[1];
+}
+
+function secondsToTime(sec) {
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+    return h ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${m}:${String(s).padStart(2,'0')}`;
+}
+
+function setKPI(n, label, val, unit) {
+    const lblEl = document.getElementById(`label-${n}`);
+    const valEl = document.getElementById(`val-${n}`);
+    if (lblEl) lblEl.innerText = label;
+    if (valEl) valEl.innerHTML = `${val}${unit ? `<span class="unit">${unit}</span>` : ''}`;
+}
+
+function formatMaybe(value, fallback = '-') {
+    return value === undefined || value === null || value === '' ? fallback : value;
+}
+
+// ═══════════════════════════════════════════════════════
+// KPI DASHBOARD
+// ═══════════════════════════════════════════════════════
+function calculateTotals() {
+    const s = archiveData.sectors;
+    archiveData.computed = {
+        count: s.length,
+        dist: s.reduce((a, b) => a + Number(b.dist || 0), 0).toFixed(1),
+        totalAscent: s.reduce((a, b) => a + Number(b.ascent || 0), 0),
+        avgGrade: s.length ? (s.reduce((a, b) => a + parseFloat(b.avg || 0), 0) / s.length).toFixed(1) : '0',
+        avgMaxGrade: s.length ? (s.reduce((a, b) => a + parseFloat(b.max || 0), 0) / s.length).toFixed(1) : '0',
+        totalDuration: secondsToTime(s.reduce((sum, sec) => sum + timeToSeconds(sec.time), 0))
+    };
+}
+
+function updateDashboard(data) {
+    if (data === 'reset') {
+        const c = archiveData.computed || {};
+        setKPI(1, 'SECTORS', c.count || '-', '');
+        setKPI(2, 'TOTAL LENGTH', c.dist || '0', 'km');
+        setKPI(3, 'TOTAL ASCENT', c.totalAscent || '0', 'm');
+        setKPI(4, 'AVG GRADE', c.avgGrade || '0', '%');
+        setKPI(5, 'AVG MAX GRADE', c.avgMaxGrade || '0', '%');
+        setKPI(6, 'TOTAL DURATION', c.totalDuration || '-', '');
+        return;
+    }
+
+    if (data.type === 'route') {
+        setKPI(1, 'ROUTE', formatMaybe(data.name), '');
+        setKPI(2, 'DISTANCE', formatMaybe(data.dist, '-'), data.dist ? 'km' : '');
+        setKPI(3, 'ASCENT', formatMaybe(data.ascent, '-'), data.ascent ? 'm' : '');
+        setKPI(4, 'TYPE', 'Curated', '');
+        setKPI(5, 'STATUS', 'Mapped', '');
+        setKPI(6, 'VIDEO', data.yt ? 'Yes' : 'No', '');
+        return;
+    }
+
+    if (data.type === 'custom_route') {
+        setKPI(1, 'CUSTOM RIDE', formatMaybe(data.points, '-'), 'stops');
+        setKPI(2, 'DISTANCE', formatMaybe(data.dist, '-'), data.dist ? 'km' : '');
+        setKPI(3, 'ASCENT', formatMaybe(data.ascent, '-'), data.ascent ? 'm' : '');
+        setKPI(4, 'AVG GRADE', formatMaybe(data.avgGrade, '-'), data.avgGrade ? '%' : '');
+        setKPI(5, 'MAX ELEV.', formatMaybe(data.maxElevation, '-'), data.maxElevation ? 'm' : '');
+        setKPI(6, 'PROFILE', 'Ready', '');
+        return;
+    }
+
+    setKPI(1, 'SECTOR NAME', formatMaybe(data.name), '');
+    setKPI(2, 'LENGTH', formatMaybe(data.dist, '-'), data.dist ? 'km' : '');
+    setKPI(3, 'ASCENT', formatMaybe(data.ascent, '-'), data.ascent ? 'm' : '');
+    setKPI(4, 'AVG GRADE', formatMaybe(data.avg, '-'), data.avg ? '%' : '');
+    setKPI(5, 'MAX GRADE', formatMaybe(data.max, '-'), data.max ? '%' : '');
+    setKPI(6, 'DURATION', formatMaybe(data.time, '-'), '');
+}
+
+// ═══════════════════════════════════════════════════════
+// MAP LAYERS
+// ═══════════════════════════════════════════════════════
+function createBaseLayers() {
+    return {
+        light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© CartoDB'
+        }),
+        osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }),
+        satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '© Esri'
+        }),
+        terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenTopoMap'
+        })
+    };
+}
+
+function switchLayer(layerName) {
+    const layers = createBaseLayers();
+    const newLayer = layers[layerName];
+    if (!newLayer) return;
+
+    if (currentLayer && map.hasLayer(currentLayer)) {
+        map.removeLayer(currentLayer);
+    }
+
+    newLayer.addTo(map);
+    currentLayer = newLayer;
+
+    document.querySelectorAll('.map-layer-btn').forEach(btn => {
+        const isActive = btn.dataset.layer === layerName;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+}
+
+function applyTheme(theme) {
+    themeVisible[theme] = !themeVisible[theme];
+
+    const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
+    if (legItem) {
+        legItem.classList.toggle('inactive', !themeVisible[theme]);
+    }
+
+    if (theme === 'routes') {
+        Object.values(geoRouteLayers).forEach(layer => {
+            if (themeVisible.routes) {
+                layer.addTo(map);
+            } else {
+                map.removeLayer(layer);
+            }
+        });
+    } else {
+        markersByType[theme].forEach(marker => {
+            if (themeVisible[theme]) {
+                marker.addTo(map);
+            } else {
+                map.removeLayer(marker);
+            }
+        });
+    }
+}
+
+function addLegend() {
+    const legend = L.control({ position: 'bottomright' });
+
+    legend.onAdd = () => {
+        const div = L.DomUtil.create('div', 'legend collapsed');
+        div.innerHTML = `
+            <strong>Legend & filters</strong>
+            <div class="legend-body">
+                <div class="legend-item" data-theme="cobbles"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbles</div>
+                <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#143a33"></span> Climb</div>
+                <div class="legend-item" data-theme="cobbled_climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
+                <div class="legend-item inactive" data-theme="routes">
+                    <span style="display:inline-block;width:18px;height:0;border-top:3px dashed #ef8b17;vertical-align:middle;"></span> Routes
+                </div>
+            </div>
+        `;
+
+        L.DomEvent.disableClickPropagation(div);
+
+        div.querySelector('strong').addEventListener('click', () => {
+            div.classList.toggle('collapsed');
+        });
+
+        div.querySelectorAll('.legend-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                applyTheme(item.dataset.theme);
+            });
+        });
+
+        return div;
+    };
+
+    legend.addTo(map);
+}
+
+// ═══════════════════════════════════════════════════════
+// ROUTES
+// ═══════════════════════════════════════════════════════
+async function loadGeoRoutes() {
+    try {
+        const res = await fetch('routes.geojson');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const geojson = await res.json();
+
+        geojson.features
+            .sort((a, b) => a.properties.name.localeCompare(b.properties.name))
+            .forEach(feature => {
+                const p = feature.properties;
+
+                const layer = L.geoJSON(feature, {
+                    style: {
+                        color: '#ef8b17',
+                        weight: 3,
+                        opacity: 0.88,
+                        dashArray: '7,5'
+                    }
+                });
+
+                const popupHTML = `
+                    <div class="popup-card">
+                        ${p.yt ? `
+                            <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
+                                <div class="popup-thumb">
+                                    <img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg" alt="${p.name}" loading="lazy">
+                                </div>
+                            </a>` : ''
+                        }
+                        <div class="popup-info">
+                            <strong>${p.name}</strong>
+                            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>
+                            ${p.description || ''}
+                            ${p.yt ? `
+                                <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
+                                    <i class="fab fa-youtube"></i> Watch on YouTube
+                                </a>` : ''
+                            }
+                        </div>
+                    </div>
+                `;
+
+                layer.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 280 });
+
+                layer.on('click', () => {
+                    highlightGeoRoute(p.id);
+                    routeDropdown.value = p.id;
+                    updateDashboard({ ...p, type: 'route' });
+                });
+
+                layer.on('popupclose', () => {
+                    updateDashboard('reset');
+                    routeDropdown.value = '';
+                    if (activeGeoRouteId === p.id) {
+                        geoRouteLayers[p.id]?.setStyle({ weight: 3, opacity: 0.88 });
+                        activeGeoRouteId = null;
+                    }
+                });
+
+                geoRouteLayers[p.id] = layer;
+                routeProperties[p.id] = p;
+
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = p.name;
+                routeDropdown.appendChild(opt);
+            });
+
+        routeDropdown.addEventListener('change', function() {
+            if (!this.value) return;
+            const layer = geoRouteLayers[this.value];
+            if (!layer) return;
+
+            if (!themeVisible.routes) applyTheme('routes');
+
+            map.closePopup();
+            map.fitBounds(layer.getBounds(), { padding: [60, 60], maxZoom: 14 });
+            setTimeout(() => layer.openPopup(layer.getBounds().getCenter()), 300);
+
+            highlightGeoRoute(this.value);
+            updateDashboard({ ...routeProperties[this.value], type: 'route' });
+        });
+    } catch (err) {
+        console.info('routes.geojson not found');
+    }
+}
+
+function highlightGeoRoute(id) {
+    if (activeGeoRouteId && geoRouteLayers[activeGeoRouteId]) {
+        geoRouteLayers[activeGeoRouteId].setStyle({ weight: 3, opacity: 0.88 });
+    }
+
+    if (geoRouteLayers[id]) {
+        geoRouteLayers[id].setStyle({ weight: 5, opacity: 1 });
+        activeGeoRouteId = id;
+    }
+}
+
+// ═══════════════════════════════════════════════════════
+// SECTORS + MAP INIT
+// ═══════════════════════════════════════════════════════
+async function loadSectors() {
+    try {
+        const res = await fetch('sectors.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        archiveData = await res.json();
+        initMap();
+    } catch (err) {
+        console.error('Could not load sectors.json:', err);
+    }
+}
+
+function initMap() {
+    const layers = createBaseLayers();
+
+    map = L.map('map', {
+        zoomControl: true,
+        tap: false
+    });
+
+    currentLayer = layers.light;
+    currentLayer.addTo(map);
+    map.setView([50.78, 3.65], 11);
+
+    loadGeoRoutes().then(() => {
+        archiveData.sectors
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .forEach(s => {
+                const marker = L.circleMarker([s.lat, s.lon], {
+                    radius: isMobile() ? 7 : 6,
+                    fillColor: getMarkerColor(s.type),
+                    color: '#ffffff',
+                    weight: 2,
+                    fillOpacity: 0.95
+                }).addTo(map);
+
+                const popupHTML = `
+                    <div class="popup-card">
+                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
+                            <div class="popup-thumb">
+                                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name}" loading="lazy">
+                            </div>
+                        </a>
+                        <div class="popup-info">
+                            <strong>${s.name}</strong>
+                            ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
+                            <button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">+ Add to planner</button>
+                            <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                marker.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 280 });
+
+                marker.on('click', () => {
+                    centerOnLatLng(marker.getLatLng());
+                    updateDashboard(s);
+                });
+
+                marker.on('popupclose', () => updateDashboard('reset'));
+
+                bounds.extend([s.lat, s.lon]);
+                markers[s.id] = marker;
+
+                if (markersByType[s.type]) {
+                    markersByType[s.type].push(marker);
+                }
+
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.name;
+                sectorDropdown.appendChild(opt);
+            });
+
+        calculateTotals();
+        updateDashboard('reset');
+        addLegend();
+        updatePlannerUI();
+
+        document.querySelectorAll('.map-layer-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchLayer(btn.dataset.layer));
+        });
+
+        sectorDropdown.addEventListener('change', function() {
+            if (!this.value) return;
+            const marker = markers[this.value];
+            if (!marker) return;
+
+            marker.openPopup();
+            centerOnLatLng(marker.getLatLng());
+
+            const sector = archiveData.sectors.find(s => String(s.id) === String(this.value));
+            if (sector) updateDashboard(sector);
+        });
+
+        setTimeout(() => {
+            map.invalidateSize();
+            if (bounds.isValid()) {
+                map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
+            }
+        }, 320);
+    });
+}
+
+// ═══════════════════════════════════════════════════════
+// ROUTE PLANNER
+// ═══════════════════════════════════════════════════════
+window.addToPlanner = function(id) {
+    const sector = archiveData.sectors.find(s => s.id === id);
+    if (!sector) return;
+    if (selectedClimbs.find(s => s.id === id)) return;
+
+    selectedClimbs.push(sector);
+    selectedPoints.push([sector.lon, sector.lat]);
+
+    updatePlannerUI();
+    map.closePopup();
+};
+
+window.removeFromPlanner = function(idx) {
+    selectedClimbs.splice(idx, 1);
+    selectedPoints.splice(idx, 1);
+    updatePlannerUI();
+};
+
+function updatePlannerUI() {
+    const list = document.getElementById('selectedList');
+    const info = document.getElementById('plannerInfo');
+    if (!list || !info) return;
+
+    if (selectedClimbs.length === 0) {
+        info.textContent = 'Click a marker or sector popup and add it to your planner. Then generate a connected cycling route instantly.';
+        list.innerHTML = `
+            <div class="selected-item" style="justify-content:flex-start;color:var(--cc-text-soft);">
+                <span>No sectors added yet.</span>
+            </div>
+        `;
+        return;
+    }
+
+    info.textContent = `${selectedClimbs.length} sector${selectedClimbs.length > 1 ? 's' : ''} selected. Ready to create your ride.`;
+
+    list.innerHTML = selectedClimbs.map((s, i) => `
+        <div class="selected-item">
+            <span><strong>${i + 1}.</strong> ${s.name}</span>
+            <button onclick="removeFromPlanner(${i})" aria-label="Remove ${s.name}">×</button>
+        </div>
+    `).join('');
+}
+
+function haversineDistanceKm(lat1, lon1, lat2, lon2) {
+    const toRad = deg => deg * Math.PI / 180;
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function summarizeRoute(coords) {
+    if (!coords || coords.length < 2) {
+        return {
+            dist: '0.0',
+            ascent: 0,
+            avgGrade: '0.0',
+            maxElevation: 0
+        };
+    }
+
+    let totalDist = 0;
+    let totalAscent = 0;
+    let maxElevation = 0;
+
+    for (let i = 1; i < coords.length; i++) {
+        const prev = coords[i - 1];
+        const cur = coords[i];
+
+        const segmentDist = haversineDistanceKm(prev[1], prev[0], cur[1], cur[0]);
+        totalDist += segmentDist;
+
+        const prevEle = Number(prev[2] || 0);
+        const curEle = Number(cur[2] || 0);
+        const climb = curEle - prevEle;
+
+        if (climb > 0) totalAscent += climb;
+        if (curEle > maxElevation) maxElevation = curEle;
+    }
+
+    const avgGrade = totalDist > 0 ? ((totalAscent / (totalDist * 1000)) * 100).toFixed(1) : '0.0';
+
+    return {
+        dist: totalDist.toFixed(1),
+        ascent: Math.round(totalAscent),
+        avgGrade,
+        maxElevation: Math.round(maxElevation)
+    };
+}
+
+window.buildRoute = async function() {
+    if (selectedPoints.length < 2) {
+        alert('Add at least 2 sectors.');
+        return;
+    }
+
+    const btn = document.getElementById('btnBuild');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculating…';
+    btn.disabled = true;
+
+    try {
+        const res = await fetch('https://api.openrouteservice.org/v2/directions/cycling-regular/geojson', {
+            method: 'POST',
+            headers: {
+                'Authorization': ORS_KEY,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                coordinates: selectedPoints,
+                elevation: true
+            })
+        });
+
+        if (!res.ok) {
+            throw new Error(`ORS HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        const route = data?.features?.[0];
+
+        if (!route) {
+            throw new Error('No route returned');
+        }
+
+        if (plannerRouteLayer && map.hasLayer(plannerRouteLayer)) {
+            map.removeLayer(plannerRouteLayer);
+        }
+
+        plannerRouteLayer = L.geoJSON(route, {
+            style: {
+                color: '#3b82f6',
+                weight: 5,
+                opacity: 0.92
+            }
+        }).addTo(map);
+
+        map.fitBounds(plannerRouteLayer.getBounds(), { padding: [50, 50] });
+
+        lastRouteCoords = route.geometry.coordinates;
+
+        chartBox.style.display = 'block';
+        drawElevationChart(lastRouteCoords);
+
+        videoPanel.style.display = 'block';
+        showVideos();
+
+        const summary = summarizeRoute(lastRouteCoords);
+        updateDashboard({
+            type: 'custom_route',
+            points: selectedClimbs.length,
+            dist: summary.dist,
+            ascent: summary.ascent,
+            avgGrade: summary.avgGrade,
+            maxElevation: summary.maxElevation
+        });
+
+        setTimeout(() => {
+            chartBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 240);
+    } catch (err) {
+        console.error(err);
+        alert('Could not calculate route.');
+    } finally {
+        btn.innerHTML = '<i class="fa-solid fa-person-cycling"></i> Create ride';
+        btn.disabled = false;
+    }
+};
+
+function drawElevationChart(coords) {
+    if (elevChart) elevChart.destroy();
+
+    const elevations = coords.map(c => c[2] || 0);
+
+    let dist = 0;
+    const labels = coords.map((c, i) => {
+        if (i > 0) {
+            dist += haversineDistanceKm(coords[i - 1][1], coords[i - 1][0], c[1], c[0]);
+        }
+        return dist.toFixed(1);
+    });
+
+    elevChart = new Chart(document.getElementById('elevationChart'), {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                data: elevations,
+                borderColor: '#ef8b17',
+                backgroundColor: 'rgba(239,139,23,0.16)',
+                pointRadius: 0,
+                fill: true,
+                tension: 0.32,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { intersect: false, mode: 'index' },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    displayColors: false,
+                    backgroundColor: 'rgba(10,23,21,0.94)',
+                    titleColor: '#fff',
+                    bodyColor: '#d6e6e2',
+                    borderColor: 'rgba(255,255,255,0.08)',
+                    borderWidth: 1,
+                    callbacks: {
+                        title: (items) => `Distance: ${items[0].label} km`,
+                        label: (ctx) => `Elevation: ${Math.round(ctx.raw)} m`
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        maxTicksLimit: 8,
+                        color: '#9db8b1',
+                        font: { size: 11 }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: {
+                        color: '#9db8b1',
+                        font: { size: 11 }
+                    },
+                    grid: {
+                        color: 'rgba(255,255,255,0.08)'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function showVideos() {
+    const html = selectedClimbs
+        .filter(s => s.yt)
+        .map(s => `
+            <iframe
+                src="https://www.youtube.com/embed/${s.yt}"
+                title="${s.name}"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        `)
+        .join('');
+
+    videoContainer.innerHTML = html || `
+        <div class="selected-item" style="justify-content:flex-start;color:var(--cc-text-soft);">
+            No linked videos found for the selected sectors.
+        </div>
+    `;
+}
+
+window.downloadGPX = function() {
+    if (!lastRouteCoords) {
+        alert('Build a route first.');
+        return;
+    }
+
+    const pts = lastRouteCoords
+        .map(c => `<trkpt lat="${c[1]}" lon="${c[0]}"><ele>${c[2] || 0}</ele></trkpt>`)
+        .join('');
+
+    const gpx = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Cobbles & Climbs" xmlns="http://www.topografix.com/GPX/1/1">
+    <trk>
+        <name>Cobbles & Climbs custom route</name>
+        <trkseg>${pts}</trkseg>
+    </trk>
+</gpx>`;
+
+    const blob = new Blob([gpx], { type: 'application/gpx+xml' });
+    const a = Object.assign(document.createElement('a'), {
+        href: URL.createObjectURL(blob),
+        download: 'cobbles-climbs-route.gpx'
+    });
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+
+window.resetRoute = function() {
+    selectedClimbs = [];
+    selectedPoints = [];
+    lastRouteCoords = null;
+
+    if (plannerRouteLayer && map.hasLayer(plannerRouteLayer)) {
+        map.removeLayer(plannerRouteLayer);
+    }
+
+    plannerRouteLayer = null;
+
+    if (elevChart) {
+        elevChart.destroy();
+        elevChart = null;
+    }
+
+    chartBox.style.display = 'none';
+    videoPanel.style.display = 'none';
+    videoContainer.innerHTML = '';
+
+    updatePlannerUI();
+    updateDashboard('reset');
+};
+
+// ═══════════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════════
+loadSectors();
+</script>
+</body>
+</html>
