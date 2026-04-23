@@ -1045,7 +1045,33 @@ function drawElevationChart(coords) {
     });
 }
 
-function showVideos() {
+function function showVideos() {
+    const videos = selectedClimbs.filter(s => s.yt);
+
+    if (videos.length === 0) {
+        document.getElementById('videoContainer').innerHTML = '';
+        return;
+    }
+
+    document.getElementById('videoContainer').innerHTML = `
+        <div style="max-width:1200px;margin:10px auto 0;padding:0 20px;">
+            <h3 style="margin:10px 0 6px;font-size:0.95rem;color:#333;">
+                Included in this ride:
+            </h3>
+        </div>
+
+        <div style="display:flex;gap:15px;overflow-x:auto;padding:10px 20px 4px;max-width:1200px;margin:0 auto;">
+            ${videos.map(s => `
+                <iframe src="https://www.youtube.com/embed/${s.yt}" 
+                        title="${s.name}" 
+                        frameborder="0" 
+                        allowfullscreen 
+                        loading="lazy">
+                </iframe>
+            `).join('')}
+        </div>
+    `;
+}() {
     document.getElementById('videoContainer').innerHTML = selectedClimbs
         .filter(s => s.yt)
         .map(s => `<iframe src="https://www.youtube.com/embed/${s.yt}" title="${s.name}" frameborder="0" allowfullscreen loading="lazy"></iframe>`)
