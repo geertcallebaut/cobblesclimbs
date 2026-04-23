@@ -333,23 +333,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
+    gap: 8px;
+
     margin-top: 10px;
-    color: #e60000 !important;
+    padding: 10px 12px;
+
+    background: #e60000;
+    color: white !important;
+
+    border-radius: 6px;
     text-decoration: none;
+
     font-weight: 600;
-    font-size: 1rem;
-    padding: 6px 0;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    font-size: 0.95rem;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .popup-yt-link:hover {
+    background: #cc0000;
     transform: translateY(-1px);
-    opacity: 0.85;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .popup-yt-link i {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
         /* ── ELEVATION CHART ── */
