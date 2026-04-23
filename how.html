@@ -464,77 +464,66 @@
             </div>
         </div>
         <aside class="sidebar" aria-label="Sector and route selector">
- <!-- SAMENGEVOEGD -->
-<div class="sidebar-section">
-    <details>
-        <summary style="cursor: pointer; list-style: none; outline: none;">
-            <h2 style="display: inline-block; margin: 0;">
-                <i class="fa-solid fa-map"></i> Explore the map
-                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
-            </h2>
-        </summary>
-
-        <div class="collapsible-content" style="margin-top: 15px;">
-            <p>Switch basemaps, sets layers, discover sectors, inspect classic routes and build a fully connected custom ride with elevation and video references.</p>
-        </div>
-    </details>
-</div>
-
-
-                        
-        </div>
-<div class="sidebar-section">
-    <details open>
-        <summary style="cursor: pointer; list-style: none; outline: none;">
-            <h2 style="display: inline-block; margin: 0;">
-                <i class="fa-solid fa-mountain"></i> Discover cobbles, bergs & routes
-                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
-            </h2>
-        </summary>
-
-        <div class="collapsible-content" style="margin-top: 15px;">
-            <select id="climbDropdown" class="climb-select">
-                <option value="">— Select a sector —</option>
-            </select>
-
-            <div style="height:8px"></div>
-
-            <select id="routeDropdown" class="climb-select">
-                <option value="">— Select a route —</option>
-            </select>
-        </div>
-    </details>
-</div>
-
-           <div class="sidebar-section planner-box">
-    <details open>
-        <summary style="cursor: pointer; list-style: none; outline: none;">
-            <h2 style="display: inline-block; margin: 0;">
-                <i class="fa-solid fa-route"></i> Create your own ride
-                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
-            </h2>
-        </summary>
-
-        <div class="collapsible-content" style="margin-top: 15px;">
-            <p class="planner-info" id="plannerInfo">Click a marker to add sectors to your route.</p>
-            <div class="selected-list" id="selectedList"></div>
-
-            <button class="btn-action btn-primary" id="btnBuild" onclick="buildRoute()">
-                <i class="fa-solid fa-person-cycling"></i> Create ride
-            </button>
-
-            <div class="planner-actions-row">
-                <button class="btn-action btn-secondary" onclick="downloadGPX()">
-                    <i class="fa-solid fa-file-export"></i> Export GPX
-                </button>
-                <button class="btn-action btn-danger" onclick="resetRoute()">
-                    <i class="fa-solid fa-trash"></i> Clear
-                </button>
+    <div class="sidebar-section">
+        <details>
+            <summary style="cursor: pointer; list-style: none; outline: none;">
+                <h2 style="display: inline-block; margin: 0;">
+                    <i class="fa-solid fa-map"></i> Explore the map
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
+                </h2>
+            </summary>
+            <div class="collapsible-content" style="margin-top: 15px;">
+                <p>Switch basemaps, sets layers, discover sectors, inspect classic routes and build a fully connected custom ride with elevation and video references.</p>
             </div>
-        </div>
-    </details>
-</div>
-        </aside>
+        </details>
+    </div>
+
+    <div class="sidebar-section">
+        <details>
+            <summary style="cursor: pointer; list-style: none; outline: none;">
+                <h2 style="display: inline-block; margin: 0;">
+                    <i class="fa-solid fa-mountain"></i> Discover cobbles, bergs & routes
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
+                </h2>
+            </summary>
+            <div class="collapsible-content" style="margin-top: 15px;">
+                <select id="climbDropdown" class="climb-select">
+                    <option value="">— Select a sector —</option>
+                </select>
+                <div style="height:8px"></div>
+                <select id="routeDropdown" class="climb-select">
+                    <option value="">— Select a route —</option>
+                </select>
+            </div>
+        </details>
+    </div>
+
+    <div class="sidebar-section planner-box">
+        <details>
+            <summary style="cursor: pointer; list-style: none; outline: none;">
+                <h2 style="display: inline-block; margin: 0;">
+                    <i class="fa-solid fa-route"></i> Create your own ride
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
+                </h2>
+            </summary>
+            <div class="collapsible-content" style="margin-top: 15px;">
+                <p class="planner-info" id="plannerInfo">Click a marker to add sectors to your route.</p>
+                <div class="selected-list" id="selectedList"></div>
+                <button class="btn-action btn-primary" id="btnBuild" onclick="buildRoute()">
+                    <i class="fa-solid fa-person-cycling"></i> Create ride
+                </button>
+                <div class="planner-actions-row">
+                    <button class="btn-action btn-secondary" onclick="downloadGPX()">
+                        <i class="fa-solid fa-file-export"></i> Export GPX
+                    </button>
+                    <button class="btn-action btn-danger" onclick="resetRoute()">
+                        <i class="fa-solid fa-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+        </details>
+    </div>
+</aside>
     </section>
 
     <section class="map-section" aria-label="Interactive map">
