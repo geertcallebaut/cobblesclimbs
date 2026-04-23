@@ -479,24 +479,34 @@
             </select>
         </div>
 
-            <div class="sidebar-section planner-box">
-                <h2><i class="fa-solid fa-route"></i> Create your own ride</h2>
-                <p class="planner-info" id="plannerInfo">Click a marker to add sectors to your route.</p>
-                <div class="selected-list" id="selectedList"></div>
+           <div class="sidebar-section planner-box">
+    <details open>
+        <summary style="cursor: pointer; list-style: none; outline: none;">
+            <h2 style="display: inline-block; margin: 0;">
+                <i class="fa-solid fa-route"></i> Create your own ride
+                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
+            </h2>
+        </summary>
 
-                <button class="btn-action btn-primary" id="btnBuild" onclick="buildRoute()">
-                    <i class="fa-solid fa-person-cycling"></i> Create ride
+        <div class="collapsible-content" style="margin-top: 15px;">
+            <p class="planner-info" id="plannerInfo">Click a marker to add sectors to your route.</p>
+            <div class="selected-list" id="selectedList"></div>
+
+            <button class="btn-action btn-primary" id="btnBuild" onclick="buildRoute()">
+                <i class="fa-solid fa-person-cycling"></i> Create ride
+            </button>
+
+            <div class="planner-actions-row">
+                <button class="btn-action btn-secondary" onclick="downloadGPX()">
+                    <i class="fa-solid fa-file-export"></i> Export GPX
                 </button>
-
-                <div class="planner-actions-row">
-                    <button class="btn-action btn-secondary" onclick="downloadGPX()">
-                        <i class="fa-solid fa-file-export"></i> Export GPX
-                    </button>
-                    <button class="btn-action btn-danger" onclick="resetRoute()">
-                        <i class="fa-solid fa-trash"></i> Clear
-                    </button>
-                </div>
+                <button class="btn-action btn-danger" onclick="resetRoute()">
+                    <i class="fa-solid fa-trash"></i> Clear
+                </button>
             </div>
+        </div>
+    </details>
+</div>
         </aside>
     </section>
 
