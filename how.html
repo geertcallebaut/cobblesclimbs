@@ -483,9 +483,16 @@
 
                         
         </div>
-        <div class="sidebar-section">
-            <h2><i class="fa-solid fa-mountain"></i> Discover cobbles, bergs & routes</h2>
+<div class="sidebar-section">
+    <details open>
+        <summary style="cursor: pointer; list-style: none; outline: none;">
+            <h2 style="display: inline-block; margin: 0;">
+                <i class="fa-solid fa-mountain"></i> Discover cobbles, bergs & routes
+                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
+            </h2>
+        </summary>
 
+        <div class="collapsible-content" style="margin-top: 15px;">
             <select id="climbDropdown" class="climb-select">
                 <option value="">— Select a sector —</option>
             </select>
@@ -496,6 +503,8 @@
                 <option value="">— Select a route —</option>
             </select>
         </div>
+    </details>
+</div>
 
            <div class="sidebar-section planner-box">
     <details open>
