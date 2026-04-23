@@ -798,44 +798,24 @@ async function loadGeoRoutes() {
                 const layer = L.geoJSON(feature, {
                     style: { color: 'var(--cc-route-orange)', weight: 3, opacity: 0.85, dashArray: '6,4' }
                 });
-const popupHTML = s.yt ? `
+const layer = L.geoJSON(feature, {
+    style: { color: 'var(--cc-route-orange)', weight: 3, opacity: 0.85, dashArray: '6,4' }
+});
+const popupHTML = `
     <div class="popup-card">
-        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
-            <div class="popup-thumb">
-                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" 
-                     alt="${s.name}" loading="lazy">
-            </div>
-        </a>
+        ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
+            <div class="popup-thumb"><img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg" alt="${p.name}" loading="lazy"></div>
+        </a>` : ''}
         <div class="popup-info">
-            <strong>${s.name}</strong><br>
-            ${s.type.replace('_',' ')} • ${s.dist} km • ${s.ascent} m<br>
-            <button class="popup-add-btn" 
-                onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">
-                + Add to routeplanner
-            </button>
-            <a href="https://www.youtube.com/watch?v=${s.yt}" 
-               target="_blank" rel="noopener noreferrer" class="popup-yt-link">
+            <strong>${p.name}</strong><br>
+            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>
+            ${p.description || ''}
+            ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
                 <i class="fab fa-youtube"></i> Watch on YouTube
-            </a>
-        </div>
-    </div>` 
-: `
-    <div class="popup-card">
-        <div style="background:#f5f5f5; aspect-ratio:16/9; display:flex; 
-                    flex-direction:column; align-items:center; justify-content:center; 
-                    border-radius:3px; color:#999; font-size:0.85rem; gap:6px;">
-            <i class="fab fa-youtube" style="font-size:1.8rem; color:#ccc;"></i>
-            Coming soon
-        </div>
-        <div class="popup-info">
-            <strong>${s.name}</strong><br>
-            ${s.type.replace('_',' ')} • ${s.dist} km • ${s.ascent} m<br>
-            <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" 
-               target="_blank" rel="noopener noreferrer" class="popup-yt-link">
-                <i class="fab fa-youtube"></i> Subscribe to be notified
-            </a>
+            </a>` : ''}
         </div>
     </div>`;
+layer.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 270 });
                 layer.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 270 });
                 layer.on('click', () => {
                     highlightGeoRoute(p.id);
