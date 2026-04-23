@@ -889,21 +889,43 @@ function initMap() {
                 color: '#fff', weight: 2, fillOpacity: hasVideo ? 0.95 : 0.6
             }).addTo(map);
 
-            const popupHTML = `
-                <div class="popup-card">
-                    <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
-                        <div class="popup-thumb"><img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name}" loading="lazy"></div>
-                    </a>
-                    <div class="popup-info">
-                        <strong>${s.name}</strong><br>
-                        ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
-<button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">
-    + Add to routeplanner
-</button>
-                        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>
-                    </div>
-                </div>`;
-
+    const popupHTML = hasVideo ? `
+    <div class="popup-card">
+        <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
+            <div class="popup-thumb">
+                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name}" loading="lazy">
+            </div>
+        </a>
+        <div class="popup-info">
+            <strong>${s.name}</strong><br>
+            ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
+            <button class="popup-add-btn"
+                onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();"
+                style="background:transparent;color:#666;border:1px solid #ddd;font-weight:500;padding:6px;margin:8px 0 4px;">
+                + Add to routeplanner
+            </button>
+            <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
+                <i class="fab fa-youtube"></i> Watch on YouTube
+            </a>
+        </div>
+    </div>`
+: `
+    <div class="popup-card">
+        <div style="background:#f5f5f5; aspect-ratio:16/9; display:flex;
+                    flex-direction:column; align-items:center; justify-content:center;
+                    border-radius:3px; color:#999; font-size:0.85rem; gap:6px;">
+            <i class="fab fa-youtube" style="font-size:1.8rem;color:#ccc;"></i>
+            Coming soon
+        </div>
+        <div class="popup-info">
+            <strong>${s.name}</strong><br>
+            ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
+            <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1"
+               target="_blank" rel="noopener noreferrer" class="popup-yt-link" style="margin-top:10px;">
+                <i class="fab fa-youtube"></i> Subscribe to be notified
+            </a>
+        </div>
+    </div>`;
             marker.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 270 });
             marker.on('click', () => { centerOnLatLng(marker.getLatLng()); updateDashboard(s); });
             marker.on('popupclose', () => updateDashboard('reset'));
