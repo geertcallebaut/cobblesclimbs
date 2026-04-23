@@ -329,13 +329,28 @@
             cursor: pointer; font-size: 0.88rem; transition: background 0.2s;
         }
         .popup-add-btn:hover { background: #2a5a4f; }
-        .popup-yt-link {
-            display: flex; align-items: center; justify-content: center; gap: 7px;
-            margin-top: 4px; color: #e60000 !important; text-decoration: none;
-            font-weight: 500; font-size: 0.93rem;
-        }
-        .popup-yt-link:hover { color: #cc0000 !important; }
-        .popup-yt-link i { font-size: 1.22rem; }
+.popup-yt-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 10px;
+    color: #e60000 !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 0;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.popup-yt-link:hover {
+    transform: translateY(-1px);
+    opacity: 0.85;
+}
+
+.popup-yt-link i {
+    font-size: 1.3rem;
+}
 
         /* ── ELEVATION CHART ── */
         .chart-box {
