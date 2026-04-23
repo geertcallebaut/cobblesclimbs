@@ -1044,7 +1044,6 @@ function drawElevationChart(coords) {
         }
     });
 }
-
 function showVideos() {
     const videos = selectedClimbs.filter(s => s.yt);
 
@@ -1071,11 +1070,6 @@ function showVideos() {
             `).join('')}
         </div>
     `;
-}() {
-    document.getElementById('videoContainer').innerHTML = selectedClimbs
-        .filter(s => s.yt)
-        .map(s => `<iframe src="https://www.youtube.com/embed/${s.yt}" title="${s.name}" frameborder="0" allowfullscreen loading="lazy"></iframe>`)
-        .join('');
 }
 
 window.downloadGPX = function() {
