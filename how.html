@@ -403,87 +403,6 @@
             .short-title { display: none; }
             .mobile-tagline { display: none; }
         }
-        /* ── VIDEO FLYOVER WIDGET ── */
-.video-flyover {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 220px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    z-index: 4000;
-    overflow: hidden;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.video-flyover:hover {
-    transform: translateY(-5px) scale(1.02);
-}
-
-.flyover-thumb {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    display: block;
-    text-decoration: none;
-}
-
-.flyover-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.flyover-play-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
-
-.flyover-thumb:hover .flyover-play-overlay {
-    background: rgba(0,0,0,0.4);
-}
-
-.flyover-play-overlay i {
-    color: white;
-    font-size: 2.2rem;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-}
-
-.flyover-content {
-    padding: 10px 12px;
-    background: var(--cc-dark-green);
-    color: white;
-    font-size: 0.75rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.flyover-close {
-    background: none;
-    border: none;
-    color: white;
-    opacity: 0.7;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0 0 0 10px;
-}
-
-.flyover-close:hover { opacity: 1; }
-
-/* Verberg flyover op kleine schermen om de kaart niet te hinderen */
-@media (max-width: 768px) {
-    .video-flyover { width: 160px; bottom: 85px; right: 15px; }
-    .flyover-content { display: none; }
-}
     </style>
 </head>
 <body>
@@ -532,30 +451,19 @@
 
 <main>
     <section class="hero" aria-label="About Cobbles & Climbs">
-<div class="hero-text">
-    <h1 style="margin-top:0;font-size:2rem;line-height:1.15;">Feel the raw beauty of Flemish cycling</h1>
-    <p style="font-size:1.15rem; margin: 0.5rem 0 1rem; opacity: 0.9;">Interactive map • Immersive footage • Build custom rides</p>
-    
-    <p style="margin-bottom: 15px;">Deep in the heart of the Flemish Ardennes, we capture the region's iconic roads — from brutal cobbles to hidden local gems.</p>
-    
-    <div style="max-width: 450px; margin: 15px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.15); background: #000; aspect-ratio: 16/9;">
-        <iframe width="100%" height="100%" 
-            src="https://www.youtube.com/embed/kBVBiFwVvOE" 
-            title="Cobbles & Climbs Featured Video" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <p style="font-size: 0.95rem; line-height: 1.4;">With over 200 sectors on our radar, we are building a 4K archive that covers every inch of these legendary roads.</p>
-    
-    <div class="subscribe-container" style="margin-top: 20px;">
-        <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="yt-subscribe-btn">
-            <i class="fab fa-youtube"></i> Subscribe on YouTube
-        </a>
-    </div>
-</div>
+        <div class="hero-text">
+            <h1 style="margin-top:0;font-size:2rem;line-height:1.15;">Feel the raw beauty of Flemish cycling</h1>
+            <p style="font-size:1.25rem;margin:0.8rem 0 1.5rem;opacity:0.95;">Interactive map • Immersive footage • Explore and discover • Build custom rides</p>
+            <p>Deep in the heart of the Flemish Ardennes, we capture the region's iconic roads that define Flemish cycling — from the brutal cobbles and majestic climbs to hidden local gems.</p>
+            <p> With over 200 sectors on our radar, we have begun our mission by documenting the first essential climbs and stretches, creating a growing archive that will eventually cover every inch of these legendary roads.</p>
+            <p>Experience the raw power and legendary spirit of Flemish cycling through our interactive map and immersive footage. Explore and discover the sectors and routes of Flanders or build your own custom Tour of Flanders.</p>
+            <p>Subscribe to support our journey, join us on Strava and Instagram or drop us a message. We'd love to hear from you!</p>
+            <div class="subscribe-container">
+                <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="yt-subscribe-btn" aria-label="Subscribe on YouTube">
+                    <i class="fab fa-youtube"></i> Subscribe on YouTube
+                </a>
+            </div>
+        </div>
         <aside class="sidebar" aria-label="Sector and route selector">
 
     <div class="sidebar-section">
@@ -1128,17 +1036,5 @@ window.resetRoute = function() {
 
 loadSectors();
 </script>
-    <div class="video-flyover" id="videoFlyover">
-    <a href="https://www.youtube.com/watch?v=kBVBiFwVvOE" target="_blank" rel="noopener noreferrer" class="flyover-thumb">
-        <img src="https://img.youtube.com/vi/kBVBiFwVvOE/mqdefault.jpg" alt="Featured Video">
-        <div class="flyover-play-overlay">
-            <i class="fab fa-youtube"></i>
-        </div>
-    </a>
-    <div class="flyover-content">
-        <span style="font-weight: 500; letter-spacing: 0.3px;">Featured Video</span>
-        <button class="flyover-close" onclick="document.getElementById('videoFlyover').style.display='none'">×</button>
-    </div>
-</div>
 </body>
 </html>
