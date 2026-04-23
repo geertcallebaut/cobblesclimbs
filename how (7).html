@@ -662,7 +662,7 @@ function centerOnLatLng(latLng) {
 function getMarkerColor(s) {
     // Als er geen YouTube ID is (of leeg), maak de marker wit
     if (!s.yt || s.yt.trim() === "") {
-        return '#ffffff';
+        return '#dddddd';
     }
     // Anders: gebruik de kleur behorend bij het type
     const colors = { 
@@ -779,8 +779,8 @@ function addLegend() {
     <span style="display:inline-block;width:18px;height:0;border-top:3px dashed var(--cc-route-orange);vertical-align:middle;"></span> Route
 </div>
 <div class="legend-item" style="cursor: default; opacity: 1;">
-    <span class="legend-dot" style="background:#ffffff; border: 1px solid #999;"></span> 
-    Coming soon (Archive in progress)
+    <span class="legend-dot" style="background:#dddddd; border: 1px solid #999;"></span> 
+    Coming soon
 </div>
             </div>`;
         L.DomEvent.disableClickPropagation(div);
@@ -905,7 +905,7 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                         <div class="popup-thumb" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; box-sizing: border-box; height: 143px;">
                             <span style="font-size: 0.8rem; color: #888;">
                                 <i class="fa-solid fa-camera" style="display: block; font-size: 1.5rem; margin-bottom: 5px; color: #ccc;"></i>
-                                Coming soon to the archive
+                                Coming soon
                             </span>
                         </div>
                     `}
