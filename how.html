@@ -865,7 +865,18 @@ function initMap() {
                     <div class="popup-info">
                         <strong>${s.name}</strong><br>
                         ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
-                        <button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">+ Add to routeplanner</button>
+                       <button class="popup-add-btn" 
+        onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();"
+        style="
+            background: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            font-weight: 500;
+            padding: 6px;
+            margin: 8px 0 4px;
+        ">
+    + Add to routeplanner
+</button>
                         <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link"><i class="fab fa-youtube"></i> Watch on YouTube</a>
                     </div>
                 </div>`;
