@@ -940,14 +940,15 @@ async function loadGeoRoutes() {
                         </a>` : ''}
                         <div class="popup-info">
                             <strong>${p.name}</strong><br>
-                            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m' : ''}<br>
-                            ${p.description || ''}
+                            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m asc' : ''}<br>
+                            ${p.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${p.description.split('.')[0].substring(0,75)}${p.description.length > 75 ? '…' : ''}</span>` : ''}
                             ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
                                 <i class="fab fa-youtube"></i> Watch on YouTube
                             </a>` : ''}
                         </div>
                     </div>`;
                 layer.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 270 });
+                layer.bindTooltip(p.name, { permanent: false, direction: 'top', className: 'marker-tooltip', sticky: true });
                 layer.on('click', () => {
                     highlightGeoRoute(p.id);
                     routeDropdown.value = p.id;
@@ -1035,10 +1036,11 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                     `}
                     <div class="popup-info">
                         <strong>${s.title || s.name}</strong><br>
-                        ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
+                        ${s.dist} km • ${s.ascent} m asc${s.avg ? ` • avg ${s.avg}%` : ''}${s.max ? ` • max ${s.max}%` : ''}<br>
                         ${s.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${s.description.split('.')[0].substring(0,75)}${s.description.length > 75 ? '…' : ''}</span>` : ''}
-                        <button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">
-                            + Add to routeplanner
+                        <button onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();"
+                            style="background:none;border:none;color:#aaa;font-size:0.75rem;cursor:pointer;padding:4px 0 6px;display:block;text-align:left;">
+                            + add to route planner
                         </button>
                         ${hasVideo ? `
                             <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
