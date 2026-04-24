@@ -292,20 +292,20 @@
         .map-layer-selector {
             position: absolute;
             top: 16px;
-            bottom: auto;
             left: 50%;
             transform: translateX(-50%);
             background: white;
             border-radius: 30px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-            padding: 4px;
+            padding: 3px;
             z-index: 1200;
             display: flex;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             pointer-events: auto;
+            white-space: nowrap;
         }
         .map-layer-btn {
-            padding: 7px 16px; border: none; background: transparent;
+            padding: 5px 12px; border: none; background: transparent;
             cursor: pointer; border-radius: 30px; touch-action: manipulation; transition: background 0.2s, color 0.2s;
         }
         .map-layer-btn.active { background: var(--cc-dark-green); color: white; }
@@ -524,18 +524,7 @@
             .sidebar-section { padding: 12px; margin-bottom: 12px; }
             .map-section { padding: 0 12px 20px; }
             #map { height: 400px; touch-action: pan-y; }
-            .map-layer-selector {
-                top: auto;
-                bottom: 14px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: calc(100% - 24px);
-                max-width: 320px;
-                white-space: nowrap;
-                font-size: 0.75rem;
-                z-index: 1200;
-            }
-            .map-layer-btn { padding: 7px 8px; flex: 1; text-align: center; }
+            .map-layer-btn { padding: 5px 8px; flex: 1; text-align: center; }
             .popup-card { width: 220px; }
             .yt-subscribe-btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 13px 20px; box-sizing: border-box; }
             .chart-wrapper { height: 160px; }
@@ -1045,8 +1034,9 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                         </div>
                     `}
                     <div class="popup-info">
-                        <strong>${s.name}</strong><br>
+                        <strong>${s.title || s.name}</strong><br>
                         ${s.type.replace('_', ' ')} • ${s.dist} km • ${s.ascent} m<br>
+                        ${s.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${s.description.split('.')[0].substring(0,75)}${s.description.length > 75 ? '…' : ''}</span>` : ''}
                         <button class="popup-add-btn" onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();">
                             + Add to routeplanner
                         </button>
@@ -1055,7 +1045,7 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                                 <i class="fab fa-youtube"></i> Watch on YouTube
                             </a>
                         ` : `
-                            <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="popup-yt-link" style="background: #444;">
+                            <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
                                 <i class="fab fa-youtube"></i> Subscribe for updates
                             </a>
                         `}
