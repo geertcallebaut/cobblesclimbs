@@ -575,8 +575,7 @@
 </header>
 
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
-    <div class="kpi-card"><p id="label-1">VIDEOS PUBLISHED</p><h3 id="val-1">-</h3></div>
-    <div class="kpi-card"><p id="label-7">SECTORS ON RADAR</p><h3 id="val-7">-</h3></div>
+    <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
     <div class="kpi-card"><p id="label-2">TOTAL LENGTH</p><h3 id="val-2">-</h3></div>
     <div class="kpi-card"><p id="label-3">TOTAL ASCENT</p><h3 id="val-3">-</h3></div>
     <div class="kpi-card"><p id="label-4">AVG GRADE</p><h3 id="val-4">-</h3></div>
@@ -780,7 +779,7 @@ document.addEventListener('click', (e) => {
 function isMobile() { return window.innerWidth <= 768; }
 
 function centerOnLatLng(latLng) {
-    const offset = isMobile() ? [0, 110] : [0, 180];
+    const offset = isMobile() ? [0, 160] : [0, 180];
     map.panTo(map.unproject(map.project(latLng).subtract(offset)), { animate: true });
 }
 
@@ -836,8 +835,7 @@ function calculateTotals() {
 function updateDashboard(data) {
     if (data === 'reset') {
         const c = archiveData.computed || {};
-        set(1, 'VIDEOS PUBLISHED', c.count || '-',         '');
-        document.getElementById('val-7') && (document.getElementById('val-7').innerHTML = c.total || '-');
+        set(1, 'SECTORS', `${c.count || '-'}<span style="font-size:0.65rem;opacity:0.6;font-weight:400"> /${c.total || '-'}</span>`, '');
         set(2, 'TOTAL LENGTH',  c.dist  || '0',          'km');
         set(3, 'TOTAL ASCENT',  c.totalAscent || '0',    'm');
         set(4, 'AVG GRADE',     c.avgGrade || '0',       '%');
