@@ -388,6 +388,20 @@
         }
         #videoContainer iframe { flex: 0 0 300px; height: 170px; border-radius: 8px; background: #000; border: none; }
 
+        /* ── MARKER TOOLTIP ── */
+        .marker-tooltip {
+            background: var(--cc-dark-green);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+        .marker-tooltip::before { border-top-color: var(--cc-dark-green) !important; }
+
         /* ── FOOTER ── */
         footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
         footer a { color: var(--cc-dark-green); text-decoration: none; }
@@ -424,6 +438,9 @@
             transition: transform 0.3s ease;
         }
         @media (max-width: 768px) {
+            .carousel-container {
+                overflow: hidden;
+            }
             .carousel-window {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -1039,6 +1056,7 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                 </div>`;
 
             marker.bindPopup(popupHTML, { maxWidth: isMobile() ? 240 : 270 });
+            marker.bindTooltip(s.name, { permanent: false, direction: 'top', offset: [0, -6], className: 'marker-tooltip' });
             marker.on('click', () => { centerOnLatLng(marker.getLatLng()); updateDashboard(s); });
             marker.on('popupclose', () => updateDashboard('reset'));
 
