@@ -424,7 +424,24 @@
             transition: transform 0.3s ease;
         }
         @media (max-width: 768px) {
-            .video-card-simple { flex: 0 0 75%; }
+            .carousel-window {
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .carousel-window::-webkit-scrollbar { display: none; }
+            .carousel-track {
+                transition: none;
+                width: max-content;
+            }
+            .video-card-simple {
+                flex: 0 0 75%;
+                scroll-snap-align: start;
+            }
         }
         .video-card-simple:hover { transform: scale(1.04); }
         .video-card-simple img { width: 100%; height: auto; display: block; }
