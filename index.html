@@ -779,7 +779,7 @@ document.addEventListener('click', (e) => {
 function isMobile() { return window.innerWidth <= 768; }
 
 function centerOnLatLng(latLng) {
-    const offset = isMobile() ? [0, 40] : [0, 80];
+    const offset = isMobile() ? [0, 80] : [0, 140];
     map.panTo(map.unproject(map.project(latLng).subtract(offset)), { animate: true });
 }
 
@@ -935,14 +935,22 @@ async function loadGeoRoutes() {
                 });
                 const popupHTML = `
                     <div class="popup-card">
-                        ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
+                        ${p.yt ? `
+                        <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer">
                             <div class="popup-thumb"><img src="https://img.youtube.com/vi/${p.yt}/mqdefault.jpg" alt="${p.name}" loading="lazy"></div>
-                        </a>` : ''}
+                        </a>` : `
+                        <div class="popup-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;box-sizing:border-box;height:143px;">
+                            <span style="font-size:0.8rem;color:#888;">
+                                <i class="fa-solid fa-route" style="display:block;font-size:1.5rem;margin-bottom:5px;color:#ccc;"></i>
+                                Route
+                            </span>
+                        </div>`}
                         <div class="popup-info">
                             <strong>${p.name}</strong><br>
-                            Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m asc' : ''}<br>
+                            <span style="font-size:0.78rem;color:#555;">Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m asc' : ''}</span><br>
                             ${p.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${p.description.split('.')[0].substring(0,75)}${p.description.length > 75 ? '…' : ''}</span>` : ''}
-                            ${p.yt ? `<a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
+                            ${p.yt ? `
+                            <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
                                 <i class="fab fa-youtube"></i> Watch on YouTube
                             </a>` : ''}
                         </div>
@@ -1036,7 +1044,7 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                     `}
                     <div class="popup-info">
                         <strong>${s.title || s.name}</strong><br>
-                        ${s.dist} km • ${s.ascent} m asc${s.avg ? ` • avg ${s.avg}%` : ''}${s.max ? ` • max ${s.max}%` : ''}<br>
+                        <span style="font-size:0.78rem;color:#555;">${s.dist} km • ${s.ascent} m asc${s.avg ? ` • avg ${s.avg}%` : ''}${s.max ? ` • max ${s.max}%` : ''}</span><br>
                         ${s.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${s.description.split('.')[0].substring(0,75)}${s.description.length > 75 ? '…' : ''}</span>` : ''}
                         <button onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();"
                             style="background:none;border:none;color:#aaa;font-size:0.75rem;cursor:pointer;padding:4px 0 6px;display:block;text-align:left;">
