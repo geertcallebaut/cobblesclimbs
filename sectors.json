@@ -76,7 +76,7 @@
             "max": "15.2",
             "time": "0:00",
             "yt": "",
-            "title": "",
+            "title": "Banned",
             "description": "Short, steep and brutal; this is the Kortekeer experience.",
             "category": "classic"
         },
@@ -186,10 +186,10 @@
             "ascent": 40,
             "avg": "7.5",
             "max": "10.6",
-            "time": "0:00",
-            "yt": "",
-            "title": "",
-            "description": "The calf-crusher you’ve never heard of.",
+            "time": "3:44",
+            "yt": "PhTzxMr6yow",
+            "title": "The calf-crusher you’ve never heard of.",
+            "description": "Kuithol is short but undeniably steep. It stretches for just 0.5 kilometers and gains around 40 meters in elevation. With an average gradient around 7.5% and ramps reaching up to 18% it's pretty demanding. Riders often describe it as tougher than the numbers suggest.",
             "category": "gem"
         },
         {
@@ -204,8 +204,8 @@
             "max": "7.6",
             "time": "0:00",
             "yt": "",
-            "title": "",
-            "description": "The Cobbled Spine-Rattler of Flanders",
+            "title": "The cobbled spine-rattler of Flanders",
+            "description": "",
             "category": "classic"
         },
         {
@@ -220,8 +220,8 @@
             "max": "12..5",
             "time": "0:00",
             "yt": "",
-            "title": "",
-            "description": "A hidden gem that makes you sweat.",
+            "title": "A hidden gem that makes you sweat",
+            "description": "",
             "category": "gem"
         }
     ]
