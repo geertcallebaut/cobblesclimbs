@@ -575,7 +575,8 @@
 </header>
 
 <div class="kpi-dashboard" role="region" aria-label="Archive statistics">
-    <div class="kpi-card"><p id="label-1">SECTORS</p><h3 id="val-1">-</h3></div>
+    <div class="kpi-card"><p id="label-1">VIDEOS PUBLISHED</p><h3 id="val-1">-</h3></div>
+    <div class="kpi-card"><p id="label-7">SECTORS ON RADAR</p><h3 id="val-7">-</h3></div>
     <div class="kpi-card"><p id="label-2">TOTAL LENGTH</p><h3 id="val-2">-</h3></div>
     <div class="kpi-card"><p id="label-3">TOTAL ASCENT</p><h3 id="val-3">-</h3></div>
     <div class="kpi-card"><p id="label-4">AVG GRADE</p><h3 id="val-4">-</h3></div>
@@ -779,7 +780,7 @@ document.addEventListener('click', (e) => {
 function isMobile() { return window.innerWidth <= 768; }
 
 function centerOnLatLng(latLng) {
-    const offset = isMobile() ? [0, 80] : [0, 140];
+    const offset = isMobile() ? [0, 110] : [0, 180];
     map.panTo(map.unproject(map.project(latLng).subtract(offset)), { animate: true });
 }
 
@@ -820,20 +821,23 @@ function set(n, label, val, unit) {
 
 function calculateTotals() {
     const s = archiveData.sectors;
+    const withVideo = s.filter(x => x.yt && x.yt.trim() !== '');
     archiveData.computed = {
-        count:        s.length,
-        dist:         s.reduce((a, b) => a + b.dist, 0).toFixed(1),
-        totalAscent:  s.reduce((a, b) => a + b.ascent, 0),
-        avgGrade:     (s.reduce((a, b) => a + parseFloat(b.avg || 0), 0) / s.length).toFixed(1),
-        avgMaxGrade:  (s.reduce((a, b) => a + parseFloat(b.max || 0), 0) / s.length).toFixed(1),
-        totalDuration: secondsToTime(s.reduce((sum, sec) => sum + timeToSeconds(sec.time), 0))
+        count:        withVideo.length,
+        total:        s.length,
+        dist:         withVideo.reduce((a, b) => a + b.dist, 0).toFixed(1),
+        totalAscent:  withVideo.reduce((a, b) => a + b.ascent, 0),
+        avgGrade:     withVideo.length ? (withVideo.reduce((a, b) => a + parseFloat(b.avg || 0), 0) / withVideo.length).toFixed(1) : 0,
+        avgMaxGrade:  withVideo.length ? (withVideo.reduce((a, b) => a + parseFloat(b.max || 0), 0) / withVideo.length).toFixed(1) : 0,
+        totalDuration: secondsToTime(withVideo.reduce((sum, sec) => sum + timeToSeconds(sec.time), 0))
     };
 }
 
 function updateDashboard(data) {
     if (data === 'reset') {
         const c = archiveData.computed || {};
-        set(1, 'SECTORS',       c.count || '-',          '');
+        set(1, 'VIDEOS PUBLISHED', c.count || '-',         '');
+        document.getElementById('val-7') && (document.getElementById('val-7').innerHTML = c.total || '-');
         set(2, 'TOTAL LENGTH',  c.dist  || '0',          'km');
         set(3, 'TOTAL ASCENT',  c.totalAscent || '0',    'm');
         set(4, 'AVG GRADE',     c.avgGrade || '0',       '%');
@@ -946,8 +950,8 @@ async function loadGeoRoutes() {
                             </span>
                         </div>`}
                         <div class="popup-info">
-                            <strong>${p.name}</strong><br>
-                            <span style="font-size:0.78rem;color:#555;">Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m asc' : ''}</span><br>
+                            <strong style="display:block;text-align:center;">${p.name}</strong>
+                            <span style="font-size:0.68rem;color:#777;display:block;text-align:center;margin:2px 0 4px;">Route${p.dist ? ' • ' + p.dist + ' km' : ''}${p.ascent ? ' • ' + p.ascent + ' m asc' : ''}</span>
                             ${p.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${p.description.split('.')[0].substring(0,75)}${p.description.length > 75 ? '…' : ''}</span>` : ''}
                             ${p.yt ? `
                             <a href="https://www.youtube.com/watch?v=${p.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
@@ -1033,7 +1037,14 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                 <div class="popup-card">
                     ${hasVideo ? `
                         <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
-                            <div class="popup-thumb"><img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name}" loading="lazy"></div>
+                            <div class="popup-thumb" style="position:relative;">
+                                <img src="https://img.youtube.com/vi/${s.yt}/mqdefault.jpg" alt="${s.name}" loading="lazy">
+                                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+                                    <div style="background:rgba(0,0,0,0.55);border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fab fa-youtube" style="color:white;font-size:1.2rem;"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </a>` : `
                         <div class="popup-thumb" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; box-sizing: border-box; height: 143px;">
                             <span style="font-size: 0.8rem; color: #888;">
@@ -1043,9 +1054,9 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                         </div>
                     `}
                     <div class="popup-info">
-                        <strong>${s.title || s.name}</strong><br>
-                        <span style="font-size:0.78rem;color:#555;">${s.dist} km • ${s.ascent} m asc${s.avg ? ` • avg ${s.avg}%` : ''}${s.max ? ` • max ${s.max}%` : ''}</span><br>
-                        ${s.description ? `<span style="font-size:0.8rem;color:#666;display:block;margin:4px 0 2px;">${s.description.split('.')[0].substring(0,75)}${s.description.length > 75 ? '…' : ''}</span>` : ''}
+                        <strong style="display:block;text-align:center;">${s.title || s.name}</strong>
+                        <span style="font-size:0.68rem;color:#777;display:block;text-align:center;margin:2px 0 4px;">${s.dist} km • ${s.ascent} m asc${s.avg ? ` • avg ${s.avg}%` : ''}${s.max ? ` • max ${s.max}%` : ''}</span>
+                        ${s.description ? `<span style="font-size:0.78rem;color:#666;display:block;margin:2px 0;">${s.description.split('.')[0].substring(0,75)}${s.description.length > 75 ? '…' : ''}</span>` : ''}
                         <button onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();"
                             style="background:none;border:none;color:#aaa;font-size:0.75rem;cursor:pointer;padding:4px 0 6px;display:block;text-align:left;">
                             + add to route planner
