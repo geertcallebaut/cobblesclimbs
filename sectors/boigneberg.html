@@ -80,7 +80,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Leaflet -->
+    <!-- Nearby sectors: random suggesties uit sectors.json -->
+<script>
+(function() {
+    var currentName = 'Boigneberg';
+
+    function toSlug(name) {
+        return name
+            .toLowerCase()
+            .normalize('NFD').replace(/[̀-ͯ]/g, '')  // diacritics
+            .replace(/[^a-z0-9\s-]/g, '')                    // speciale tekens weg
+            .trim()
+            .replace(/\s+/g, '-');                            // spaties naar koppelteken
+    }
+
+    fetch('/sectors.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var others = data.sectors.filter(function(s) {
+                return s.name !== currentName && s.yt;
+            });
+            // Shuffle
+            for (var i = others.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var tmp = others[i]; others[i] = others[j]; others[j] = tmp;
+            }
+            var picks = others.slice(0, 4);
+            var container = document.getElementById('nearbySectors');
+            container.innerHTML = picks.map(function(s) {
+                var slug = toSlug(s.name);
+                return '<a href="/sectors/' + slug + '.html">' + s.name + '</a>';
+            }).join('');
+        })
+        .catch(function() {
+            // Fallback bij geen server
+            document.getElementById('nearbySectors').innerHTML =
+                '<a href="/sectors/koppenberg.html">Koppenberg</a>' +
+                '<a href="/sectors/paterberg.html">Paterberg</a>' +
+                '<a href="/sectors/oude-kwaremont.html">Oude Kwaremont</a>';
+        });
+})();
+</script>
+
+<!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <!-- Favicons -->
@@ -356,13 +398,11 @@
     <p class="section-label">Route map</p>
     <div id="map" data-lat="50.822173" data-lon="3.664082" role="application" aria-label="Map showing Boigneberg location"></div>
 
-    <!-- Nearby sectors -->
+    <!-- Nearby sectors — random suggesties uit sectors.json -->
     <div class="nearby">
         <h3><i class="fa-solid fa-mountain" aria-hidden="true"></i> Combine with nearby sectors</h3>
-        <div class="nearby-links">
-            <a href="/sectors/koppenberg.html">Koppenberg</a>
-            <a href="/sectors/paterberg.html">Paterberg</a>
-            <a href="/sectors/oude-kwaremont.html">Oude Kwaremont</a>
+        <div class="nearby-links" id="nearbySectors">
+            <span style="font-size:0.85rem;color:#999;">Loading suggestions…</span>
         </div>
     </div>
 
@@ -402,6 +442,48 @@
     document.addEventListener('click', function() {
         document.getElementById('mobileDropdown').classList.remove('show');
     });
+</script>
+
+<!-- Nearby sectors: random suggesties uit sectors.json -->
+<script>
+(function() {
+    var currentName = 'Boigneberg';
+
+    function toSlug(name) {
+        return name
+            .toLowerCase()
+            .normalize('NFD').replace(/[̀-ͯ]/g, '')  // diacritics
+            .replace(/[^a-z0-9\s-]/g, '')                    // speciale tekens weg
+            .trim()
+            .replace(/\s+/g, '-');                            // spaties naar koppelteken
+    }
+
+    fetch('/sectors.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var others = data.sectors.filter(function(s) {
+                return s.name !== currentName && s.yt;
+            });
+            // Shuffle
+            for (var i = others.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var tmp = others[i]; others[i] = others[j]; others[j] = tmp;
+            }
+            var picks = others.slice(0, 4);
+            var container = document.getElementById('nearbySectors');
+            container.innerHTML = picks.map(function(s) {
+                var slug = toSlug(s.name);
+                return '<a href="/sectors/' + slug + '.html">' + s.name + '</a>';
+            }).join('');
+        })
+        .catch(function() {
+            // Fallback bij geen server
+            document.getElementById('nearbySectors').innerHTML =
+                '<a href="/sectors/koppenberg.html">Koppenberg</a>' +
+                '<a href="/sectors/paterberg.html">Paterberg</a>' +
+                '<a href="/sectors/oude-kwaremont.html">Oude Kwaremont</a>';
+        });
+})();
 </script>
 
 <!-- Leaflet -->
