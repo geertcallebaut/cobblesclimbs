@@ -71,19 +71,6 @@
     }
     </script>
 
-    <!-- Structured data: Breadcrumb -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home",    "item": "https://www.cobblesclimbs.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Sectors", "item": "https://www.cobblesclimbs.com/sectors/"},
-        {"@type": "ListItem", "position": 3, "name": "Boigneberg","item": "https://www.cobblesclimbs.com/sectors/boigneberg.html"}
-      ]
-    }
-    </script>
-
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,15 +160,6 @@
         .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
         .kpi-card p  { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
         .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
-
-        /* ── BREADCRUMB ── */
-        .breadcrumb {
-            max-width: 860px; margin: 0 auto; padding: 16px 20px 0;
-            font-size: 0.82rem; color: #777;
-        }
-        .breadcrumb a { color: var(--cc-dark-green); text-decoration: none; }
-        .breadcrumb a:hover { text-decoration: underline; }
-        .breadcrumb span { margin: 0 5px; }
 
         /* ── CONTENT ── */
         .content { max-width: 860px; margin: 0 auto; padding: 28px 20px 64px; }
@@ -296,7 +274,7 @@
 <header class="top-header" role="banner">
     <div class="nav-left">
         <a href="../index.html" class="logo-left" aria-label="Cobbles & Climbs — home">
-            <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
+            <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" loading="eager">
         </a>
     </div>
 
@@ -331,24 +309,28 @@
 <!-- ══ KPI DASHBOARD — climb-specific stats, same visual as index ══ -->
 <div class="kpi-dashboard" role="region" aria-label="Climb statistics">
     <div class="kpi-card">
-        <p>SECTOR</p>
-        <h3 style="font-size:0.92rem;letter-spacing:-0.3px;line-height:1.2;">Boigneberg</h3>
+        <p>SECTOR NAME</p>
+        <h3 style="font-size:0.95rem;letter-spacing:-0.3px;line-height:1.2;">Boigneberg</h3>
     </div>
     <div class="kpi-card">
-        <p>DISTANCE</p>
+        <p>LENGTH</p>
         <h3>1.2<span class="unit">km</span></h3>
     </div>
     <div class="kpi-card">
-        <p>ELEVATION</p>
+        <p>ASCENT</p>
         <h3>62<span class="unit">m</span></h3>
     </div>
     <div class="kpi-card">
-        <p>AVG GRADIENT</p>
+        <p>AVG GRADE</p>
         <h3>5.1<span class="unit">%</span></h3>
     </div>
     <div class="kpi-card">
-        <p>MAX GRADIENT</p>
+        <p>MAX GRADE</p>
         <h3>13.9<span class="unit">%</span></h3>
+    </div>
+    <div class="kpi-card">
+        <p>DURATION</p>
+        <h3>{{duration}}</h3>
     </div>
     <div class="kpi-card">
         <p>IMAGE</p>
@@ -363,18 +345,7 @@
 <main>
 <div class="content">
 
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="../index.html">Home</a>
-        <span aria-hidden="true">›</span>
-        <a href="../sectors/">Sectors</a>
-        <span aria-hidden="true">›</span>
-        <span aria-current="page">Boigneberg</span>
-    </nav>
-
     <h1>Boigneberg</h1>
-    <p class="climb-subtitle">{{subtitle}}</p>
-
     <p class="body-text">
         The Boigneberg is a 1.2 km climb with 62 metres of elevation gain. With an average gradient of 5.1% and ramps reaching up to 13.9%, it's one of the standout sectors in the region.
     </p>
@@ -433,25 +404,20 @@
     });
 
     /* ── Leaflet map ── */
-    document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map', { scrollWheelZoom: false }).setView([50.822173, {{lng}}], 14);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var icon = L.divIcon({
-            className: '',
-            html: '<div style="background:#1a3c34;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 1px 6px rgba(0,0,0,0.45);"></div>',
-            iconSize: [14, 14],
-            iconAnchor: [7, 7]
-        });
-
-        L.marker([50.822173, {{lng}}], { icon: icon })
-          .addTo(map)
-          .bindPopup('<strong>Boigneberg</strong><br>1.2 km &nbsp;·&nbsp; 62 m &nbsp;·&nbsp; avg 5.1%');
+    var ccMap = L.map('map', { scrollWheelZoom: false }).setView([50.822173, {{lng}}], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(ccMap);
+    var ccIcon = L.divIcon({
+        className: '',
+        html: '<div style="background:#1a3c34;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 1px 6px rgba(0,0,0,0.45);"></div>',
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
     });
+    L.marker([50.822173, {{lng}}], { icon: ccIcon })
+      .addTo(ccMap)
+      .bindPopup('<strong>Boigneberg</strong><br>1.2 km &nbsp;·&nbsp; 62 m &nbsp;·&nbsp; avg 5.1%');
 </script>
 
 </body>
