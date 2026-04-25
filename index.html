@@ -1057,7 +1057,7 @@ const hasVideo = s.yt && s.yt.trim() !== "";
                         ${s.description ? `<span style="font-size:0.78rem;color:#666;display:block;margin:2px 0;">${s.description.split('.')[0].substring(0,75)}${s.description.length > 75 ? '…' : ''}</span>` : ''}
                         <button onclick="addToPlanner(${s.id}); event.stopImmediatePropagation();"
                             style="background:none;border:none;color:#aaa;font-size:0.75rem;cursor:pointer;padding:4px 0 6px;display:block;text-align:left;">
-                            + add to route planner
+                            Add to your ride
                         </button>
                         ${hasVideo ? `
                             <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer" class="popup-yt-link">
