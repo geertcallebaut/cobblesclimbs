@@ -274,7 +274,7 @@
 <header class="top-header" role="banner">
     <div class="nav-left">
         <a href="../index.html" class="logo-left" aria-label="Cobbles & Climbs — home">
-            <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" loading="eager">
+            <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
 
@@ -310,7 +310,7 @@
 <div class="kpi-dashboard" role="region" aria-label="Climb statistics">
     <div class="kpi-card">
         <p>SECTOR NAME</p>
-        <h3 style="font-size:0.95rem;letter-spacing:-0.3px;line-height:1.2;">Bosterij</h3>
+        <h3 style="font-size:1.22rem;line-height:1.2;">Bosterij</h3>
     </div>
     <div class="kpi-card">
         <p>LENGTH</p>
@@ -330,7 +330,7 @@
     </div>
     <div class="kpi-card">
         <p>DURATION</p>
-        <h3>{{duration}}</h3>
+        <h3>0:00</h3>
     </div>
     <div class="kpi-card">
         <p>IMAGE</p>
@@ -391,7 +391,7 @@
     <p>&copy; 2026 Cobbles &amp; Climbs</p>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 
 <script>
     /* ── Mobile menu (identical to index) ── */
@@ -402,8 +402,11 @@
     document.addEventListener('click', function() {
         document.getElementById('mobileDropdown').classList.remove('show');
     });
+</script>
 
-    /* ── Leaflet map ── */
+<!-- Leaflet geladen na alle HTML, init direct daarna -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
     var ccMap = L.map('map', { scrollWheelZoom: false }).setView([50.777393, {{lng}}], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
