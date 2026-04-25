@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9H693SN34Q"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,274 +10,390 @@
       gtag('config', 'G-9H693SN34Q');
     </script>
 
-    <!-- Roboto font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-    <title>The infamous E3-Col | Cobbles & Climbs</title>
-    <meta name="description" content="Karnemelkbeek is a climb in the Flemish Ardennes with 1.3 km, 76 m elevation gain and an average gradient of 5.6%.">
-    <meta name="keywords" content="Flemish Ardennes, Karnemelkbeek, cobbles, climbs, cycling, Tour of Flanders, Ronde van Vlaanderen, kasseistroken, berg">
+    <!-- Primary SEO -->
+    <title>Karnemelkbeek – The infamous E3-Col | Cobbles & Climbs</title>
+    <meta name="description" content="Karnemelkbeek: 1.3 km, 76 m elevation, avg 5.6% gradient. Watch the full 4K video, explore the route and plan your Flemish cycling adventure.">
+    <meta name="keywords" content="Karnemelkbeek, Karnemelkbeek cycling, Flemish cycling climb, Belgium cycling, cobbled climb, 5.6% gradient, Tour of Flanders">
     <meta name="author" content="Cobbles & Climbs">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.cobblesclimbs.com/sectors/karnemelkbeek.html">
 
-    <!-- FAVICONS -->
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cobblesclimbs.com/sectors/karnemelkbeek.html">
+    <meta property="og:title" content="Karnemelkbeek – The infamous E3-Col | Cobbles & Climbs">
+    <meta property="og:description" content="1.3 km · 76 m · avg 5.6% · max 12.2%. Watch the 4K video and plan your ride.">
+    <meta property="og:image" content="https://www.cobblesclimbs.com/img/sectors/karnemelkbeek-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Karnemelkbeek – Flemish cycling climb">
+    <meta property="og:site_name" content="Cobbles & Climbs">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CobblesClimbs">
+    <meta name="twitter:title" content="Karnemelkbeek – The infamous E3-Col">
+    <meta name="twitter:description" content="1.3 km · 76 m · avg 5.6%">
+    <meta name="twitter:image" content="https://www.cobblesclimbs.com/img/sectors/karnemelkbeek-og.jpg">
+
+    <!-- Geo -->
+    <meta name="geo.region" content="BE-VWV">
+    <meta name="geo.placename" content="Flemish Ardennes, Belgium">
+
+    <!-- Structured data: Climb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Karnemelkbeek",
+      "description": "{{subtitle}}",
+      "url": "https://www.cobblesclimbs.com/sectors/karnemelkbeek.html",
+      "sport": "Cycling",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.758609,
+        "longitude": {{lng}}
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cobbles & Climbs",
+        "url": "https://www.cobblesclimbs.com",
+        "logo": { "@type": "ImageObject", "url": "https://www.cobblesclimbs.com/channels4_profile.png" },
+        "sameAs": [
+          "https://www.youtube.com/@CobblesClimbs",
+          "https://www.instagram.com/CobblesClimbs",
+          "https://www.strava.com/clubs/CobblesClimbs"
+        ]
+      }
+    }
+    </script>
+
+    <!-- Structured data: Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home",    "item": "https://www.cobblesclimbs.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Sectors", "item": "https://www.cobblesclimbs.com/sectors/"},
+        {"@type": "ListItem", "position": 3, "name": "Karnemelkbeek","item": "https://www.cobblesclimbs.com/sectors/karnemelkbeek.html"}
+      ]
+    }
+    </script>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
+
+    <!-- Fonts & Icons (same as index) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-
+    <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon/android-chrome-512x512.png">
     <meta name="theme-color" content="#1a3c34">
 
     <style>
+        /* ── TOKENS (identical to index.html) ── */
         :root {
             --cc-dark-green: #1a3c34;
-        }
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: "Roboto", Helvetica, Arial, sans-serif;
-            background: #ffffff;
-            color: #111111;
+            --cc-route-orange: #e07b00;
+            --cc-custom-blue: #3498db;
         }
 
-        /* HEADER */
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; font-family: "Roboto", Helvetica, Arial, sans-serif; background: #fff; color: #111; }
+
+        /* ── HEADER (copied 1:1 from index) ── */
         .top-header {
-            background: var(--cc-dark-green);
-            color: white;
-            padding: 14px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 3000;
-            font-size: 0.95rem;
-            font-weight: 500;
+            background: var(--cc-dark-green); color: white; padding: 14px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 3000; font-size: 0.95rem; font-weight: 500;
         }
-        .nav-left, .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-        .logo-left {
-            display: flex;
-            align-items: center;
-            height: 54px;
-        }
+        .nav-left, .nav-right { display: flex; align-items: center; gap: 32px; }
+        .logo-left { display: flex; align-items: center; height: 54px; }
         .header-logo {
-            height: 100%;
-            width: auto;
-            max-width: 195px;
-            object-fit: contain;
-            filter: brightness(1.18) contrast(1.12);
-            padding: 5px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
-            transition: transform 0.25s ease;
+            height: 100%; width: auto; max-width: 195px; object-fit: contain;
+            filter: brightness(1.18) contrast(1.12); padding: 5px;
+            background: rgba(255,255,255,0.15); border-radius: 8px;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.25); transition: transform 0.25s ease;
         }
         .header-logo:hover { transform: scale(1.05); }
-
         .short-title {
-            font-family: 'Roboto', sans-serif;
-            font-weight: 900;
-            font-size: 1.45rem;
-            letter-spacing: -1.2px;
-            color: white;
-            display: none;
-            flex: 1;
-            text-align: center;
+            font-weight: 900; font-size: 1.35rem; letter-spacing: -1.1px;
+            color: white; flex: 1; text-align: center; display: none; line-height: 1.1;
         }
-
+        .mobile-tagline {
+            display: none; font-size: 0.6rem; font-weight: 400; letter-spacing: -0.3px;
+            color: #a8d5c8; margin-top: 4px; text-align: center; line-height: 1.25;
+        }
         .logo-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Roboto', sans-serif;
-            font-weight: 900;
-            font-size: 1.85rem;
-            letter-spacing: -1.5px;
-            color: white;
-            text-decoration: none;
-            white-space: nowrap;
-            text-align: center;
-            line-height: 1.1;
+            position: absolute; left: 50%; transform: translateX(-50%);
+            font-weight: 900; font-size: 1.85rem; letter-spacing: -1.5px;
+            color: white; text-decoration: none; white-space: nowrap; text-align: center; line-height: 1.1;
         }
         .logo-center span { color: white; }
-
         .desktop-tagline {
-            display: none;
-            font-size: 0.88rem;
-            font-weight: 400;
-            letter-spacing: -0.25px;
-            color: #a8d5c8;
-            margin-top: 6px;
+            display: none; font-size: 0.88rem; font-weight: 400;
+            letter-spacing: -0.25px; color: #a8d5c8; margin-top: 6px;
         }
-
-        .social-icons a {
-            color: white;
-            margin-left: 18px;
-            font-size: 1.28rem;
-            transition: color 0.2s;
-        }
+        .social-icons a { color: white; margin-left: 18px; font-size: 1.28rem; transition: color 0.2s; text-decoration: none; }
         .social-icons a:hover { color: #a8d5c8; }
-
-        /* Content */
-        .content {
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 40px 20px 60px;
+        .menu-button { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 8px; display: none; }
+        .mobile-social-dropdown {
+            position: absolute; top: 100%; right: 16px; background: var(--cc-dark-green);
+            border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            padding: 12px 16px; display: none; flex-direction: column; gap: 10px; z-index: 3100;
         }
+        .mobile-social-dropdown.show { display: flex; }
+        .mobile-social-dropdown a {
+            color: white; font-size: 0.9rem; display: flex; align-items: center;
+            gap: 10px; text-decoration: none; white-space: nowrap;
+        }
+        .mobile-social-dropdown a:hover { color: #a8d5c8; }
+
+        /* ── KPI DASHBOARD (identical styling to index, content = climb stats) ── */
+        .kpi-dashboard {
+            background: #0f0f0f; color: white; padding: 18px 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+            gap: 12px; text-align: center; border-bottom: 4px solid var(--cc-dark-green);
+            position: sticky; top: 82px; z-index: 2000;
+        }
+        .kpi-card h3 { margin: 0; font-size: 1.22rem; font-weight: 600; }
+        .kpi-card p  { margin: 0 0 6px 0; font-size: 0.53rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 1.1px; }
+        .unit { font-size: 0.68rem; opacity: 0.9; margin-left: 3px; }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb {
+            max-width: 860px; margin: 0 auto; padding: 16px 20px 0;
+            font-size: 0.82rem; color: #777;
+        }
+        .breadcrumb a { color: var(--cc-dark-green); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 5px; }
+
+        /* ── CONTENT ── */
+        .content { max-width: 860px; margin: 0 auto; padding: 28px 20px 64px; }
 
         h1 {
-            font-size: 2.1rem;
-            font-weight: 700;
-            margin: 45px 0 20px 0;
-            color: var(--cc-dark-green);
-            text-align: center;
+            font-size: 2rem; font-weight: 900; margin: 28px 0 8px;
+            color: var(--cc-dark-green); line-height: 1.15;
+        }
+        .climb-subtitle {
+            font-size: 1.15rem; color: #444; margin: 0 0 24px;
         }
 
-        .intro {
-            font-size: 1.08rem;
-            color: #222;
-            text-align: center;
-            margin-bottom: 25px;
+        /* ── MAP ── */
+        .section-label {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 1.6px;
+            text-transform: uppercase; color: var(--cc-dark-green); margin: 36px 0 10px;
+        }
+        #map {
+            height: 280px; border-radius: 8px;
+            border: 1px solid #ddd; z-index: 1;
         }
 
-        .stats {
-            background: #f8f8f8;
-            padding: 20px 24px;
-            margin: 32px 0;
-            border-radius: 6px;
-            border-left: 6px solid var(--cc-dark-green);
-            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-            font-size: 1.07rem;
-        }
-        .stats strong {
-            color: var(--cc-dark-green);
-            font-weight: 500;
-        }
+        /* ── BODY TEXT ── */
+        .body-text { font-size: 1.05rem; line-height: 1.7; color: #222; margin: 0 0 18px; }
 
+        /* ── NEARBY ── */
+        .nearby {
+            background: #f8f8f8; border: 1px solid #eee; border-radius: 8px;
+            padding: 16px 20px; margin: 32px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .nearby h3 {
+            font-size: 0.98rem; color: var(--cc-dark-green);
+            margin: 0 0 12px; display: flex; align-items: center; gap: 8px;
+        }
+        .nearby-links { display: flex; flex-wrap: wrap; gap: 8px; }
+        .nearby-links a {
+            border: 1px solid var(--cc-dark-green); color: var(--cc-dark-green);
+            background: white; padding: 5px 14px; border-radius: 30px;
+            font-size: 0.88rem; font-weight: 500; text-decoration: none;
+            transition: background 0.18s, color 0.18s;
+        }
+        .nearby-links a:hover { background: var(--cc-dark-green); color: white; }
+
+        /* ── VIDEO ── */
+        .video-heading {
+            text-align: center; font-size: 1.2rem; font-weight: 700;
+            color: var(--cc-dark-green); margin: 44px 0 14px;
+        }
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            margin: 35px 0 40px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            position: relative; padding-bottom: 56.25%; height: 0;
+            border-radius: 8px; overflow: hidden; border: 1px solid #ddd;
         }
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none;
         }
 
-        /* Rode Subscribe knop */
+        /* ── SUBSCRIBE BUTTON (same as index) ── */
         .yt-subscribe-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #e60000;
-            color: white;
-            padding: 14px 32px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 9999px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(230, 0, 0, 0.3);
-            transition: all 0.25s ease;
-            margin: 15px auto 40px;
-            display: block;
-            width: fit-content;
+            display: inline-flex; align-items: center; gap: 8px;
+            background-color: #e60000; color: white; padding: 11px 24px;
+            font-size: 1.05rem; font-weight: 600; border-radius: 30px;
+            text-decoration: none; transition: background 0.25s, transform 0.25s;
+            margin: 22px auto 0; display: flex; width: fit-content;
         }
-        .yt-subscribe-btn:hover {
-            background-color: #cc0000;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(230, 0, 0, 0.4);
-        }
+        .yt-subscribe-btn:hover { background-color: #cc0000; transform: translateY(-2px); }
 
-        .back-bottom {
-            color: var(--cc-dark-green);
-            font-weight: 500;
-            text-decoration: none;
+        /* ── BACK LINK ── */
+        .back-link {
+            display: block; text-align: center; margin-top: 42px;
+            color: var(--cc-dark-green); font-weight: 600; text-decoration: none; font-size: 0.95rem;
         }
-        .back-bottom:hover { text-decoration: underline; }
+        .back-link:hover { text-decoration: underline; }
 
-        /* Mobile */
+        /* ── FOOTER (same as index) ── */
+        footer { text-align: center; padding: 25px 20px 35px; font-size: 0.78rem; color: #777; }
+        footer a { color: var(--cc-dark-green); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* ── RESPONSIVE (same breakpoints as index) ── */
         @media (max-width: 768px) {
             .top-header { padding: 10px 16px; }
             .logo-left { height: 40px; }
             .header-logo { max-width: 130px; }
             .logo-center { display: none; }
             .short-title { display: block; }
-            .social-icons a { margin-left: 10px; font-size: 1.15rem; }
-            .content { padding: 25px 16px 50px; }
-            h1 { font-size: 1.75rem; }
-            .yt-subscribe-btn { padding: 13px 28px; font-size: 1.02rem; }
+            .mobile-tagline { display: block; }
+            .nav-right .social-icons { display: none; }
+            .menu-button { display: block; }
+            .kpi-dashboard { grid-template-columns: repeat(2,1fr); padding: 14px 12px; gap: 10px; top: 56px; }
+            .kpi-card h3 { font-size: 1rem; }
+            .kpi-card p  { font-size: 0.5rem; }
+            h1 { font-size: 1.65rem; }
+            .content { padding: 20px 16px 52px; }
         }
-
+        @media (max-width: 420px) {
+            .short-title { font-size: 1.25rem; }
+            .kpi-dashboard { grid-template-columns: repeat(2,1fr); }
+        }
         @media (min-width: 769px) {
             .desktop-tagline { display: block; }
             .short-title { display: none; }
+            .mobile-tagline { display: none; }
         }
     </style>
 </head>
 
 <body>
 
+<!-- ══ HEADER (identical structure to index) ══ -->
 <header class="top-header" role="banner">
     <div class="nav-left">
         <a href="../index.html" class="logo-left" aria-label="Cobbles & Climbs — home">
             <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
-    
-    <span class="short-title">C&amp;C</span>
-    
+
+    <div style="flex:1;text-align:center;">
+        <span class="short-title">Cobbles &amp; Climbs</span>
+        <div class="mobile-tagline">The legendary spirit of Flemish cycling</div>
+    </div>
+
     <a href="../index.html" class="logo-center" aria-label="Cobbles & Climbs — home">
         Cobbles <span>&amp;</span> Climbs
         <span class="desktop-tagline">Your digital gateway to the raw beauty and legendary spirit of Flemish cycling</span>
     </a>
-    
+
     <nav class="nav-right" aria-label="Social media links">
         <div class="social-icons">
-            <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-            <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-strava" aria-hidden="true"></i></a>
-            <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Strava"><i class="fa-brands fa-strava"></i></a>
+            <a href="mailto:cobblesclimbs@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
         </div>
+        <button class="menu-button" id="menuButton" aria-label="Open social menu"><i class="fa-solid fa-bars"></i></button>
     </nav>
+
+    <div class="mobile-social-dropdown" id="mobileDropdown">
+        <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-strava"></i> Strava</a>
+        <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
+    </div>
 </header>
 
+<!-- ══ KPI DASHBOARD — climb-specific stats, same visual as index ══ -->
+<div class="kpi-dashboard" role="region" aria-label="Climb statistics">
+    <div class="kpi-card">
+        <p>DISTANCE</p>
+        <h3>1.3<span class="unit">km</span></h3>
+    </div>
+    <div class="kpi-card">
+        <p>ELEVATION</p>
+        <h3>76<span class="unit">m</span></h3>
+    </div>
+    <div class="kpi-card">
+        <p>AVG GRADIENT</p>
+        <h3>5.6<span class="unit">%</span></h3>
+    </div>
+    <div class="kpi-card">
+        <p>MAX GRADIENT</p>
+        <h3>12.2<span class="unit">%</span></h3>
+    </div>
+    <div class="kpi-card">
+        <p>IMAGE</p>
+        <h3>4K</h3>
+    </div>
+    <div class="kpi-card">
+        <p>SOUND</p>
+        <h3>RAW</h3>
+    </div>
+</div>
+
+<main>
 <div class="content">
 
-    <h1>Karnemelkbeek - The infamous E3-Col</h1>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="../sectors/">Sectors</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Karnemelkbeek</span>
+    </nav>
 
-    <p class="intro">
-        Karnemelkbeek is one of the sectors that defines the raw beauty and legendary spirit of Flemish cycling.</p>
-	<p>	Ride up the challenging Karnemelkbeek in Ronse, Belgium on a misty morning – a demanding climb that combines rolling Flemish roads with a serious sting in the tail, featuring a max gradient of 12.2%.
+    <h1>Karnemelkbeek</h1>
+    <p class="climb-subtitle">{{subtitle}}</p>
+
+    <p class="body-text">
+        The Karnemelkbeek is a 1.3 km climb with 76 metres of elevation gain. With an average gradient of 5.6% and ramps reaching up to 12.2%, it's one of the standout sectors in the region.
     </p>
 
-    <!-- Rode Subscribe knop -->
-    <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1" 
-       target="_blank" rel="noopener noreferrer"
-       class="yt-subscribe-btn">
-        <i class="fab fa-youtube" aria-hidden="true"></i>
-        Subscribe on YouTube
-    </a>
+    <p class="body-text">Ride up the challenging Karnemelkbeek in Ronse, Belgium on a misty morning – a demanding climb that combines rolling Flemish roads with a serious sting in the tail, featuring a max gradient of 12.2%.</p>
 
-    <div class="stats">
-        <strong>Distance:</strong> 1.3 km<br>
-        <strong>Elevation gain:</strong> 76 m<br>
-        <strong>Average gradient:</strong> 5.6%<br>
-        <strong>Maximum gradient:</strong> 12.2%
+    <!-- Map -->
+    <p class="section-label">Route map</p>
+    <div id="map" role="application" aria-label="Map showing Karnemelkbeek location"></div>
+
+    <!-- Nearby sectors -->
+    <div class="nearby">
+        <h3><i class="fa-solid fa-mountain" aria-hidden="true"></i> Combine with nearby sectors</h3>
+        <div class="nearby-links">
+            <a href="/sectors/koppenberg.html">Koppenberg</a>
+            <a href="/sectors/paterberg.html">Paterberg</a>
+            <a href="/sectors/oude-kwaremont.html">Oude Kwaremont</a>
+        </div>
     </div>
 
+    <!-- Video -->
+    <h2 class="video-heading">Watch the Karnemelkbeek in 4K</h2>
     <div class="video-container">
         
 <div style="margin:20px 0;">
@@ -293,17 +409,61 @@
 </div>
     </div>
 
-    <p style="margin-top: 50px; text-align: center;">
-        <a href="../index.html" class="back-bottom">← Check out the interactive map for more sectors and details</a>
-    </p>
+    <a href="https://www.youtube.com/@CobblesClimbs?sub_confirmation=1"
+       target="_blank" rel="noopener noreferrer"
+       class="yt-subscribe-btn"
+       aria-label="Subscribe on YouTube">
+        <i class="fab fa-youtube" aria-hidden="true"></i>
+        Subscribe on YouTube
+    </a>
+
+    <a href="../index.html" class="back-link">
+        ← Back to the interactive map
+    </a>
 
 </div>
+</main>
 
-<footer style="text-align:center; padding:40px 20px 50px; font-size:0.85rem; color:#777; border-top:1px solid #eee;">
-    <p>&copy; 2026 Cobbles &amp; Climbs</p>
+<footer>
+    <p>&copy; 2026 Cobbles &amp; Climbs &nbsp;·&nbsp;
+       <a href="../privacy.html">Privacy</a> &nbsp;·&nbsp;
+       <a href="mailto:cobblesclimbs@gmail.com">Contact</a>
+    </p>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+<script>
+    /* ── Mobile menu (identical to index) ── */
+    document.getElementById('menuButton').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('mobileDropdown').classList.toggle('show');
+    });
+    document.addEventListener('click', function() {
+        document.getElementById('mobileDropdown').classList.remove('show');
+    });
+
+    /* ── Leaflet map ── */
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map', { scrollWheelZoom: false }).setView([50.758609, {{lng}}], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var icon = L.divIcon({
+            className: '',
+            html: '<div style="background:#1a3c34;width:14px;height:14px;border-radius:50%;border:3px solid white;box-shadow:0 1px 6px rgba(0,0,0,0.45);"></div>',
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+        });
+
+        L.marker([50.758609, {{lng}}], { icon: icon })
+          .addTo(map)
+          .bindPopup('<strong>Karnemelkbeek</strong><br>1.3 km &nbsp;·&nbsp; 76 m &nbsp;·&nbsp; avg 5.6%');
+    });
+</script>
 
 </body>
 </html>
