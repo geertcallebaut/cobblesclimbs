@@ -1120,11 +1120,27 @@ const hasVideo = s.yt && s.yt.trim() !== "";
 window.addToPlanner = function(id) {
     const sector = archiveData.sectors.find(s => s.id === id);
     if (!sector || selectedClimbs.find(s => s.id === id)) return;
+
     selectedClimbs.push(sector);
-    selectedPoints.push([sector.lon, sector.lat]);
+
+    // === NIEUWE LOGICA: richting respecteren ===
+    if (sector.start_lat && sector.start_lon && sector.end_lat && sector.end_lon) {
+        // Gebruik start → end als twee waypoints (dwingt de juiste richting af)
+        selectedPoints.push([sector.start_lon, sector.start_lat]);   // [lon, lat] zoals ORS verwacht
+        selectedPoints.push([sector.end_lon, sector.end_lat]);
+    } else if (sector.start_lat && sector.start_lon) {
+        // Alleen startpunt beschikbaar → gebruik dat + middenpunt als fallback
+        selectedPoints.push([sector.start_lon, sector.start_lat]);
+        selectedPoints.push([sector.lon, sector.lat]);
+    } else {
+        // Fallback: gewoon het middenpunt (oude gedrag)
+        selectedPoints.push([sector.lon, sector.lat]);
+    }
+
     updatePlannerUI();
     map.closePopup();
-    // Open de routeplanner details in de sidebar
+
+    // Open planner automatisch
     const plannerDetails = document.querySelector('.sidebar-section.planner-box details');
     if (plannerDetails) plannerDetails.open = true;
 };
