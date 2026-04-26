@@ -1118,15 +1118,17 @@ const hasVideo = s.yt && s.yt.trim() !== "";
 //  ROUTE PLANNER LOGIC
 // ═══════════════════════════════════════════════════════
 
+
 // ═══════════════════════════════════════════════════════
-//  STATE
+// STATE
 // ═══════════════════════════════════════════════════════
 
 window.selectedClimbs = window.selectedClimbs || [];
+window.selectedPoints = window.selectedPoints || [];
 
 
 // ═══════════════════════════════════════════════════════
-//  ADD TO PLANNER
+// ADD TO PLANNER
 // ═══════════════════════════════════════════════════════
 
 window.addToPlanner = function(id) {
@@ -1137,43 +1139,26 @@ window.addToPlanner = function(id) {
 
     selectedClimbs.push(sector);
 
-    updatePlannerUI();
+    // ✔ we bouwen ORS waypoints op (START + STOP)
+    if (sector.start_lon && sector.start_lat) {
+        selectedPoints.push([sector.start_lon, sector.start_lat]);
+    }
 
-    map.closePopup();
+    if (sector.stop_lon && sector.stop_lat) {
+        selectedPoints.push([sector.stop_lon, sector.stop_lat]);
+    }
 
-    const plannerDetails = document.querySelector('.sidebar-section.planner-box details');
-    if (plannerDetails) plannerDetails.open = true;
-};
-
-
-// ═══════════════════════════════════════════════════════
-//  REMOVE
-// ═══════════════════════════════════════════════════════
-
-window.removeFromPlanner = function(idx) {
-    selectedClimbs.splice(idx, 1);
     updatePlannerUI();
 };
 
 
 // ═══════════════════════════════════════════════════════
-//  DISTANCE HELPER (for clean stitching)
-// ═══════════════════════════════════════════════════════
-
-function dist(a, b) {
-    const dx = a[0] - b[0];
-    const dy = a[1] - b[1];
-    return Math.sqrt(dx * dx + dy * dy);
-}
-
-
-// ═══════════════════════════════════════════════════════
-//  BUILD ROUTE (STABLE VERSION)
+// BUILD ROUTE (SINGLE ORS CALL → NO ARTIFACTS)
 // ═══════════════════════════════════════════════════════
 
 window.buildRoute = async function() {
 
-    if (selectedClimbs.length < 1) {
+    if (selectedPoints.length < 2) {
         alert('Add at least 1 sector.');
         return;
     }
@@ -1184,66 +1169,28 @@ window.buildRoute = async function() {
 
     try {
 
-        let fullCoords = [];
-
-        for (let i = 0; i < selectedClimbs.length; i++) {
-
-            const s = selectedClimbs[i];
-
-            if (!s.start_lat || !s.start_lon || !s.stop_lat || !s.stop_lon) continue;
-
-            const start = [s.start_lon, s.start_lat];
-            const stop  = [s.stop_lon, s.stop_lat];
-
-            const res = await fetch(
-                'https://api.openrouteservice.org/v2/directions/cycling-regular/geojson',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': ORS_KEY,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        coordinates: [start, stop],
-                        elevation: true,
-                        optimized: false
-                    })
-                }
-            );
-
-            const data = await res.json();
-            let coords = data.features[0].geometry.coordinates;
-
-            // ═══════════════════════════════════════════════
-            // SMART JOIN (voorkomt rechte lijnen)
-            // ═══════════════════════════════════════════════
-
-            if (i > 0 && fullCoords.length > 0) {
-                const prevEnd = fullCoords[fullCoords.length - 1];
-                const currStart = coords[0];
-
-                // alleen verwijderen als ze quasi identiek zijn
-                if (dist(prevEnd, currStart) < 0.00005) {
-                    coords = coords.slice(1);
-                }
+        const res = await fetch(
+            'https://api.openrouteservice.org/v2/directions/cycling-regular/geojson',
+            {
+                method: 'POST',
+                headers: {
+                    'Authorization': ORS_KEY,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    coordinates: selectedPoints,
+                    elevation: true,
+                    optimized: false
+                })
             }
+        );
 
-            fullCoords = fullCoords.concat(coords);
-        }
-
-        // ═══════════════════════════════════════════════
-        // RENDER ROUTE
-        // ═══════════════════════════════════════════════
+        const data = await res.json();
+        const route = data.features[0];
 
         if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
 
-        plannerRouteLayer = L.geoJSON({
-            type: "Feature",
-            geometry: {
-                type: "LineString",
-                coordinates: fullCoords
-            }
-        }, {
+        plannerRouteLayer = L.geoJSON(route, {
             style: {
                 color: 'var(--cc-custom-blue)',
                 weight: 5,
@@ -1255,10 +1202,7 @@ window.buildRoute = async function() {
             padding: [50, 50]
         });
 
-        lastRouteCoords = fullCoords;
-
-        document.getElementById('chartBox').style.display = 'block';
-        drawElevationChart(fullCoords);
+        drawElevationChart(route.geometry.coordinates);
         showVideos();
 
     } catch (err) {
@@ -1272,24 +1216,20 @@ window.buildRoute = async function() {
 
 
 // ═══════════════════════════════════════════════════════
-//  UI
+// UI
 // ═══════════════════════════════════════════════════════
 
 function updatePlannerUI() {
     const list = document.getElementById('selectedList');
     if (!list) return;
 
-    if (selectedClimbs.length === 0) {
-        list.innerHTML = '<em style="color:#bbb;font-size:0.82rem;padding:8px 0;display:block;">No sectors added yet.</em>';
-        return;
-    }
-
-    list.innerHTML = selectedClimbs.map((s, i) => `
-        <div class="selected-item">
-            <span><strong>${i + 1}.</strong> ${s.name}</span>
-            <button onclick="removeFromPlanner(${i})">×</button>
-        </div>
-    `).join('');
+    list.innerHTML = selectedClimbs.length
+        ? selectedClimbs.map((s, i) => `
+            <div class="selected-item">
+                <span><strong>${i + 1}.</strong> ${s.name}</span>
+            </div>
+        `).join('')
+        : '<em style="color:#bbb;font-size:0.82rem;">No sectors added yet.</em>';
 }
 
 
