@@ -55,10 +55,10 @@
             "title": "Looks easy… until you ride it",
             "description": "There is no shortcut on the Knokteberg. Often overlooked compared to the famous cobbled giants of Flanders, this 1.2-kilometer ascent is a silent test of endurance. Without the cobbles to betray your traction, the asphalt seems forgiving… until your legs burn and your lungs scream. Every pedal stroke becomes a small battle, and every turn of the corner reminds you that even a “simple” climb can break you. The Knokteberg may not have the fame of the Koppenberg or Oude Kwaremont, but it leaves no mercy for those who underestimate it.",
             "category": "gem",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.74998,
+            "start_lon": 3.52942,
+            "stop_lat": 50.764448,
+            "stop_lon": 3.528318
         },
         {
             "id": 3,
@@ -95,10 +95,10 @@
             "title": "Banned",
             "description": "Short, steep and brutal; this is the Kortekeer experience.",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.80114,
+            "start_lon": 3.578505,
+            "stop_lat": 50.795584,
+            "stop_lon": 3.58849
         },
         {
             "id": 5,
@@ -115,10 +115,10 @@
             "title": "Riding the legendary Boonenberg",
             "description": "There is no hiding on the Taaienberg. Known to locals and pros alike as the 'Boonenberg', this iconic stretch of cobbles is where the spring classics truly begin. It’s a short, explosive burst of power where the legendary Tom Boonen used to test his rivals' legs year after year. From the narrow gutter to the bone-shaking stones at the crest, the Taaienberg is a pure test of grit and anaerobic capacity.",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.79478,
+            "start_lon": 3.62684,
+            "stop_lat": 50.795692,
+            "stop_lon": 3.634793
         },
         {
             "id": 6,
@@ -135,10 +135,10 @@
             "title": "Can you conquer this 21% cobbled wall?",
             "description": "Berg ten Houte isn't about grand vistas or tactical pacing; it’s a direct, rhythmic battle against the incline. While other climbs in the region offer moments of relief, this forest road in Maarkedal is a relentless push over perfectly laid cobbles. It’s a climb that strips cycling back to the basics: your tires against the stone, your lungs against the gradient. There are no tricks here—just a steady, punishing rise through the trees that rewards those who can hold their tempo until the very last meter.",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.78541,
+            "start_lon": 3.654,
+            "stop_lat": 50.77833,
+            "stop_lon": 3.66039
         },
         {
             "id": 7,
@@ -155,10 +155,10 @@
             "title": "2.1 km of pure cobbled endurance",
             "description": "Enjoy the legendary Oude Kwaremont in Kluisbergen, Belgium – the most iconic cobbled climb of the Tour of Flanders (Ronde van Vlaanderen). This 2.1km brute tests your grit with its punishing uneven cobbles and a deceptive false flat that never seems to end.",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.78475,
+            "start_lon": 3.52514,
+            "stop_lat": 50.769436,
+            "stop_lon": 3.529479
         },
         {
             "id": 8,
@@ -175,10 +175,10 @@
             "title": "The brutal final ascent of Flanders",
             "description": "The Paterberg may be short, but it’s a total leg-breaker. As the final climb of the Ronde van Vlaanderen, it’s a 360-meter sprint against gravity on brutal, uneven cobbles. One mistake and you’re walking. Are you brave enough to take on the 20% incline?",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.782657,
+            "start_lon": 3.544092,
+            "stop_lat": 50.78208,
+            "stop_lon": 3.5486
         },
         {
             "id": 9,
@@ -195,10 +195,10 @@
             "title": "The infamous E3-Col",
             "description": "Ride up the challenging Karnemelkbeek in Ronse, Belgium on a misty morning – a demanding climb that combines rolling Flemish roads with a serious sting in the tail, featuring a max gradient of 12.2%.",
             "category": "gem",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.750817,
+            "start_lon": 3.544548,
+            "stop_lat": 50.761766,
+            "stop_lon": 3.539929
         },
         {
             "id": 10,
@@ -215,10 +215,10 @@
             "title": "Quiet but demanding climb in Flanders",
             "description": "Located in the heart of the Flemish Ardennes, the Hoogberg stretches for 1.6 kilometers and takes you up 73 meters in elevation. With an average gradient of 4.6% and a maximum of 7.7%, the Hoogberg is not the steepest or most famous climb in the area, but it is steady and demanding.\nThe road rises consistently through the trees before opening up onto a more exposed section near the top. Many riders find that the real challenge lies in maintaining rhythm on the long, gradual slopes rather than fighting extreme steepness. When the wind picks up on the ridge, the final part can feel especially tough. It’s a classic Flemish climb — honest, unrelenting, and a true test of endurance.",
             "category": "gem",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.779594,
+            "start_lon": 3.57074,
+            "stop_lat": 50.764507,
+            "stop_lon": 3.58259
         },
         {
             "id": 11,
@@ -235,10 +235,10 @@
             "title": "The calf-crusher you’ve never heard of.",
             "description": "Kuithol is short but undeniably steep. It stretches for just 0.5 kilometers and gains around 40 meters in elevation. With an average gradient around 7.5% and ramps reaching up to 18% it's pretty demanding. Riders often describe it as tougher than the numbers suggest.",
             "category": "gem",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.774494,
+            "start_lon": 3.583316,
+            "stop_lat": 50.776267,
+            "stop_lon": 3.589107
         },
         {
             "id": 12,
@@ -255,10 +255,10 @@
             "title": "The cobbled spine-rattler of Flanders",
             "description": "",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.810374,
+            "start_lon": 3.601548,
+            "stop_lat": 50.804511,
+            "stop_lon": 3.612748
         },
         {
             "id": 13,
