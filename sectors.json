@@ -15,10 +15,10 @@
             "title": "The roof of the Tour of Flanders",
             "description": "The Hotondberg isn't about a short burst of violence; it’s about the relentless grind to the summit. As the highest point in the region, it’s a test of stamina that stretches far longer than the explosive climbs nearby. While others offer cobbles, the Hotond offers a stunning, sweeping ascent through the trees that will leave your lungs searching for air. It’s the ultimate tactical climb—one where the wind at the top can be just as punishing as the gradient.",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.7648,
+            "start_lon": 3.5864,
+            "stop_lat": 50.7612,
+            "stop_lon": 3.5678
         },
         {
             "id": 1,
@@ -35,10 +35,10 @@
             "title": "The silent killer of Ronse",
             "description": "Ride up the legendary Oude Kruisberg in Ronse, Belgium – a short but punishing cobbled climb with an average gradient of 6% and ramps close to 10%. \n\nIn this video you get an on‑bike view of the uneven cobbles, the changing gradient and the atmosphere of one of Flanders’ classic hills. Perfect if you’re exploring iconic climbs, planning a cycling trip to Flanders, or just want to feel the pain of the Kruisberg from home.",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.754086,
+            "start_lon": 3.593222,
+            "stop_lat": 50.759908,
+            "stop_lon": 3.587779
         },
         {
             "id": 2,
