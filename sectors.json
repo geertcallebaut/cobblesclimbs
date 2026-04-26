@@ -14,7 +14,11 @@
             "yt": "6_XqtNJsaqI",
             "title": "The roof of the Tour of Flanders",
             "description": "The Hotondberg isn't about a short burst of violence; it’s about the relentless grind to the summit. As the highest point in the region, it’s a test of stamina that stretches far longer than the explosive climbs nearby. While others offer cobbles, the Hotond offers a stunning, sweeping ascent through the trees that will leave your lungs searching for air. It’s the ultimate tactical climb—one where the wind at the top can be just as punishing as the gradient.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.761166,
+            "start_lon": 3.569186,
+            "stop_lat": 50.761166,
+            "stop_lon": 3.569186
         },
         {
             "id": 1,
@@ -30,7 +34,11 @@
             "yt": "EjfUhXIjEnc",
             "title": "The silent killer of Ronse",
             "description": "Ride up the legendary Oude Kruisberg in Ronse, Belgium – a short but punishing cobbled climb with an average gradient of 6% and ramps close to 10%. \n\nIn this video you get an on‑bike view of the uneven cobbles, the changing gradient and the atmosphere of one of Flanders’ classic hills. Perfect if you’re exploring iconic climbs, planning a cycling trip to Flanders, or just want to feel the pain of the Kruisberg from home.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.758191,
+            "start_lon": 3.589777,
+            "stop_lat": 50.758191,
+            "stop_lon": 3.589777
         },
         {
             "id": 2,
@@ -46,7 +54,11 @@
             "yt": "AtJElvBQkns",
             "title": "Looks easy… until you ride it",
             "description": "There is no shortcut on the Knokteberg. Often overlooked compared to the famous cobbled giants of Flanders, this 1.2-kilometer ascent is a silent test of endurance. Without the cobbles to betray your traction, the asphalt seems forgiving… until your legs burn and your lungs scream. Every pedal stroke becomes a small battle, and every turn of the corner reminds you that even a “simple” climb can break you. The Knokteberg may not have the fame of the Koppenberg or Oude Kwaremont, but it leaves no mercy for those who underestimate it.",
-            "category": "gem"
+            "category": "gem",
+            "start_lat": 50.760624,
+            "start_lon": 3.52871,
+            "stop_lat": 50.760624,
+            "stop_lon": 3.52871
         },
         {
             "id": 3,
@@ -62,7 +74,11 @@
             "yt": "v7yWchoAQso",
             "title": "Flanders deadliest",
             "description": "There is no mercy on the Koppenberg. Often called the 'Bult van Melden', this is arguably the most feared climb in all of Flanders. It’s a 563-meter battle against gravity where the race isn't won, but frequently lost. With a maximum gradient of 19.6%, these aren't just stones; they are a psychological barrier.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.811162,
+            "start_lon": 3.578337,
+            "stop_lat": 50.811162,
+            "stop_lon": 3.578337
         },
         {
             "id": 4,
@@ -78,7 +94,11 @@
             "yt": "",
             "title": "Banned",
             "description": "Short, steep and brutal; this is the Kortekeer experience.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.796565,
+            "start_lon": 3.587301,
+            "stop_lat": 50.796565,
+            "stop_lon": 3.587301
         },
         {
             "id": 5,
@@ -94,7 +114,11 @@
             "yt": "9BtNmQ47CVI",
             "title": "Riding the legendary Boonenberg",
             "description": "There is no hiding on the Taaienberg. Known to locals and pros alike as the 'Boonenberg', this iconic stretch of cobbles is where the spring classics truly begin. It’s a short, explosive burst of power where the legendary Tom Boonen used to test his rivals' legs year after year. From the narrow gutter to the bone-shaking stones at the crest, the Taaienberg is a pure test of grit and anaerobic capacity.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.795863,
+            "start_lon": 3.631055,
+            "stop_lat": 50.795863,
+            "stop_lon": 3.631055
         },
         {
             "id": 6,
@@ -110,7 +134,11 @@
             "yt": "cERF08kTA2A",
             "title": "Can you conquer this 21% cobbled wall?",
             "description": "Berg ten Houte isn't about grand vistas or tactical pacing; it’s a direct, rhythmic battle against the incline. While other climbs in the region offer moments of relief, this forest road in Maarkedal is a relentless push over perfectly laid cobbles. It’s a climb that strips cycling back to the basics: your tires against the stone, your lungs against the gradient. There are no tricks here—just a steady, punishing rise through the trees that rewards those who can hold their tempo until the very last meter.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.780707,
+            "start_lon": 3.658527,
+            "stop_lat": 50.780707,
+            "stop_lon": 3.658527
         },
         {
             "id": 7,
@@ -126,7 +154,11 @@
             "yt": "wXc9kmH9yuU",
             "title": "2.1 km of pure cobbled endurance",
             "description": "Enjoy the legendary Oude Kwaremont in Kluisbergen, Belgium – the most iconic cobbled climb of the Tour of Flanders (Ronde van Vlaanderen). This 2.1km brute tests your grit with its punishing uneven cobbles and a deceptive false flat that never seems to end.",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.772888,
+            "start_lon": 3.527756,
+            "stop_lat": 50.772888,
+            "stop_lon": 3.527756
         },
         {
             "id": 8,
@@ -142,7 +174,11 @@
             "yt": "9uMNclE84jM",
             "title": "The brutal final ascent of Flanders",
             "description": "The Paterberg may be short, but it’s a total leg-breaker. As the final climb of the Ronde van Vlaanderen, it’s a 360-meter sprint against gravity on brutal, uneven cobbles. One mistake and you’re walking. Are you brave enough to take on the 20% incline?",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.782252,
+            "start_lon": 3.547205,
+            "stop_lat": 50.782252,
+            "stop_lon": 3.547205
         },
         {
             "id": 9,
@@ -158,7 +194,11 @@
             "yt": "5wg2tb6jnIQ",
             "title": "The infamous E3-Col",
             "description": "Ride up the challenging Karnemelkbeek in Ronse, Belgium on a misty morning – a demanding climb that combines rolling Flemish roads with a serious sting in the tail, featuring a max gradient of 12.2%.",
-            "category": "gem"
+            "category": "gem",
+            "start_lat": 50.758609,
+            "start_lon": 3.53807,
+            "stop_lat": 50.758609,
+            "stop_lon": 3.53807
         },
         {
             "id": 10,
@@ -174,7 +214,11 @@
             "yt": "kBVBiFwVvOE",
             "title": "Quiet but demanding climb in Flanders",
             "description": "Located in the heart of the Flemish Ardennes, the Hoogberg stretches for 1.6 kilometers and takes you up 73 meters in elevation. With an average gradient of 4.6% and a maximum of 7.7%, the Hoogberg is not the steepest or most famous climb in the area, but it is steady and demanding.\nThe road rises consistently through the trees before opening up onto a more exposed section near the top. Many riders find that the real challenge lies in maintaining rhythm on the long, gradual slopes rather than fighting extreme steepness. When the wind picks up on the ridge, the final part can feel especially tough. It’s a classic Flemish climb — honest, unrelenting, and a true test of endurance.",
-            "category": "gem"
+            "category": "gem",
+            "start_lat": 50.768332,
+            "start_lon": 3.576849,
+            "stop_lat": 50.768332,
+            "stop_lon": 3.576849
         },
         {
             "id": 11,
@@ -190,7 +234,11 @@
             "yt": "PhTzxMr6yow",
             "title": "The calf-crusher you’ve never heard of.",
             "description": "Kuithol is short but undeniably steep. It stretches for just 0.5 kilometers and gains around 40 meters in elevation. With an average gradient around 7.5% and ramps reaching up to 18% it's pretty demanding. Riders often describe it as tougher than the numbers suggest.",
-            "category": "gem"
+            "category": "gem",
+            "start_lat": 50.775798,
+            "start_lon": 3.587726,
+            "stop_lat": 50.775798,
+            "stop_lon": 3.587726
         },
         {
             "id": 12,
@@ -206,7 +254,11 @@
             "yt": "",
             "title": "The cobbled spine-rattler of Flanders",
             "description": "",
-            "category": "classic"
+            "category": "classic",
+            "start_lat": 50.807112,
+            "start_lon": 3.606721,
+            "stop_lat": 50.807112,
+            "stop_lon": 3.606721
         },
         {
             "id": 13,
@@ -222,7 +274,11 @@
             "yt": "",
             "title": "A hidden gem that makes you sweat",
             "description": "",
-            "category": "gem"
+            "category": "gem",
+            "start_lat": 50.71239,
+            "start_lon": 3.624293,
+            "stop_lat": 50.71239,
+            "stop_lon": 3.624293
         },
         {
             "id": 14,
@@ -238,7 +294,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.839909,
+            "start_lon": 3.720901,
+            "stop_lat": 50.839909,
+            "stop_lon": 3.720901
         },
         {
             "id": 15,
@@ -254,7 +314,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.833844,
+            "start_lon": 3.773414,
+            "stop_lat": 50.833844,
+            "stop_lon": 3.773414
         },
         {
             "id": 16,
@@ -270,7 +334,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.711183,
+            "start_lon": 3.623399,
+            "stop_lat": 50.711183,
+            "stop_lon": 3.623399
         },
         {
             "id": 17,
@@ -286,7 +354,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.819784,
+            "start_lon": 3.683771,
+            "stop_lat": 50.819784,
+            "stop_lon": 3.683771
         },
         {
             "id": 18,
@@ -302,7 +374,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.844823,
+            "start_lon": 3.760731,
+            "stop_lat": 50.844823,
+            "stop_lon": 3.760731
         },
         {
             "id": 19,
@@ -318,7 +394,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.822173,
+            "start_lon": 3.664082,
+            "stop_lat": 50.822173,
+            "stop_lon": 3.664082
         },
         {
             "id": 20,
@@ -334,7 +414,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.768683,
+            "start_lon": 3.936865,
+            "stop_lat": 50.768683,
+            "stop_lon": 3.936865
         },
         {
             "id": 21,
@@ -350,7 +434,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.799455,
+            "start_lon": 3.630632,
+            "stop_lat": 50.799455,
+            "stop_lon": 3.630632
         },
         {
             "id": 22,
@@ -366,7 +454,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.777393,
+            "start_lon": 3.695505,
+            "stop_lat": 50.777393,
+            "stop_lon": 3.695505
         },
         {
             "id": 23,
@@ -382,7 +474,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.687306,
+            "start_lon": 3.601122,
+            "stop_lat": 50.687306,
+            "stop_lon": 3.601122
         },
         {
             "id": 24,
@@ -398,7 +494,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.752925,
+            "start_lon": 3.869953,
+            "stop_lat": 50.752925,
+            "stop_lon": 3.869953
         },
         {
             "id": 25,
@@ -414,7 +514,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.773708,
+            "start_lon": 3.994458,
+            "stop_lat": 50.773708,
+            "stop_lon": 3.994458
         },
         {
             "id": 26,
@@ -430,7 +534,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.816927,
+            "start_lon": 3.466731,
+            "stop_lat": 50.816927,
+            "stop_lon": 3.466731
         },
         {
             "id": 27,
@@ -446,7 +554,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.875245,
+            "start_lon": 3.594398,
+            "stop_lat": 50.875245,
+            "stop_lon": 3.594398
         },
         {
             "id": 28,
@@ -462,7 +574,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.711174,
+            "start_lon": 3.651345,
+            "stop_lat": 50.711174,
+            "stop_lon": 3.651345
         },
         {
             "id": 29,
@@ -478,7 +594,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.783808,
+            "start_lon": 3.786915,
+            "stop_lat": 50.783808,
+            "stop_lon": 3.786915
         },
         {
             "id": 30,
@@ -494,7 +614,11 @@
             "yt": "",
             "title": "",
             "description": "",
-            "category": ""
+            "category": "",
+            "start_lat": 50.761642,
+            "start_lon": 3.652166,
+            "stop_lat": 50.761642,
+            "stop_lon": 3.652166
         }
     ]
 }
