@@ -1117,143 +1117,195 @@ const hasVideo = s.yt && s.yt.trim() !== "";
 // ═══════════════════════════════════════════════════════
 //  ROUTE PLANNER LOGIC
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  ROUTE PLANNER STATE
+// ═══════════════════════════════════════════════════════
 
-window.usedEdges = new Set();
+window.selectedClimbs = window.selectedClimbs || [];
 
-function normalizeEdge(a, b) {
-    const k1 = `${a[0].toFixed(6)},${a[1].toFixed(6)}`;
-    const k2 = `${b[0].toFixed(6)},${b[1].toFixed(6)}`;
-    return k1 < k2 ? `${k1}-${k2}` : `${k2}-${k1}`;
-}
 
-function addEdge(a, b) {
-    const key = normalizeEdge(a, b);
-    if (usedEdges.has(key)) return false;
-    usedEdges.add(key);
-    return true;
-}
-	
-let lastStop = null;
+// ═══════════════════════════════════════════════════════
+//  ADD TO PLANNER (SIMPEL + CORRECT)
+// ═══════════════════════════════════════════════════════
 
 window.addToPlanner = function(id) {
     const sector = archiveData.sectors.find(s => s.id === id);
-    if (!sector || selectedClimbs.find(s => s.id === id)) return;
+    if (!sector) return;
+
+    // prevent duplicates
+    if (selectedClimbs.find(s => s.id === id)) return;
 
     selectedClimbs.push(sector);
 
-    let start, stop;
-
-    if (sector.start_lat && sector.start_lon && sector.stop_lat && sector.stop_lon) {
-
-        start = [sector.start_lon, sector.start_lat];
-        stop  = [sector.stop_lon, sector.stop_lat];
-
-        const key = normalizeEdge(start, stop);
-        if (usedEdges.has(key)) return;
-
-        usedEdges.add(key);
-
-    } else if (sector.start_lat && sector.start_lon) {
-
-        start = [sector.start_lon, sector.start_lat];
-        stop = null;
-
-    } else {
-
-        start = [sector.lon, sector.lat];
-        stop = null;
-    }
-
-    // 👉 BELANGRIJK: alleen START naar ORS
-    selectedPoints.push(start);
-
     updatePlannerUI();
+
     map.closePopup();
 
     const plannerDetails = document.querySelector('.sidebar-section.planner-box details');
     if (plannerDetails) plannerDetails.open = true;
 };
-	
+
+
+// ═══════════════════════════════════════════════════════
+//  REMOVE
+// ═══════════════════════════════════════════════════════
+
 window.removeFromPlanner = function(idx) {
     selectedClimbs.splice(idx, 1);
-    selectedPoints.splice(idx, 1);
     updatePlannerUI();
 };
+
+
+// ═══════════════════════════════════════════════════════
+//  BUILD ROUTE (BELANGRIJKSTE FIX)
+// ═══════════════════════════════════════════════════════
+
+window.buildRoute = async function() {
+
+    if (selectedClimbs.length < 1) {
+        alert('Add at least 1 sector.');
+        return;
+    }
+
+    const btn = document.getElementById('btnBuild');
+    btn.innerHTML = 'Calculating…';
+    btn.disabled = true;
+
+    try {
+
+        let fullCoords = [];
+
+        for (let i = 0; i < selectedClimbs.length; i++) {
+
+            const s = selectedClimbs[i];
+
+            if (!s.start_lat || !s.start_lon || !s.stop_lat || !s.stop_lon) continue;
+
+            const start = [s.start_lon, s.start_lat];
+            const stop  = [s.stop_lon, s.stop_lat];
+
+            const res = await fetch(
+                'https://api.openrouteservice.org/v2/directions/cycling-regular/geojson',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': ORS_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        coordinates: [start, stop],
+                        elevation: true,
+                        optimized: false
+                    })
+                }
+            );
+
+            const data = await res.json();
+            let coords = data.features[0].geometry.coordinates;
+
+            // 🔥 BELANGRIJK: voorkom dubbele join points
+            if (i > 0) coords.shift();
+
+            fullCoords = fullCoords.concat(coords);
+        }
+
+        // remove old layer
+        if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
+
+        // draw route
+        plannerRouteLayer = L.geoJSON(
+            {
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: fullCoords
+                }
+            },
+            {
+                style: {
+                    color: 'var(--cc-custom-blue)',
+                    weight: 5,
+                    opacity: 0.9
+                }
+            }
+        ).addTo(map);
+
+        map.fitBounds(plannerRouteLayer.getBounds(), {
+            padding: [50, 50]
+        });
+
+        lastRouteCoords = fullCoords;
+
+        document.getElementById('chartBox').style.display = 'block';
+        drawElevationChart(fullCoords);
+        showVideos();
+
+    } catch (err) {
+        console.error(err);
+        alert('Could not calculate route.');
+    } finally {
+        btn.innerHTML = '<i class="fa-solid fa-person-cycling"></i> Build Route';
+        btn.disabled = false;
+    }
+};
+
+
+// ═══════════════════════════════════════════════════════
+//  UI
+// ═══════════════════════════════════════════════════════
 
 function updatePlannerUI() {
     const list = document.getElementById('selectedList');
     if (!list) return;
+
     if (selectedClimbs.length === 0) {
         list.innerHTML = '<em style="color:#bbb;font-size:0.82rem;padding:8px 0;display:block;">No sectors added yet.</em>';
-    } else {
-        list.innerHTML = selectedClimbs.map((s, i) => `
-            <div class="selected-item">
-                <span><strong>${i + 1}.</strong> ${s.name}</span>
-                <button onclick="removeFromPlanner(${i})">×</button>
-            </div>`).join('');
+        return;
     }
+
+    list.innerHTML = selectedClimbs.map((s, i) => `
+        <div class="selected-item">
+            <span><strong>${i + 1}.</strong> ${s.name}</span>
+            <button onclick="removeFromPlanner(${i})">×</button>
+        </div>
+    `).join('');
 }
 
-window.buildRoute = async function() {
-    if (selectedPoints.length < 2) { alert('Add at least 2 sectors.'); return; }
-    const btn = document.getElementById('btnBuild');
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculating…';
-    btn.disabled = true;
-    try {
-        const res = await fetch('https://api.openrouteservice.org/v2/directions/cycling-regular/geojson', {
-            method: 'POST',
-            headers: { 'Authorization': ORS_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ coordinates: selectedPoints, elevation: true, continue_straight: true, optimized: false })
-        });
-        const data = await res.json();
-        const route = data.features[0];
-        if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
-        
-        plannerRouteLayer = L.geoJSON(route, { 
-            style: { color: 'var(--cc-custom-blue)', weight: 5, opacity: 0.9 } 
-        }).addTo(map);
-        
-        map.fitBounds(plannerRouteLayer.getBounds(), { padding: [50, 50] });
-        lastRouteCoords = route.geometry.coordinates;
-        document.getElementById('chartBox').style.display = 'block';
-        drawElevationChart(lastRouteCoords);
-        showVideos();
-    } catch (err) { 
-        console.error(err);
-        alert('Could not calculate route.'); 
-    } finally { 
-        btn.innerHTML = '<i class="fa-solid fa-person-cycling"></i> Build Route'; 
-        btn.disabled = false; 
-    }
-};
+
+// ═══════════════════════════════════════════════════════
+//  ELEVATION CHART (ongewijzigd)
+// ═══════════════════════════════════════════════════════
 
 function drawElevationChart(coords) {
     if (elevChart) elevChart.destroy();
+
     const elevations = coords.map(c => c[2] || 0);
+
     let dist = 0;
     const labels = coords.map((c, i) => {
         if (i > 0) {
-            const dx = c[0] - coords[i-1][0], dy = c[1] - coords[i-1][1];
-            dist += Math.sqrt(dx*dx + dy*dy) * 111.32;
+            const dx = c[0] - coords[i - 1][0];
+            const dy = c[1] - coords[i - 1][1];
+            dist += Math.sqrt(dx * dx + dy * dy) * 111.32;
         }
         return dist.toFixed(1);
     });
-    
+
     elevChart = new Chart(document.getElementById('elevationChart'), {
         type: 'line',
         data: {
             labels,
-            datasets: [{ 
-                data: elevations, 
-                borderColor: 'var(--cc-dark-green)', 
-                backgroundColor: 'rgba(26,60,52,0.12)', 
-                pointRadius: 0, 
+            datasets: [{
+                data: elevations,
+                borderColor: 'var(--cc-dark-green)',
+                backgroundColor: 'rgba(26,60,52,0.12)',
+                pointRadius: 0,
                 fill: true,
                 tension: 0.3
             }]
         },
-        options: { 
-            responsive: true, 
+        options: {
+            responsive: true,
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
