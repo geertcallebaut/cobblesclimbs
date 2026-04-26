@@ -1133,6 +1133,8 @@ function addEdge(a, b) {
     return true;
 }
 	
+let lastStop = null;
+
 window.addToPlanner = function(id) {
     const sector = archiveData.sectors.find(s => s.id === id);
     if (!sector || selectedClimbs.find(s => s.id === id)) return;
@@ -1144,24 +1146,42 @@ window.addToPlanner = function(id) {
         const start = [sector.start_lon, sector.start_lat];
         const stop  = [sector.stop_lon, sector.stop_lat];
 
-        // edge check (geen overlap)
-        if (!addEdge(start, stop)) {
-            console.log("Overlap vermeden:", sector.name);
-            updatePlannerUI();
-            return;
+        const edgeKey = normalizeEdge(start, stop);
+        if (usedEdges.has(edgeKey)) return;
+
+        usedEdges.add(edgeKey);
+
+        // 👉 FIX: force continuity
+        if (lastStop) {
+            selectedPoints.push(lastStop);
         }
 
-        // 👉 FIX: voeg start + stop toe, MAAR als 1 segment context
         selectedPoints.push(start);
         selectedPoints.push(stop);
 
+        lastStop = stop;
+
     } else if (sector.start_lat && sector.start_lon) {
 
-        selectedPoints.push([sector.start_lon, sector.start_lat]);
+        const p = [sector.start_lon, sector.start_lat];
+
+        if (lastStop) {
+            selectedPoints.push(lastStop);
+        }
+
+        selectedPoints.push(p);
+        lastStop = p;
 
     } else {
 
-        selectedPoints.push([sector.lon, sector.lat]);
+        const p = [sector.lon, sector.lat];
+
+        if (lastStop) {
+            selectedPoints.push(lastStop);
+        }
+
+        selectedPoints.push(p);
+        lastStop = p;
     }
 
     updatePlannerUI();
@@ -1170,7 +1190,6 @@ window.addToPlanner = function(id) {
     const plannerDetails = document.querySelector('.sidebar-section.planner-box details');
     if (plannerDetails) plannerDetails.open = true;
 };
-
 window.removeFromPlanner = function(idx) {
     selectedClimbs.splice(idx, 1);
     selectedPoints.splice(idx, 1);
