@@ -1124,10 +1124,10 @@ window.addToPlanner = function(id) {
     selectedClimbs.push(sector);
 
     // === NIEUWE LOGICA: richting respecteren ===
-    if (sector.start_lat && sector.start_lon && sector.end_lat && sector.end_lon) {
+    if (sector.start_lat && sector.start_lon && sector.stop_lat && sector.stop_lon) {
         // Gebruik start → end als twee waypoints (dwingt de juiste richting af)
         selectedPoints.push([sector.start_lon, sector.start_lat]);   // [lon, lat] zoals ORS verwacht
-        selectedPoints.push([sector.end_lon, sector.end_lat]);
+        selectedPoints.push([sector.stop_lon, sector.stop_lat]);
     } else if (sector.start_lat && sector.start_lon) {
         // Alleen startpunt beschikbaar → gebruik dat + middenpunt als fallback
         selectedPoints.push([sector.start_lon, sector.start_lat]);
