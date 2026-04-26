@@ -1201,42 +1201,34 @@ window.buildRoute = async function() {
             );
 
             const data = await res.json();
-            let coords = data.features[0].geometry.coordinates;
+            const coords = data.features[0].geometry.coordinates;
 
-            // 🔥 BELANGRIJK: voorkom dubbele join points
+            // 🔥 voorkom duplicate join points
             if (i > 0) coords.shift();
 
             fullCoords = fullCoords.concat(coords);
         }
 
-        // remove old layer
         if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
 
-        // draw route
-        plannerRouteLayer = L.geoJSON(
-            {
-                type: "Feature",
-                geometry: {
-                    type: "LineString",
-                    coordinates: fullCoords
-                }
-            },
-            {
-                style: {
-                    color: 'var(--cc-custom-blue)',
-                    weight: 5,
-                    opacity: 0.9
-                }
+        plannerRouteLayer = L.geoJSON({
+            type: "Feature",
+            geometry: {
+                type: "LineString",
+                coordinates: fullCoords
             }
-        ).addTo(map);
+        }, {
+            style: {
+                color: 'var(--cc-custom-blue)',
+                weight: 5,
+                opacity: 0.9
+            }
+        }).addTo(map);
 
         map.fitBounds(plannerRouteLayer.getBounds(), {
             padding: [50, 50]
         });
 
-        lastRouteCoords = fullCoords;
-
-        document.getElementById('chartBox').style.display = 'block';
         drawElevationChart(fullCoords);
         showVideos();
 
