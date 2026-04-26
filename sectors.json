@@ -75,10 +75,10 @@
             "title": "Flanders deadliest",
             "description": "There is no mercy on the Koppenberg. Often called the 'Bult van Melden', this is arguably the most feared climb in all of Flanders. It’s a 563-meter battle against gravity where the race isn't won, but frequently lost. With a maximum gradient of 19.6%, these aren't just stones; they are a psychological barrier.",
             "category": "classic",
-            "start_lat": 3.5724,
-            "start_lon": 50.8127,
-            "stop_lat": 3.5823,
-            "stop_lon": 50.8105
+            "start_lat": 50.8127,
+            "start_lon": 3.5724,
+            "stop_lat": 50.8105,
+            "stop_lon": 3.5823
         },
         {
             "id": 4,
