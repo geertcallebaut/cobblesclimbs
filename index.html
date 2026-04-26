@@ -1117,30 +1117,59 @@ const hasVideo = s.yt && s.yt.trim() !== "";
 // ═══════════════════════════════════════════════════════
 //  ROUTE PLANNER LOGIC
 // ═══════════════════════════════════════════════════════
+
+window.usedEdges = new Set();
+
+function normalizeEdge(a, b) {
+    const k1 = `${a[0].toFixed(6)},${a[1].toFixed(6)}`;
+    const k2 = `${b[0].toFixed(6)},${b[1].toFixed(6)}`;
+    return k1 < k2 ? `${k1}-${k2}` : `${k2}-${k1}`;
+}
+
+function addEdge(a, b) {
+    const key = normalizeEdge(a, b);
+    if (usedEdges.has(key)) return false;
+    usedEdges.add(key);
+    return true;
+}
+	
 window.addToPlanner = function(id) {
     const sector = archiveData.sectors.find(s => s.id === id);
     if (!sector || selectedClimbs.find(s => s.id === id)) return;
 
     selectedClimbs.push(sector);
 
-    // === NIEUWE LOGICA: richting respecteren ===
+    // === EDGE TRACKING (geen overlap) ===
     if (sector.start_lat && sector.start_lon && sector.stop_lat && sector.stop_lon) {
-        // Gebruik start → end als twee waypoints (dwingt de juiste richting af)
-        selectedPoints.push([sector.start_lon, sector.start_lat]);   // [lon, lat] zoals ORS verwacht
-        selectedPoints.push([sector.stop_lon, sector.stop_lat]);
+
+        const a = [sector.start_lon, sector.start_lat];
+        const b = [sector.stop_lon, sector.stop_lat];
+
+        // skip als dit segment al bestaat (in welke richting ook)
+        if (!addEdge(a, b)) {
+            console.log("Overlap vermeden:", sector.name);
+            updatePlannerUI();
+            return;
+        }
+
+        // 👉 BELANGRIJK: enkel START punt naar ORS
+        selectedPoints.push(a);
+
     } else if (sector.start_lat && sector.start_lon) {
-        // Alleen startpunt beschikbaar → gebruik dat + middenpunt als fallback
-        selectedPoints.push([sector.start_lon, sector.start_lat]);
-        selectedPoints.push([sector.lon, sector.lat]);
+
+        const a = [sector.start_lon, sector.start_lat];
+
+        // optional: ook hier checken tegen vorige punten
+        selectedPoints.push(a);
+
     } else {
-        // Fallback: gewoon het middenpunt (oude gedrag)
+
         selectedPoints.push([sector.lon, sector.lat]);
     }
 
     updatePlannerUI();
     map.closePopup();
 
-    // Open planner automatisch
     const plannerDetails = document.querySelector('.sidebar-section.planner-box details');
     if (plannerDetails) plannerDetails.open = true;
 };
