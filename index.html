@@ -1117,22 +1117,22 @@ const hasVideo = s.yt && s.yt.trim() !== "";
 // ═══════════════════════════════════════════════════════
 //  ROUTE PLANNER LOGIC
 // ═══════════════════════════════════════════════════════
+
 // ═══════════════════════════════════════════════════════
-//  ROUTE PLANNER STATE
+//  STATE
 // ═══════════════════════════════════════════════════════
 
 window.selectedClimbs = window.selectedClimbs || [];
 
 
 // ═══════════════════════════════════════════════════════
-//  ADD TO PLANNER (SIMPEL + CORRECT)
+//  ADD TO PLANNER
 // ═══════════════════════════════════════════════════════
 
 window.addToPlanner = function(id) {
     const sector = archiveData.sectors.find(s => s.id === id);
     if (!sector) return;
 
-    // prevent duplicates
     if (selectedClimbs.find(s => s.id === id)) return;
 
     selectedClimbs.push(sector);
@@ -1157,7 +1157,18 @@ window.removeFromPlanner = function(idx) {
 
 
 // ═══════════════════════════════════════════════════════
-//  BUILD ROUTE (BELANGRIJKSTE FIX)
+//  DISTANCE HELPER (for clean stitching)
+// ═══════════════════════════════════════════════════════
+
+function dist(a, b) {
+    const dx = a[0] - b[0];
+    const dy = a[1] - b[1];
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+
+// ═══════════════════════════════════════════════════════
+//  BUILD ROUTE (STABLE VERSION)
 // ═══════════════════════════════════════════════════════
 
 window.buildRoute = async function() {
@@ -1201,13 +1212,28 @@ window.buildRoute = async function() {
             );
 
             const data = await res.json();
-            const coords = data.features[0].geometry.coordinates;
+            let coords = data.features[0].geometry.coordinates;
 
-            // 🔥 voorkom duplicate join points
-            if (i > 0) coords.shift();
+            // ═══════════════════════════════════════════════
+            // SMART JOIN (voorkomt rechte lijnen)
+            // ═══════════════════════════════════════════════
+
+            if (i > 0 && fullCoords.length > 0) {
+                const prevEnd = fullCoords[fullCoords.length - 1];
+                const currStart = coords[0];
+
+                // alleen verwijderen als ze quasi identiek zijn
+                if (dist(prevEnd, currStart) < 0.00005) {
+                    coords = coords.slice(1);
+                }
+            }
 
             fullCoords = fullCoords.concat(coords);
         }
+
+        // ═══════════════════════════════════════════════
+        // RENDER ROUTE
+        // ═══════════════════════════════════════════════
 
         if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
 
@@ -1229,6 +1255,9 @@ window.buildRoute = async function() {
             padding: [50, 50]
         });
 
+        lastRouteCoords = fullCoords;
+
+        document.getElementById('chartBox').style.display = 'block';
         drawElevationChart(fullCoords);
         showVideos();
 
@@ -1265,7 +1294,7 @@ function updatePlannerUI() {
 
 
 // ═══════════════════════════════════════════════════════
-//  ELEVATION CHART (ongewijzigd)
+//  ELEVATION CHART (unchanged)
 // ═══════════════════════════════════════════════════════
 
 function drawElevationChart(coords) {
@@ -1273,14 +1302,14 @@ function drawElevationChart(coords) {
 
     const elevations = coords.map(c => c[2] || 0);
 
-    let dist = 0;
+    let distVal = 0;
     const labels = coords.map((c, i) => {
         if (i > 0) {
             const dx = c[0] - coords[i - 1][0];
             const dy = c[1] - coords[i - 1][1];
-            dist += Math.sqrt(dx * dx + dy * dy) * 111.32;
+            distVal += Math.sqrt(dx * dx + dy * dy) * 111.32;
         }
-        return dist.toFixed(1);
+        return distVal.toFixed(1);
     });
 
     elevChart = new Chart(document.getElementById('elevationChart'), {
@@ -1306,33 +1335,6 @@ function drawElevationChart(coords) {
             }
         }
     });
-}
-function showVideos() {
-    const videos = selectedClimbs.filter(s => s.yt);
-
-    if (videos.length === 0) {
-        document.getElementById('videoContainer').innerHTML = '';
-        return;
-    }
-
-    document.getElementById('videoContainer').innerHTML = `
-        <div style="max-width:1200px;margin:10px auto 0;padding:0 20px;">
-            <h3 style="margin:10px 0 6px;font-size:0.95rem;color:#333;">
-                Watch the climbs on your route:
-            </h3>
-        </div>
-        <div style="display:flex;gap:15px;overflow-x:auto;padding:10px 20px 4px;max-width:1200px;margin:0 auto;">
-            ${videos.map(s => `
-                <iframe src="https://www.youtube.com/embed/${s.yt}"
-                        title="${s.name}"
-                        frameborder="0"
-                        allowfullscreen
-                        loading="lazy"
-                        style="flex:0 0 300px;height:170px;border-radius:8px;background:#000;border:none;">
-                </iframe>
-            `).join('')}
-        </div>
-    `;
 }
 
 window.downloadGPX = function() {
