@@ -1141,48 +1141,31 @@ window.addToPlanner = function(id) {
 
     selectedClimbs.push(sector);
 
+    let start, stop;
+
     if (sector.start_lat && sector.start_lon && sector.stop_lat && sector.stop_lon) {
 
-        const start = [sector.start_lon, sector.start_lat];
-        const stop  = [sector.stop_lon, sector.stop_lat];
+        start = [sector.start_lon, sector.start_lat];
+        stop  = [sector.stop_lon, sector.stop_lat];
 
-        const edgeKey = normalizeEdge(start, stop);
-        if (usedEdges.has(edgeKey)) return;
+        const key = normalizeEdge(start, stop);
+        if (usedEdges.has(key)) return;
 
-        usedEdges.add(edgeKey);
-
-        // 👉 FIX: force continuity
-        if (lastStop) {
-            selectedPoints.push(lastStop);
-        }
-
-        selectedPoints.push(start);
-        selectedPoints.push(stop);
-
-        lastStop = stop;
+        usedEdges.add(key);
 
     } else if (sector.start_lat && sector.start_lon) {
 
-        const p = [sector.start_lon, sector.start_lat];
-
-        if (lastStop) {
-            selectedPoints.push(lastStop);
-        }
-
-        selectedPoints.push(p);
-        lastStop = p;
+        start = [sector.start_lon, sector.start_lat];
+        stop = null;
 
     } else {
 
-        const p = [sector.lon, sector.lat];
-
-        if (lastStop) {
-            selectedPoints.push(lastStop);
-        }
-
-        selectedPoints.push(p);
-        lastStop = p;
+        start = [sector.lon, sector.lat];
+        stop = null;
     }
+
+    // 👉 BELANGRIJK: alleen START naar ORS
+    selectedPoints.push(start);
 
     updatePlannerUI();
     map.closePopup();
@@ -1190,6 +1173,7 @@ window.addToPlanner = function(id) {
     const plannerDetails = document.querySelector('.sidebar-section.planner-box details');
     if (plannerDetails) plannerDetails.open = true;
 };
+	
 window.removeFromPlanner = function(idx) {
     selectedClimbs.splice(idx, 1);
     selectedPoints.splice(idx, 1);
