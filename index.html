@@ -1174,7 +1174,7 @@ window.buildRoute = async function() {
         const res = await fetch('https://api.openrouteservice.org/v2/directions/cycling-regular/geojson', {
             method: 'POST',
             headers: { 'Authorization': ORS_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ coordinates: selectedPoints, elevation: true })
+            body: JSON.stringify({ coordinates: selectedPoints, elevation: true, continue_straight: true, optimized: false })
         });
         const data = await res.json();
         const route = data.features[0];
