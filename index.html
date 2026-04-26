@@ -1139,28 +1139,25 @@ window.addToPlanner = function(id) {
 
     selectedClimbs.push(sector);
 
-    // === EDGE TRACKING (geen overlap) ===
     if (sector.start_lat && sector.start_lon && sector.stop_lat && sector.stop_lon) {
 
-        const a = [sector.start_lon, sector.start_lat];
-        const b = [sector.stop_lon, sector.stop_lat];
+        const start = [sector.start_lon, sector.start_lat];
+        const stop  = [sector.stop_lon, sector.stop_lat];
 
-        // skip als dit segment al bestaat (in welke richting ook)
-        if (!addEdge(a, b)) {
+        // edge check (geen overlap)
+        if (!addEdge(start, stop)) {
             console.log("Overlap vermeden:", sector.name);
             updatePlannerUI();
             return;
         }
 
-        // 👉 BELANGRIJK: enkel START punt naar ORS
-        selectedPoints.push(a);
+        // 👉 FIX: voeg start + stop toe, MAAR als 1 segment context
+        selectedPoints.push(start);
+        selectedPoints.push(stop);
 
     } else if (sector.start_lat && sector.start_lon) {
 
-        const a = [sector.start_lon, sector.start_lat];
-
-        // optional: ook hier checken tegen vorige punten
-        selectedPoints.push(a);
+        selectedPoints.push([sector.start_lon, sector.start_lat]);
 
     } else {
 
