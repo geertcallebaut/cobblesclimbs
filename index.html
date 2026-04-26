@@ -1118,13 +1118,11 @@ const hasVideo = s.yt && s.yt.trim() !== "";
 //  ROUTE PLANNER LOGIC
 // ═══════════════════════════════════════════════════════
 
-
 // ═══════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════
 
 window.selectedClimbs = window.selectedClimbs || [];
-window.selectedPoints = window.selectedPoints || [];
 
 
 // ═══════════════════════════════════════════════════════
@@ -1139,26 +1137,17 @@ window.addToPlanner = function(id) {
 
     selectedClimbs.push(sector);
 
-    // ✔ we bouwen ORS waypoints op (START + STOP)
-    if (sector.start_lon && sector.start_lat) {
-        selectedPoints.push([sector.start_lon, sector.start_lat]);
-    }
-
-    if (sector.stop_lon && sector.stop_lat) {
-        selectedPoints.push([sector.stop_lon, sector.stop_lat]);
-    }
-
     updatePlannerUI();
 };
 
 
 // ═══════════════════════════════════════════════════════
-// BUILD ROUTE (SINGLE ORS CALL → NO ARTIFACTS)
+// BUILD ROUTE (FIXED ORS INPUT STRUCTURE)
 // ═══════════════════════════════════════════════════════
 
 window.buildRoute = async function() {
 
-    if (selectedPoints.length < 2) {
+    if (selectedClimbs.length < 1) {
         alert('Add at least 1 sector.');
         return;
     }
@@ -1169,6 +1158,20 @@ window.buildRoute = async function() {
 
     try {
 
+        // ✔ FIX: correcte segment-opbouw voor ORS
+        const coordinates = [];
+
+        for (const s of selectedClimbs) {
+
+            if (!s.start_lon || !s.start_lat || !s.stop_lon || !s.stop_lat) continue;
+
+            const start = [s.start_lon, s.start_lat];
+            const stop  = [s.stop_lon, s.stop_lat];
+
+            coordinates.push(start);
+            coordinates.push(stop);
+        }
+
         const res = await fetch(
             'https://api.openrouteservice.org/v2/directions/cycling-regular/geojson',
             {
@@ -1178,7 +1181,7 @@ window.buildRoute = async function() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    coordinates: selectedPoints,
+                    coordinates: coordinates,
                     elevation: true,
                     optimized: false
                 })
