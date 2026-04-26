@@ -34,7 +34,7 @@
         },
         {
             "id": 2,
-            "name": "Knokteberg / Côte de Trieu",
+            "name": "Knokteberg",
             "type": "climb",
             "lat": 50.760624,
             "lon": 3.52871,
@@ -210,7 +210,7 @@
         },
         {
             "id": 13,
-            "name": "L' Arabie",
+            "name": "Arabie",
             "type": "climb",
             "lat": 50.71239,
             "lon": 3.624293,
@@ -450,7 +450,7 @@
         },
         {
             "id": 28,
-            "name": "Côte Séménil",
+            "name": "Séménil",
             "type": "climb",
             "lat": 50.711174,
             "lon": 3.651345,
