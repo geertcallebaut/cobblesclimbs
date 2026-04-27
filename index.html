@@ -755,7 +755,7 @@ let activeGeoRouteId = null;
 let bounds        = L.latLngBounds();
 
 const markers        = {};
-const markersByType  = { cobbles: [], climb: [], cobbled_climb: [] };
+const markersByType  = { cobbled section: [], climb: [], cobbled climb: [] };
 const geoRouteLayers = {};
 const routeProperties = {};
 
@@ -767,7 +767,7 @@ let plannerRouteLayer = null;
 let elevChart         = null;
 
 const ORS_KEY = '5b3ce3597851110001cf624809fc31f2fa624a95a6c3439d4e6eec25';
-const themeVisible = { cobbles: true, climb: true, cobbled_climb: true, routes: false };
+const themeVisible = { cobbled section: true, climb: true, cobbled climb: true, routes: false };
 
 // ═══════════════════════════════════════════════════════
 //  NAV & HELPERS
@@ -792,9 +792,9 @@ function getMarkerColor(s) {
     }
     // Anders: gebruik de kleur behorend bij het type
     const colors = { 
-        cobbles: '#8c8c8c', 
+        cobbled section: '#8c8c8c', 
         climb: '#1a3c34', 
-        cobbled_climb: '#c62828' 
+        cobbled climb: '#c62828' 
     };
     return colors[s.type] || '#1a3c34';
 }
@@ -900,9 +900,9 @@ function addLegend() {
         div.innerHTML = `
             <strong>Legend & Filters</strong>
             <div class="legend-body">
-                <div class="legend-item" data-theme="cobbles"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbles</div>
+                <div class="legend-item" data-theme="cobbled section"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbled section</div>
                 <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1a3c34"></span> Climb</div>
-                <div class="legend-item" data-theme="cobbled_climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
+                <div class="legend-item" data-theme="cobbled climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
 <div class="legend-item inactive" data-theme="routes">
     <span style="display:inline-block;width:18px;height:0;border-top:3px dashed var(--cc-route-orange);vertical-align:middle;"></span> Route
 </div>
