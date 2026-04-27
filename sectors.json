@@ -23,7 +23,7 @@
         {
             "id": 1,
             "name": "Oude Kruisberg",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.758191,
             "lon": 3.589777,
             "dist": 0.84,
@@ -63,7 +63,7 @@
         {
             "id": 3,
             "name": "Koppenberg",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.811162,
             "lon": 3.578337,
             "dist": 0.56,
@@ -103,7 +103,7 @@
         {
             "id": 5,
             "name": "Taaienberg",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.795863,
             "lon": 3.631055,
             "dist": 0.64,
@@ -123,7 +123,7 @@
         {
             "id": 6,
             "name": "Berg ten Houte",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.780707,
             "lon": 3.658527,
             "dist": 1.1,
@@ -143,7 +143,7 @@
         {
             "id": 7,
             "name": "Oude Kwaremont",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.772888,
             "lon": 3.527756,
             "dist": 2.1,
@@ -163,7 +163,7 @@
         {
             "id": 8,
             "name": "Paterberg",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.782252,
             "lon": 3.547205,
             "dist": 0.34,
@@ -243,7 +243,7 @@
         {
             "id": 12,
             "name": "Mariaborrestraat",
-            "type": "cobbles",
+            "type": "cobbled section",
             "lat": 50.807112,
             "lon": 3.606721,
             "dist": 1.1,
@@ -403,7 +403,7 @@
         {
             "id": 20,
             "name": "Bosberg",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.768683,
             "lon": 3.936865,
             "dist": 1.0,
@@ -443,7 +443,7 @@
         {
             "id": 22,
             "name": "Bosterij",
-            "type": "cobbled_climb",
+            "type": "cobbled climb",
             "lat": 50.777393,
             "lon": 3.695505,
             "dist": 1.4,
@@ -543,7 +543,7 @@
         {
             "id": 27,
             "name": "Doorn",
-            "type": "cobbles",
+            "type": "cobbled section",
             "lat": 50.875245,
             "lon": 3.594398,
             "dist": 1.5,
