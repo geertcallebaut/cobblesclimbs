@@ -7,7 +7,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-9H693SN34Q');
+      gtag('config', 'G-7NMJ87NDBC');
     </script>
 
     <meta charset="UTF-8">
@@ -26,9 +26,9 @@
     <meta property="og:url" content="https://www.cobblesclimbs.com/sectors/koppenberg.html">
     <meta property="og:title" content="Koppenberg – Flanders deadliest | Cobbles & Climbs">
     <meta property="og:description" content="0.56 km · 61 m · avg 11.4% · max 19.6%. Watch the 4K video and plan your ride.">
-    <meta property="og:image" content="https://www.cobblesclimbs.com/img/sectors/koppenberg-og.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://img.youtube.com/vi/v7yWchoAQso/maxresdefault.jpg">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
     <meta property="og:image:alt" content="Koppenberg – Flemish cycling climb">
     <meta property="og:site_name" content="Cobbles & Climbs">
     <meta property="og:locale" content="en_GB">
@@ -38,13 +38,32 @@
     <meta name="twitter:site" content="@CobblesClimbs">
     <meta name="twitter:title" content="Koppenberg – Flanders deadliest">
     <meta name="twitter:description" content="0.56 km · 61 m · avg 11.4%">
-    <meta name="twitter:image" content="https://www.cobblesclimbs.com/img/sectors/koppenberg-og.jpg">
+    <meta name="twitter:image" content="https://img.youtube.com/vi/v7yWchoAQso/maxresdefault.jpg">
 
     <!-- Geo -->
     <meta name="geo.region" content="BE-VWV">
     <meta name="geo.placename" content="Flemish Ardennes, Belgium">
 
-    <!-- Structured data: Climb -->
+    <!-- Structured data: VideoObject (top-level voor Google video-indexering) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Koppenberg cycling climb – 4K",
+      "description": "There is no mercy on the Koppenberg. Often called the 'Bult van Melden', this is arguably the most feared climb in all of Flanders. It’s a 563-meter battle against gravity where the race isn't won, but frequently lost. With a maximum gradient of 19.6%, these aren't just stones; they are a psychological barrier.",
+      "thumbnailUrl": "https://img.youtube.com/vi/v7yWchoAQso/maxresdefault.jpg",
+      "embedUrl": "https://www.youtube.com/embed/v7yWchoAQso",
+      "uploadDate": "{{upload_date}}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cobbles & Climbs",
+        "url": "https://www.cobblesclimbs.com",
+        "logo": { "@type": "ImageObject", "url": "https://www.cobblesclimbs.com/channels4_profile.png" }
+      }
+    }
+    </script>
+
+    <!-- Structured data: SportsActivityLocation -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -80,49 +99,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Nearby sectors: random suggesties uit sectors.json -->
-<script>
-(function() {
-    var currentName = 'Koppenberg';
-
-    function toSlug(name) {
-        return name
-            .toLowerCase()
-            .normalize('NFD').replace(/[̀-ͯ]/g, '')  // diacritics
-            .replace(/[^a-z0-9\s-]/g, '')                    // speciale tekens weg
-            .trim()
-            .replace(/\s+/g, '-');                            // spaties naar koppelteken
-    }
-
-    fetch('/sectors.json')
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-            var others = data.sectors.filter(function(s) {
-                return s.name !== currentName && s.yt;
-            });
-            // Shuffle
-            for (var i = others.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var tmp = others[i]; others[i] = others[j]; others[j] = tmp;
-            }
-            var picks = others.slice(0, 4);
-            var container = document.getElementById('nearbySectors');
-            container.innerHTML = picks.map(function(s) {
-                var slug = toSlug(s.name);
-                return '<a href="/sectors/' + slug + '.html">' + s.name + '</a>';
-            }).join('');
-        })
-        .catch(function() {
-            // Fallback bij geen server
-            document.getElementById('nearbySectors').innerHTML =
-                '<a href="/sectors/koppenberg.html">Koppenberg</a>' +
-                '<a href="/sectors/paterberg.html">Paterberg</a>' +
-                '<a href="/sectors/oude-kwaremont.html">Oude Kwaremont</a>';
-        });
-})();
-</script>
-
-<!-- Leaflet -->
+    <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <!-- Favicons -->
@@ -389,7 +366,7 @@
 
     <h1>Koppenberg</h1>
     <p class="body-text">
-        The Koppenberg is a 0.56 km climb with 61 metres of elevation gain. With an average gradient of 11.4% and ramps reaching up to 19.6%, it's one of the standout sectors in the region.
+        The Koppenberg is a 0.56 km cobbled climb with 61 metres of elevation gain. With an average gradient of 11.4% and ramps reaching up to 19.6%, it's one of the standout sectors in the region.
     </p>
 
     <p class="body-text">There is no mercy on the Koppenberg. Often called the 'Bult van Melden', this is arguably the most feared climb in all of Flanders. It’s a 563-meter battle against gravity where the race isn't won, but frequently lost. With a maximum gradient of 19.6%, these aren't just stones; they are a psychological barrier.</p>
@@ -398,7 +375,7 @@
     <p class="section-label">Route map</p>
     <div id="map" data-lat="50.811162" data-lon="3.578337" role="application" aria-label="Map showing Koppenberg location"></div>
 
-    <!-- Nearby sectors — random suggesties uit sectors.json -->
+    <!-- Nearby sectors -->
     <div class="nearby">
         <h3><i class="fa-solid fa-mountain" aria-hidden="true"></i> Combine with nearby sectors</h3>
         <div class="nearby-links" id="nearbySectors">
@@ -440,11 +417,9 @@
 
 <footer>
     <p>&copy; 2026 Cobbles &amp; Climbs •
-	<a href="/">Home</a> • 
+    <a href="/">Home</a> • 
     <a href="../sitemap.html">All sectors</a></p>
 </footer>
-
-
 
 <script>
     /* ── Mobile menu (identical to index) ── */
@@ -457,7 +432,7 @@
     });
 </script>
 
-<!-- Nearby sectors: random suggesties uit sectors.json -->
+<!-- Nearby sectors: random suggestions from sectors.json -->
 <script>
 (function() {
     var currentName = 'Koppenberg';
@@ -465,10 +440,10 @@
     function toSlug(name) {
         return name
             .toLowerCase()
-            .normalize('NFD').replace(/[̀-ͯ]/g, '')  // diacritics
-            .replace(/[^a-z0-9\s-]/g, '')                    // speciale tekens weg
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9\s-]/g, '')
             .trim()
-            .replace(/\s+/g, '-');                            // spaties naar koppelteken
+            .replace(/\s+/g, '-');
     }
 
     fetch('/sectors.json')
@@ -477,7 +452,6 @@
             var others = data.sectors.filter(function(s) {
                 return s.name !== currentName && s.yt;
             });
-            // Shuffle
             for (var i = others.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
                 var tmp = others[i]; others[i] = others[j]; others[j] = tmp;
@@ -490,7 +464,6 @@
             }).join('');
         })
         .catch(function() {
-            // Fallback bij geen server
             document.getElementById('nearbySectors').innerHTML =
                 '<a href="/sectors/koppenberg.html">Koppenberg</a>' +
                 '<a href="/sectors/paterberg.html">Paterberg</a>' +

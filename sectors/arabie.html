@@ -26,9 +26,9 @@
     <meta property="og:url" content="https://www.cobblesclimbs.com/sectors/arabie.html">
     <meta property="og:title" content="Arabie – A hidden gem that makes you sweat | Cobbles & Climbs">
     <meta property="og:description" content="1.4 km · 84 m · avg 6% · max 12..5%. Watch the 4K video and plan your ride.">
-    <meta property="og:image" content="https://www.cobblesclimbs.com/img/sectors/arabie-og.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://img.youtube.com/vi//maxresdefault.jpg">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
     <meta property="og:image:alt" content="Arabie – Flemish cycling climb">
     <meta property="og:site_name" content="Cobbles & Climbs">
     <meta property="og:locale" content="en_GB">
@@ -38,13 +38,32 @@
     <meta name="twitter:site" content="@CobblesClimbs">
     <meta name="twitter:title" content="Arabie – A hidden gem that makes you sweat">
     <meta name="twitter:description" content="1.4 km · 84 m · avg 6%">
-    <meta name="twitter:image" content="https://www.cobblesclimbs.com/img/sectors/arabie-og.jpg">
+    <meta name="twitter:image" content="https://img.youtube.com/vi//maxresdefault.jpg">
 
     <!-- Geo -->
     <meta name="geo.region" content="BE-VWV">
     <meta name="geo.placename" content="Flemish Ardennes, Belgium">
 
-    <!-- Structured data: Climb + VideoObject -->
+    <!-- Structured data: VideoObject (top-level voor Google video-indexering) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "Arabie cycling climb – 4K",
+      "description": "",
+      "thumbnailUrl": "https://img.youtube.com/vi//maxresdefault.jpg",
+      "embedUrl": "https://www.youtube.com/embed/",
+      "uploadDate": "{{upload_date}}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cobbles & Climbs",
+        "url": "https://www.cobblesclimbs.com",
+        "logo": { "@type": "ImageObject", "url": "https://www.cobblesclimbs.com/channels4_profile.png" }
+      }
+    }
+    </script>
+
+    <!-- Structured data: SportsActivityLocation -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -67,19 +86,6 @@
           "https://www.instagram.com/CobblesClimbs",
           "https://www.strava.com/clubs/CobblesClimbs"
         ]
-      },
-      "video": {
-        "@type": "VideoObject",
-        "name": "Arabie cycling climb – 4K",
-        "description": "",
-        "thumbnailUrl": "https://img.youtube.com/vi//maxresdefault.jpg",
-        "embedUrl": "https://www.youtube.com/embed/",
-        "uploadDate": "{{upload_date}}",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Cobbles & Climbs",
-          "url": "https://www.cobblesclimbs.com"
-        }
       }
     }
     </script>
