@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://www.cobblesclimbs.com/sitemap.xml
+Sitemap: https://www.cobblesclimbs.com/sitemap-video.xml
