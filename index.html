@@ -12,13 +12,13 @@
   });
 
   // 🔥 FORCE pageview
-  // window.addEventListener('load', function() {
-  //   gtag('event', 'page_view', {
-  //     page_title: document.title,
-  //     page_location: window.location.href,
-  //     page_path: window.location.pathname
-  //   });
-  // });
+  window.addEventListener('load', function() {
+    gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname
+    });
+  });
 </script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
@@ -723,6 +723,12 @@
 
         <div class="chart-box" id="chartBox">
             <h3>Elevation Profile</h3>
+            <div id="elevationStats" style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:10px;font-size:0.82rem;color:#444;">
+                <span><strong id="statDist">—</strong> <span style="color:#888;">km</span></span>
+                <span><strong id="statAscent">—</strong> <span style="color:#888;">m ascent</span></span>
+                <span><strong id="statDescent">—</strong> <span style="color:#888;">m descent</span></span>
+                <span><strong id="statHigh">—</strong> <span style="color:#888;">m highest point</span></span>
+            </div>
             <div class="chart-wrapper">
                 <canvas id="elevationChart"></canvas>
             </div>
@@ -765,6 +771,7 @@ let selectedPoints    = [];
 let lastRouteCoords   = null;
 let plannerRouteLayer = null;
 let elevChart         = null;
+let hoverMarker       = null;
 
 const ORS_KEY = '5b3ce3597851110001cf624809fc31f2fa624a95a6c3439d4e6eec25';
 const themeVisible  = { "cobbled section": true, "climb": true, "cobbled climb": true, routes: false };
@@ -1201,15 +1208,47 @@ window.buildRoute = async function() {
 function drawElevationChart(coords) {
     if (elevChart) elevChart.destroy();
     const elevations = coords.map(c => c[2] || 0);
-    let dist = 0;
-    const labels = coords.map((c, i) => {
+    let dist = 0, totalAscent = 0, totalDescent = 0;
+
+    // Bereken cumulatieve afstand per punt + ascent/descent
+    const distances = [0];
+    coords.forEach((c, i) => {
         if (i > 0) {
             const dx = c[0] - coords[i-1][0], dy = c[1] - coords[i-1][1];
             dist += Math.sqrt(dx*dx + dy*dy) * 111.32;
+            const dElev = elevations[i] - elevations[i-1];
+            if (dElev > 0) totalAscent += dElev;
+            else totalDescent += Math.abs(dElev);
         }
-        return dist.toFixed(1);
+        distances.push(dist);
     });
-    
+    distances.shift(); // verwijder dubbele 0
+
+    const labels = distances.map(d => d.toFixed(1));
+    const highPoint = Math.max(...elevations);
+
+    document.getElementById('statDist').textContent    = dist.toFixed(1);
+    document.getElementById('statAscent').textContent  = Math.round(totalAscent);
+    document.getElementById('statDescent').textContent = Math.round(totalDescent);
+    document.getElementById('statHigh').textContent    = Math.round(highPoint);
+
+    // Wijs aan elk routepunt de dichtstbijzijnde sector toe
+    function haversine(lat1, lon1, lat2, lon2) {
+        const R = 6371, dLat = (lat2-lat1)*Math.PI/180, dLon = (lon2-lon1)*Math.PI/180;
+        const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    const sectorAtPoint = coords.map(c => {
+        let best = null, bestDist = Infinity;
+        selectedClimbs.forEach(s => {
+            const d = haversine(c[1], c[0], s.lat, s.lon);
+            if (d < bestDist) { bestDist = d; best = s; }
+        });
+        // Alleen toewijzen als binnen 1.5 km van sectorcentrum
+        return bestDist < 1.5 ? best : null;
+    });
+
     elevChart = new Chart(document.getElementById('elevationChart'), {
         type: 'line',
         data: {
@@ -1226,7 +1265,57 @@ function drawElevationChart(coords) {
         options: { 
             responsive: true, 
             maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
+            interaction: { mode: 'index', intersect: false },
+            onHover: function(evt, active) {
+                if (!active || active.length === 0 || !lastRouteCoords) {
+                    if (hoverMarker) { map.removeLayer(hoverMarker); hoverMarker = null; }
+                    return;
+                }
+                const idx = active[0].index;
+                const c = lastRouteCoords[idx];
+                if (!c) return;
+                const latlng = [c[1], c[0]];
+                if (!hoverMarker) {
+                    hoverMarker = L.circleMarker(latlng, {
+                        radius: 8,
+                        fillColor: '#e07b00',
+                        color: '#fff',
+                        weight: 2,
+                        fillOpacity: 1,
+                        zIndexOffset: 1000
+                    }).addTo(map);
+                } else {
+                    hoverMarker.setLatLng(latlng);
+                }
+            },
+            plugins: { 
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        title: function(items) {
+                            return items[0].label + ' km';
+                        },
+                        label: function(item) {
+                            return '↑ ' + Math.round(item.raw) + ' m';
+                        },
+                        afterBody: function(items) {
+                            const idx = items[0].dataIndex;
+                            const sector = sectorAtPoint[idx];
+                            if (!sector) return [];
+                            const lines = ['', '⛰ ' + sector.name];
+                            if (sector.avg) lines.push('avg ' + sector.avg + '%  ·  max ' + (sector.max || '—') + '%');
+                            if (sector.dist) lines.push(sector.dist + ' km  ·  ' + (sector.ascent || '—') + ' m asc');
+                            return lines;
+                        }
+                    },
+                    displayColors: false,
+                    backgroundColor: 'rgba(26,60,52,0.92)',
+                    titleColor: '#a8d5c8',
+                    bodyColor: '#ffffff',
+                    padding: 10,
+                    cornerRadius: 6
+                }
+            },
             scales: {
                 x: { ticks: { maxTicksLimit: 8, font: { size: 10 } }, grid: { display: false } },
                 y: { ticks: { font: { size: 10 } } }
@@ -1293,6 +1382,7 @@ window.resetRoute = function() {
     selectedClimbs = []; selectedPoints = []; lastRouteCoords = null;
     if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
     document.getElementById('chartBox').style.display = 'none';
+    if (hoverMarker) { map.removeLayer(hoverMarker); hoverMarker = null; }
     document.getElementById('videoContainer').innerHTML = '';
     document.getElementById('gpxPopup').style.display = 'none';
     updatePlannerUI();
