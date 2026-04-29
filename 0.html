@@ -882,21 +882,31 @@ function switchLayer(layerName) {
 }
 
 function applyTheme(theme) {
+    if (theme === 'routes') {
+        themeVisible.routes = !themeVisible.routes;
+        const legItem = document.querySelector(`.legend-item[data-theme="routes"]`);
+        if (legItem) legItem.classList.toggle('inactive', !themeVisible.routes);
+
+        Object.values(geoRouteLayers).forEach(l => {
+            themeVisible.routes ? l.addTo(map) : map.removeLayer(l);
+        });
+        return;
+    }
+
+    // Voor cobbled section, climb en cobbled climb
     themeVisible[theme] = !themeVisible[theme];
     const legItem = document.querySelector(`.legend-item[data-theme="${theme}"]`);
     if (legItem) legItem.classList.toggle('inactive', !themeVisible[theme]);
 
-    if (theme === 'routes') {
-        Object.values(geoRouteLayers).forEach(l =>
-            themeVisible.routes ? l.addTo(map) : map.removeLayer(l)
-        );
-    } else {
-        markersByType[theme].forEach(m =>
-            themeVisible[theme] ? m.addTo(map) : map.removeLayer(m)
-        );
-    }
+    // Alle markers van dit type (zowel met als zonder video)
+    markersByType[theme].forEach(m => {
+        if (themeVisible[theme]) {
+            m.addTo(map);
+        } else {
+            map.removeLayer(m);
+        }
+    });
 }
-
 function addLegend() {
     const legend = L.control({ position: 'bottomright' });
     legend.onAdd = () => {
@@ -1037,22 +1047,22 @@ function initMap() {
     map.setView([50.78, 3.65], 11);
 
     loadGeoRoutes().then(() => {
- archiveData.sectors.sort((a, b) => a.name.localeCompare(b.name)).forEach(s => {
+        archiveData.sectors.sort((a, b) => a.name.localeCompare(b.name)).forEach(s => {
             const hasVideo = s.yt && s.yt.trim() !== "";
 
-            // Kleinere radius voor "coming soon" markers
-            const radius = hasVideo ? (isMobile() ? 7 : 5.5) : (isMobile() ? 4.2 : 3.2);
+            // Radius: coming soon iets kleiner dan actieve markers, maar niet te extreem
+            const radius = hasVideo ? (isMobile() ? 7 : 5.5) : (isMobile() ? 5.0 : 4.0);
 
             const marker = L.circleMarker([s.lat, s.lon], {
                 radius: radius,
-                fillColor: getMarkerColor(s),        // zelfde kleur als categorie
-                color: '#fff',
+                fillColor: getMarkerColor(s),        // dezelfde kleur als categorie
+                color: '#ffffff',
                 weight: hasVideo ? 2 : 1.5,
-                fillOpacity: hasVideo ? 0.95 : 0.68
+                fillOpacity: hasVideo ? 0.95 : 0.75   // iets transparanter
             }).addTo(map);
 
-            // === JOUW ORIGINELE POPUPHTML HIERONDER PLAKKEN ===
-            const popupHTML = `
+            // === JOUW ORIGINELE POPUPHTML (niet wijzigen) ===
+            const popupHTML = ` 
                 <div class="popup-card">
                     ${hasVideo ? `
                         <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
@@ -1100,17 +1110,15 @@ function initMap() {
             bounds.extend([s.lat, s.lon]);
             markers[s.id] = marker;
 
-            // Alleen markers met video toevoegen aan de type-filters
+            // Alleen markers MET video toevoegen aan de toggle-lagen
             if (hasVideo && markersByType[s.type]) {
                 markersByType[s.type].push(marker);
             }
 
             const opt = document.createElement('option');
-            opt.value = s.id; 
-            opt.textContent = s.name;
+            opt.value = s.id; opt.textContent = s.name;
             sectorDropdown.appendChild(opt);
         });
-
         calculateTotals();
         updateDashboard('reset');
         addLegend();
