@@ -1046,23 +1046,22 @@ function initMap() {
     light.addTo(map);
     map.setView([50.78, 3.65], 11);
 
-    loadGeoRoutes().then(() => {
-        archiveData.sectors.sort((a, b) => a.name.localeCompare(b.name)).forEach(s => {
+    loadGeoRoutes().then(() => {        archiveData.sectors.sort((a, b) => a.name.localeCompare(b.name)).forEach(s => {
             const hasVideo = s.yt && s.yt.trim() !== "";
 
-            // Radius: coming soon iets kleiner dan actieve markers, maar niet te extreem
+            // Radius: coming soon iets kleiner, maar niet té klein
             const radius = hasVideo ? (isMobile() ? 7 : 5.5) : (isMobile() ? 5.0 : 4.0);
 
             const marker = L.circleMarker([s.lat, s.lon], {
                 radius: radius,
-                fillColor: getMarkerColor(s),        // dezelfde kleur als categorie
+                fillColor: getMarkerColor(s),
                 color: '#ffffff',
                 weight: hasVideo ? 2 : 1.5,
-                fillOpacity: hasVideo ? 0.95 : 0.75   // iets transparanter
+                fillOpacity: hasVideo ? 0.95 : 0.75
             }).addTo(map);
 
-            // === JOUW ORIGINELE POPUPHTML (niet wijzigen) ===
-            const popupHTML = ` 
+            // === Plaats hier jouw volledige originele popupHTML ===
+            const popupHTML = `
                 <div class="popup-card">
                     ${hasVideo ? `
                         <a href="https://www.youtube.com/watch?v=${s.yt}" target="_blank" rel="noopener noreferrer">
@@ -1110,13 +1109,14 @@ function initMap() {
             bounds.extend([s.lat, s.lon]);
             markers[s.id] = marker;
 
-            // Alleen markers MET video toevoegen aan de toggle-lagen
-            if (hasVideo && markersByType[s.type]) {
+            // === BELANGRIJK: coming soon markers ook toevoegen aan markersByType ===
+            if (markersByType[s.type]) {
                 markersByType[s.type].push(marker);
             }
 
             const opt = document.createElement('option');
-            opt.value = s.id; opt.textContent = s.name;
+            opt.value = s.id; 
+            opt.textContent = s.name;
             sectorDropdown.appendChild(opt);
         });
         calculateTotals();
