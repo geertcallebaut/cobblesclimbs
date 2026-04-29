@@ -52,7 +52,7 @@
     <meta name="twitter:image:alt" content="Cobbles & Climbs — Flemish cycling roads archive">
     <meta name="geo.region" content="BE-VWV">
     <meta name="geo.placename" content="Flemish Ardennes, Belgium">
-    <meta name="theme-color" content="#1a3c34">
+    <meta name="theme-color" content="#1e5c4a">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -80,7 +80,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root { 
-            --cc-dark-green: #1a3c34; 
+            --cc-dark-green: #1e5c4a; 
             --cc-route-orange: #e07b00;
             --cc-custom-blue: #3498db;
         }
@@ -796,15 +796,15 @@ function centerOnLatLng(latLng) {
 function getMarkerColor(s) {
     // Als er geen YouTube ID is (of leeg), maak de marker wit
     if (!s.yt || s.yt.trim() === "") {
-        return '#dddddd';
+        return '#b0b0b0';
     }
     // Anders: gebruik de kleur behorend bij het type
     const colors = { 
-        "cobbled section": '#8c8c8c', 
-        "climb": '#1a3c34', 
-        "cobbled climb": '#c62828' 
+        "cobbled section": '#666666', 
+        "climb": '#1e5c4a', 
+        "cobbled climb": '#d35400' 
     };
-    return colors[s.type] || '#1a3c34';
+    return colors[s.type] || '#1e5c4a';
 }
 
 // ═══════════════════════════════════════════════════════
@@ -909,14 +909,14 @@ function addLegend() {
         div.innerHTML = `
             <strong>Legend & Filters</strong>
             <div class="legend-body">
-                <div class="legend-item" data-theme="cobbled section"><span class="legend-dot" style="background:#8c8c8c"></span> Cobbled section</div>
-                <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1a3c34"></span> Climb</div>
-                <div class="legend-item" data-theme="cobbled climb"><span class="legend-dot" style="background:#c62828"></span> Cobbled climb</div>
+                <div class="legend-item" data-theme="cobbled section"><span class="legend-dot" style="background:#666666"></span> Cobbled section</div>
+                <div class="legend-item" data-theme="climb"><span class="legend-dot" style="background:#1e5c4a"></span> Climb</div>
+                <div class="legend-item" data-theme="cobbled climb"><span class="legend-dot" style="background:#d35400"></span> Cobbled climb</div>
 <div class="legend-item inactive" data-theme="routes">
     <span style="display:inline-block;width:18px;height:0;border-top:3px dashed var(--cc-route-orange);vertical-align:middle;"></span> Route
 </div>
 <div class="legend-item" style="cursor: default; opacity: 1;">
-    <span class="legend-dot" style="background:#dddddd; border: 1px solid #999;"></span> 
+    <span class="legend-dot" style="background:#b0b0b0; border: 1px solid #999;"></span> 
     Coming soon
 </div>
             </div>`;
