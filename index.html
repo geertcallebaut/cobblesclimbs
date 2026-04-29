@@ -719,6 +719,7 @@
             <button class="map-layer-btn" data-layer="osm" aria-pressed="false">OSM</button>
             <button class="map-layer-btn" data-layer="satellite" aria-pressed="false">Satellite</button>
             <button class="map-layer-btn" data-layer="terrain" aria-pressed="false">Terrain</button>
+			<button class="map-layer-btn" data-layer="ngo" aria-pressed="false">Topon</button>
         </div>
 
         <div class="chart-box" id="chartBox">
@@ -870,7 +871,8 @@ function switchLayer(layerName) {
         light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© CartoDB' }),
         osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
         satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
-        terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' })
+        terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' }),
+		ngi: L.tileLayer.wms('https://cartoweb.wms.ngi.be/service', {layers: 'topo', format: 'image/png', transparent: false, version: '1.3.0', attribution: '© NGI CartoWeb.be' })
     };
     const newLayer = layers[layerName];
     if (!newLayer) return;
