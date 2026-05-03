@@ -112,7 +112,7 @@
             "max": "9.2",
             "time": "3:32",
             "yt": "9BtNmQ47CVI",
-            "title": "Riding the legendary Boonenberg",
+            "title": "The legendary Boonenberg",
             "description": "There is no hiding on the Taaienberg. Known to locals and pros alike as the 'Boonenberg', this iconic stretch of cobbles is where the spring classics truly begin. It’s a short, explosive burst of power where the legendary Tom Boonen used to test his rivals' legs year after year. From the narrow gutter to the bone-shaking stones at the crest, the Taaienberg is a pure test of grit and anaerobic capacity.",
             "category": "classic",
             "start_lat": 50.79478,
@@ -295,10 +295,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.840199,
+            "start_lon": 3.717223,
+            "stop_lat": 50.840487,
+            "stop_lon": 3.723517
         },
         {
             "id": 15,
@@ -315,10 +315,10 @@
             "title": "",
             "description": "",
             "category": "classic",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.833863,
+            "start_lon": 3.767367,
+            "stop_lat": 50.83117,
+            "stop_lon": 3.784228
         },
         {
             "id": 16,
@@ -355,10 +355,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.812924,
+            "start_lon": 3.679842,
+            "stop_lat": 50.824666,
+            "stop_lon": 3.685536
         },
         {
             "id": 18,
@@ -395,10 +395,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.818861,
+            "start_lon": 3.663419,
+            "stop_lat": 50.829682,
+            "stop_lon": 3.655678
         },
         {
             "id": 20,
@@ -415,10 +415,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.768241,
+            "start_lon": 3.933592,
+            "stop_lat": 50.76869,
+            "stop_lon": 3.93962
         },
         {
             "id": 21,
@@ -435,10 +435,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.805156,
+            "start_lon": 3.632467,
+            "stop_lat": 50.795986,
+            "stop_lon": 3.635021
         },
         {
             "id": 22,
@@ -455,10 +455,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.784069,
+            "start_lon": 3.694422,
+            "stop_lat": 50.770956,
+            "stop_lon": 3.697395
         },
         {
             "id": 23,
@@ -475,10 +475,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.676937,
+            "start_lon": 3.610362,
+            "stop_lat": 50.687415,
+            "stop_lon": 3.601046
         },
         {
             "id": 24,
@@ -495,10 +495,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.75509,
+            "start_lon": 3.86723,
+            "stop_lat": 50.751679,
+            "stop_lon": 3.872203
         },
         {
             "id": 25,
@@ -515,10 +515,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.774075,
+            "start_lon": 3.992594,
+            "stop_lat": 50.767908,
+            "stop_lon": 4.006553
         },
         {
             "id": 26,
@@ -535,10 +535,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.814203,
+            "start_lon": 3.468897,
+            "stop_lat": 50.817793,
+            "stop_lon": 3.462547
         },
         {
             "id": 27,
@@ -575,10 +575,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.718084,
+            "start_lon": 3.670457,
+            "stop_lat": 50.706495,
+            "stop_lon": 3.648451
         },
         {
             "id": 29,
@@ -595,10 +595,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.787155,
+            "start_lon": 3.790411,
+            "stop_lat": 50.776727,
+            "stop_lon": 3.787141
         },
         {
             "id": 30,
@@ -615,10 +615,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.754852,
+            "start_lon": 3.656474,
+            "stop_lat": 50.765803,
+            "stop_lon": 3.64857
         },
         {
             "id": 31,
@@ -655,10 +655,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.824925,
+            "start_lon": 3.778576,
+            "stop_lat": 50.821267,
+            "stop_lon": 3.784671
         },
         {
             "id": 33,
@@ -735,10 +735,10 @@
             "title": "",
             "description": "",
             "category": "gem",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.742614,
+            "start_lon": 3.604214,
+            "stop_lat": 50.740603,
+            "stop_lon": 3.598056
         },
         {
             "id": 37,
@@ -795,10 +795,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.838077,
+            "start_lon": 3.67702,
+            "stop_lat": 50.8452,
+            "stop_lon": 3.680311
         },
         {
             "id": 40,
@@ -815,10 +815,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.817942,
+            "start_lon": 3.639627,
+            "stop_lat": 50.828355,
+            "stop_lon": 3.635298
         },
         {
             "id": 41,
@@ -835,10 +835,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.841025,
+            "start_lon": 3.635267,
+            "stop_lat": 50.843326,
+            "stop_lon": 3.645805
         },
         {
             "id": 42,
@@ -875,10 +875,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.77329,
+            "start_lon": 3.887727,
+            "stop_lat": 50.771908,
+            "stop_lon": 3.889374
         },
         {
             "id": 44,
@@ -895,10 +895,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.752734,
+            "start_lon": 3.565911,
+            "stop_lat": 50.757307,
+            "stop_lon": 3.568599
         },
         {
             "id": 45,
@@ -915,10 +915,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.817048,
+            "start_lon": 3.622636,
+            "stop_lat": 50.82981,
+            "stop_lon": 3.628932
         },
         {
             "id": 46,
@@ -935,10 +935,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.886247,
+            "start_lon": 3.508736,
+            "stop_lat": 50.88441,
+            "stop_lon": 3.510896
         },
         {
             "id": 47,
@@ -955,10 +955,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.84092,
+            "start_lon": 3.63541,
+            "stop_lat": 50.838632,
+            "stop_lon": 3.643668
         },
         {
             "id": 48,
@@ -975,10 +975,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.807122,
+            "start_lon": 3.69206,
+            "stop_lat": 50.81487,
+            "stop_lon": 3.702333
         },
         {
             "id": 49,
@@ -995,10 +995,10 @@
             "title": "",
             "description": "",
             "category": "",
-            "start_lat": null,
-            "start_lon": null,
-            "stop_lat": null,
-            "stop_lon": null
+            "start_lat": 50.763865,
+            "start_lon": 3.485732,
+            "stop_lat": 50.759031,
+            "stop_lon": 3.483818
         }
     ]
 }
