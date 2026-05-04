@@ -1201,9 +1201,8 @@ window.buildRoute = async function() {
     btn.disabled = true;
 
     try {
-        // 🔥 NIEUW: bouw slimme ketting van punten
-        let orderedPoints = [];
-        let prevPoint = null;
+        let coords = [];
+        let prev = null;
 
         function dist(a, b) {
             const dx = a.lat - b.lat;
@@ -1211,42 +1210,57 @@ window.buildRoute = async function() {
             return dx * dx + dy * dy;
         }
 
-        selectedClimbs.forEach((sector, index) => {
+        selectedClimbs.forEach((sector, i) => {
 
             const start = { lat: sector.startLat, lon: sector.startLon };
             const end   = { lat: sector.endLat,   lon: sector.endLon };
 
-            let from, to;
+            let geom;
 
-            if (!prevPoint) {
-                from = start;
-                to   = end;
-            } else {
-                const dStart = dist(prevPoint, start);
-                const dEnd   = dist(prevPoint, end);
+            // 🔥 BELANGRIJK: gebruik midpoint om ORS te "dwingen"
+            const mid = [
+                (start.lon + end.lon) / 2,
+                (start.lat + end.lat) / 2
+            ];
 
-                if (dStart < dEnd) {
-                    from = start;
-                    to   = end;
+            if (prev) {
+                const d1 = dist(prev, start);
+                const d2 = dist(prev, end);
+
+                if (d1 < d2) {
+                    geom = [
+                        [start.lon, start.lat],
+                        mid,
+                        [end.lon, end.lat]
+                    ];
                 } else {
-                    from = end;
-                    to   = start;
+                    geom = [
+                        [end.lon, end.lat],
+                        mid,
+                        [start.lon, start.lat]
+                    ];
                 }
+            } else {
+                geom = [
+                    [start.lon, start.lat],
+                    mid,
+                    [end.lon, end.lat]
+                ];
             }
 
-            if (index === 0) {
-                orderedPoints.push([from.lon, from.lat]);
+            if (i === 0) {
+                coords.push(...geom);
+            } else {
+                coords.push(...geom.slice(1)); // overlap vermijden
             }
 
-            orderedPoints.push([to.lon, to.lat]);
-
-            prevPoint = to;
+            const last = geom[geom.length - 1];
+            prev = { lat: last[1], lon: last[0] };
         });
 
-        // 👉 vervang oude selectedPoints
-        selectedPoints = orderedPoints;
+        selectedPoints = coords;
 
-        // 🔥 jouw bestaande ORS call blijft
+        // 👉 ORS routing
         const res = await fetch('https://api.openrouteservice.org/v2/directions/cycling-regular/geojson', {
             method: 'POST',
             headers: { 
@@ -1254,10 +1268,10 @@ window.buildRoute = async function() {
                 'Content-Type': 'application/json' 
             },
             body: JSON.stringify({ 
-                coordinates: selectedPoints, 
-                elevation: true, 
-                continue_straight: true, 
-                optimized: false 
+                coordinates: coords,
+                elevation: true,
+                continue_straight: true,
+                optimized: false
             })
         });
 
