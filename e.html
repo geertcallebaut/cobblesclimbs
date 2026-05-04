@@ -1191,29 +1191,93 @@ function updatePlannerUI() {
 }
 
 window.buildRoute = async function() {
-    if (selectedPoints.length < 2) { alert('Add at least 2 sectors.'); return; }
+    if (selectedClimbs.length < 1) { 
+        alert('Add at least 1 sector.'); 
+        return; 
+    }
+
     const btn = document.getElementById('btnBuild');
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculating…';
     btn.disabled = true;
+
     try {
+        // 🔥 NIEUW: bouw slimme ketting van punten
+        let orderedPoints = [];
+        let prevPoint = null;
+
+        function dist(a, b) {
+            const dx = a.lat - b.lat;
+            const dy = a.lon - b.lon;
+            return dx * dx + dy * dy;
+        }
+
+        selectedClimbs.forEach((sector, index) => {
+
+            const start = { lat: sector.startLat, lon: sector.startLon };
+            const end   = { lat: sector.endLat,   lon: sector.endLon };
+
+            let from, to;
+
+            if (!prevPoint) {
+                from = start;
+                to   = end;
+            } else {
+                const dStart = dist(prevPoint, start);
+                const dEnd   = dist(prevPoint, end);
+
+                if (dStart < dEnd) {
+                    from = start;
+                    to   = end;
+                } else {
+                    from = end;
+                    to   = start;
+                }
+            }
+
+            if (index === 0) {
+                orderedPoints.push([from.lon, from.lat]);
+            }
+
+            orderedPoints.push([to.lon, to.lat]);
+
+            prevPoint = to;
+        });
+
+        // 👉 vervang oude selectedPoints
+        selectedPoints = orderedPoints;
+
+        // 🔥 jouw bestaande ORS call blijft
         const res = await fetch('https://api.openrouteservice.org/v2/directions/cycling-regular/geojson', {
             method: 'POST',
-            headers: { 'Authorization': ORS_KEY, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ coordinates: selectedPoints, elevation: true, continue_straight: true, optimized: false })
+            headers: { 
+                'Authorization': ORS_KEY, 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify({ 
+                coordinates: selectedPoints, 
+                elevation: true, 
+                continue_straight: true, 
+                optimized: false 
+            })
         });
+
         const data = await res.json();
         const route = data.features[0];
+
         if (plannerRouteLayer) map.removeLayer(plannerRouteLayer);
-        
+
         plannerRouteLayer = L.geoJSON(route, { 
             style: { color: 'var(--cc-custom-blue)', weight: 5, opacity: 0.9 } 
         }).addTo(map);
-        
+
         map.fitBounds(plannerRouteLayer.getBounds(), { padding: [50, 50] });
+
         lastRouteCoords = route.geometry.coordinates;
+
         document.getElementById('chartBox').style.display = 'block';
         drawElevationChart(lastRouteCoords);
         showVideos();
+
     } catch (err) { 
         console.error(err);
         alert('Could not calculate route.'); 
