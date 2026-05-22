@@ -864,7 +864,7 @@
         {
             "id": 41,
             "name": "Wolvenberg",
-            "type": "cobbled climb",
+            "type": "climb",
             "lat": 50.842422,
             "lon": 3.640652,
             "dist": 0.67,
