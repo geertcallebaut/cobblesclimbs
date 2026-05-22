@@ -160,4 +160,16 @@ The road rises consistently through the trees before opening up onto a more expo
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
+
+  <url>
+    <loc>https://www.cobblesclimbs.com/sectors/wolvenberg.html</loc>
+    <video:video>
+      <video:title>Wolvenberg – 4K cycling climb</video:title>
+      <video:description>666 meters, a devilish road with steep gradients up to 14%.</video:description>
+      <video:thumbnail_loc>https://img.youtube.com/vi/NMK6y0uq-w0/maxresdefault.jpg</video:thumbnail_loc>
+      <video:player_loc>https://www.youtube.com/embed/NMK6y0uq-w0</video:player_loc>
+      <video:publication_date>2026-05-22</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
 </urlset>
