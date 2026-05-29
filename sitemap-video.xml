@@ -172,4 +172,16 @@ The road rises consistently through the trees before opening up onto a more expo
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
+
+  <url>
+    <loc>https://www.cobblesclimbs.com/sectors/ruitersstraat.html</loc>
+    <video:video>
+      <video:title>Ruitersstraat – 4K cycling climb</video:title>
+      <video:description>800 meters of cobblestones that never let you settle. The Ruitersstraat doesn&apos;t hit you with one brutal wall — it keeps shifting, changing gradient and rhythm, grinding you down before you even realise it.</video:description>
+      <video:thumbnail_loc>https://img.youtube.com/vi/GljpIW0w0zo/maxresdefault.jpg</video:thumbnail_loc>
+      <video:player_loc>https://www.youtube.com/embed/GljpIW0w0zo</video:player_loc>
+      <video:publication_date>2026-05-28</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
 </urlset>
