@@ -150,6 +150,20 @@ The road rises consistently through the trees before opening up onto a more expo
   </url>
 
   <url>
+    <loc>https://www.cobblesclimbs.com/sectors/berendries.html</loc>
+    <video:video>
+      <video:title>Berendries – 4K cycling climb</video:title>
+      <video:description>Meet the iconic Berendries in Brakel: 1km long, 6.6% average, max 11%.
+No cobbles, just pure asphalt pain in the heart of the Flemish Ardennes.
+A regular in the Tour of Flanders since 1983 and the favorite climb of Olympic champion Greg Van Avermaet.</video:description>
+      <video:thumbnail_loc>https://img.youtube.com/vi/yOGy89UQdUQ/maxresdefault.jpg</video:thumbnail_loc>
+      <video:player_loc>https://www.youtube.com/embed/yOGy89UQdUQ</video:player_loc>
+      <video:publication_date>2026-06-05</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <url>
     <loc>https://www.cobblesclimbs.com/sectors/molendam.html</loc>
     <video:video>
       <video:title>Molendam – 4K cycling climb</video:title>
