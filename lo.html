@@ -958,7 +958,7 @@ function updateDashboard(data) {
 // ═══════════════════════════════════════════════════════
 function switchLayer(layerName) {
     const layers = {
-        light: L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_43iq_1_31489a4ce7da2492d15cf2e1', { attribution: '© CartoDB' }),
+        light: L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_43iq_1_31489a4ce7da2492d15cf2e1', { attribution: '© CartoDB' }),
         osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }),
         satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '© Esri' }),
         terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '© OpenTopoMap' }),
@@ -1138,7 +1138,7 @@ async function loadSectors() {
 }
 
 function initMap() {
-    const light = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_43iq_1_31489a4ce7da2492d15cf2e1', { attribution: '© CartoDB' });
+    const light = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png?key=cb1_43iq_1_31489a4ce7da2492d15cf2e1', { attribution: '© CartoDB' });
     map = L.map('map', { zoomControl: true, tap: false });
     currentLayer = light;
     light.addTo(map);
