@@ -2,10 +2,10 @@
     "sectors": [
         {
             "id": 0,
-            "name": "Hotondberg",
+            "name": "Montreal",
             "type": "climb",
-            "lat": 45,49848,
-            "lon": -73,5678,
+            "lat": 45.49848,
+            "lon": -73.5678,
             "dist": 0.77,
             "ascent": 32,
             "avg": "4.6",
@@ -16,10 +16,10 @@
             "title": "Montreal 1974 World Championships | How Merckx completed cycling's rarest feat",
             "description": "The Hotondberg isn't about a short burst of violence; it’s about the relentless grind to the summit. As the highest point in the region, it’s a test of stamina that stretches far longer than the explosive climbs nearby. While others offer cobbles, the Hotond offers a stunning, sweeping ascent through the trees that will leave your lungs searching for air. It’s the ultimate tactical climb—one where the wind at the top can be just as punishing as the gradient.",
             "category": "classic",
-            "start_lat": 45,49848,
-            "start_lon": -73,5678,
-            "stop_lat": 45,49848,
-            "stop_lon": -73,5678
+            "start_lat": 45.49848,
+            "start_lon": -73.5678,
+            "stop_lat": 45.49848,
+            "stop_lon": -73.5678
         },
         {
             "id": 1,
