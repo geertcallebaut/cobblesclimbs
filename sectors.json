@@ -2,7 +2,7 @@
     "sectors": [
         {
             "id": 0,
-            "name": "Montreal",
+            "name": "Montreal 1974 World Championships | How Merckx completed cycling's rarest feat",
             "type": "climb",
             "lat": 45.49848,
             "lon": -73.5678,
@@ -23,7 +23,7 @@
         },
         {
             "id": 1,
-            "name": "Blois",
+            "name": "The CRASH that nearly killed MERCKX",
             "type": "cobbled climb",
             "lat": 47.5938,
             "lon": 1.3281,
@@ -34,7 +34,7 @@
             "time": "3:53",
             "yt": "PVf3vynjMcM",
             "upload_date": "2026-08-16",
-            "title": "The silent killer of Ronse",
+            "title": "The CRASH that nearly killed MERCKX",
             "description": "Ride up the legendary Oude Kruisberg in Ronse, Belgium – a short but punishing cobbled climb with an average gradient of 6% and ramps close to 10%. \n\nIn this video you get an on‑bike view of the uneven cobbles, the changing gradient and the atmosphere of one of Flanders’ classic hills. Perfect if you’re exploring iconic climbs, planning a cycling trip to Flanders, or just want to feel the pain of the Kruisberg from home.",
             "category": "classic",
             "start_lat": 50.754086,
