@@ -1,0 +1,13 @@
+{
+  "premiumPartners": [
+    {
+      "name": "Partner Name",
+      "text": "Short description of the partner and why it is relevant to Cobbles & Climbs.",
+      "url": "https://example.com",
+      "logo": "partners/partner-name.png",
+      "lat": 50.0,
+      "lon": 3.0,
+      "active": true
+    }
+  ]
+}
