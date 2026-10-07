@@ -1,0 +1,13 @@
+{
+  "premiumPartners": [
+    {
+      "name": "VeVents",
+      "text": "VeVents connects cyclists with events and experiences, celebrating the passion and heritage of cycling in Flanders.",
+      "url": "http://www.vevents.be",
+      "logo": "partners/vevents.png",
+      "lat": 50.868161,
+      "lon": 3.6029,
+      "active": true
+    }
+  ]
+}
