@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cobbles & Climbs — Story</title>
+  <meta name="description" content="A Cobbles & Climbs story from cycling's past.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root { --green:#1a3c34; --green-mid:#2a5a4f; --gold:#b08d57; --paper:#faf8f5; --ink:#1c1c1c; --muted:#5c5c5c; --border:#e5e0d8; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Roboto,Arial,sans-serif; }
+    .top-header { min-height:76px; padding:10px 40px; display:flex; align-items:center; justify-content:space-between; gap:20px; background:linear-gradient(180deg,#1f453c 0%,var(--green) 100%); border-bottom:3px solid var(--gold); color:#fff; }
+    .brand { color:#fff; text-decoration:none; font-family:'Cormorant Garamond',Georgia,serif; font-size:2rem; font-weight:700; line-height:1; }
+    .brand small { display:block; margin-top:5px; color:#b8d9ce; font-family:Roboto,Arial,sans-serif; font-size:.72rem; font-weight:500; letter-spacing:.1px; }
+    .back-link { color:#fff; text-decoration:none; font-size:.9rem; font-weight:700; }
+    .back-link:hover { color:#f1d7a2; }
+    main { max-width:1080px; margin:0 auto; padding:42px 24px 58px; }
+    .eyebrow { margin:0 0 10px; color:var(--gold); font-size:.75rem; font-weight:900; letter-spacing:1.25px; text-transform:uppercase; }
+    h1, h2 { font-family:'Cormorant Garamond',Georgia,serif; color:var(--green); }
+    h1 { max-width:900px; margin:0; font-size:clamp(2.3rem,5vw,4.4rem); line-height:.98; letter-spacing:-1.1px; }
+    .lead { max-width:760px; margin:24px 0 32px; padding-left:16px; border-left:3px solid var(--gold); color:#454545; font-size:1.08rem; line-height:1.65; }
+    .video { aspect-ratio:16/9; overflow:hidden; border:1px solid #292929; border-radius:12px; background:#111; box-shadow:0 12px 32px rgba(0,0,0,.2); }
+    .video iframe { display:block; width:100%; height:100%; border:0; }
+    .layout { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(270px,.8fr); gap:34px; margin-top:42px; }
+    .story-copy { font-size:1.04rem; line-height:1.75; color:#2f2f2f; }
+    .story-copy h2 { margin:0 0 12px; font-size:2rem; }
+    .story-copy p { white-space:pre-line; }
+    .location-card { padding:18px; border:1px solid var(--border); border-radius:10px; background:#fff; box-shadow:0 3px 14px rgba(0,0,0,.04); }
+    .location-card h2 { margin:0 0 8px; font-size:1.65rem; }
+    .location-card p { margin:0 0 14px; color:var(--muted); font-size:.91rem; line-height:1.55; }
+    #storyMap { height:260px; border-radius:7px; overflow:hidden; }
+    .watch { display:inline-flex; align-items:center; justify-content:center; gap:8px; margin-top:20px; padding:12px 19px; border-radius:25px; background:#c8102e; color:#fff; font-weight:700; text-decoration:none; box-shadow:0 3px 10px rgba(200,16,46,.2); }
+    .watch:hover { background:#a80d26; }
+    .related { margin-top:54px; padding-top:30px; border-top:1px solid var(--border); }
+    .related h2 { margin:0 0 17px; font-size:2.1rem; }
+    .related-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .related-card { overflow:hidden; border:1px solid var(--border); border-radius:9px; background:#fff; color:var(--ink); text-decoration:none; transition:transform .2s ease,box-shadow .2s ease; }
+    .related-card:hover { transform:translateY(-3px); box-shadow:0 8px 18px rgba(0,0,0,.1); }
+    .related-card img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; background:#162c27; }
+    .related-card span { display:block; padding:11px 12px 13px; font-family:'Cormorant Garamond',Georgia,serif; font-size:1.05rem; font-weight:700; line-height:1.12; }
+    .notice { padding:18px; border:1px solid #e1c790; border-radius:8px; background:#fff8e9; color:#705c30; line-height:1.55; }
+    footer { padding:28px 20px 38px; border-top:1px solid var(--border); color:#777; font-size:.82rem; text-align:center; }
+    footer a { color:var(--green); font-weight:700; text-decoration:none; }
+    @media (max-width:760px) { .top-header { padding:12px 16px; } .brand { font-size:1.55rem; } main { padding:30px 16px 42px; } .layout { grid-template-columns:1fr; gap:25px; margin-top:30px; } .related-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <a class="brand" href="../">Cobbles &amp; Climbs<small>Stories from cycling's past</small></a>
+    <a class="back-link" href="../">← Explore the map</a>
+  </header>
+
+  <main id="pageContent" aria-live="polite">
+    <p class="notice">Loading story…</p>
+  </main>
+
+  <footer>
+    <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer">Watch the stories on YouTube</a>
+    <span> · </span><a href="../">Explore the map</a>
+  </footer>
+
+  <script>
+    // Reusable story page. Open it as stories/story.html?id=0.
+    // To make a fixed story page later, copy this file and set <html data-story-id="0">.
+    const params = new URLSearchParams(window.location.search);
+    const configuredId = document.documentElement.dataset.storyId;
+    const storyId = params.get('id') ?? configuredId;
+    const page = document.getElementById('pageContent');
+
+    const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, char => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;'
+    })[char]);
+
+    const storyUrl = id => `story.html?id=${encodeURIComponent(id)}`;
+
+    function showMissing(message) {
+      page.innerHTML = `<div class="notice">${escapeHtml(message)} <a href="../">Return to the map.</a></div>`;
+    }
+
+    function validYouTubeId(value) {
+      return typeof value === 'string' && /^[A-Za-z0-9_-]{6,}$/.test(value);
+    }
+
+    function renderStory(story, stories) {
+      const title = story.title || story.name || 'Untitled story';
+      const description = story.description || 'The story is available in the video above.';
+      const hasVideo = validYouTubeId(story.yt);
+      const video = hasVideo
+        ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${story.yt}" title="${escapeHtml(title)}" loading="lazy" allowfullscreen></iframe></div>`
+        : '';
+      const related = stories
+        .filter(item => item.id !== story.id && validYouTubeId(item.yt))
+        .sort((a, b) => String(b.upload_date || '').localeCompare(String(a.upload_date || '')))
+        .slice(0, 3);
+
+      document.title = `${title} | Cobbles & Climbs`;
+      document.querySelector('meta[name="description"]').content = description.slice(0, 155);
+      page.innerHTML = `
+        <p class="eyebrow">Cobbles &amp; Climbs story</p>
+        <h1>${escapeHtml(title)}</h1>
+        <p class="lead">${escapeHtml(description)}</p>
+        ${video}
+        <section class="layout" aria-label="Story and location">
+          <article class="story-copy">
+            <h2>The story</h2>
+            <p>${escapeHtml(description)}</p>
+            ${hasVideo ? `<a class="watch" href="https://www.youtube.com/watch?v=${story.yt}" target="_blank" rel="noopener noreferrer">Watch on YouTube →</a>` : ''}
+          </article>
+          <aside class="location-card">
+            <h2>Where it happened</h2>
+            <p>Explore the location of this historic moment on the map.</p>
+            <div id="storyMap" role="application" aria-label="Story location map"></div>
+          </aside>
+        </section>
+        ${related.length ? `<section class="related" aria-label="Related stories"><h2>More stories</h2><div class="related-grid">${related.map(item => `
+          <a class="related-card" href="${storyUrl(item.id)}">
+            <img src="https://img.youtube.com/vi/${item.yt}/mqdefault.jpg" alt="" loading="lazy">
+            <span>${escapeHtml(item.title || item.name)}</span>
+          </a>`).join('')}</div></section>` : ''}`;
+
+      if (Number.isFinite(Number(story.lat)) && Number.isFinite(Number(story.lon))) {
+        const location = [Number(story.lat), Number(story.lon)];
+        const map = L.map('storyMap', { scrollWheelZoom:false, zoomControl:true }).setView(location, 12);
+        L.tileLayer('https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap © CARTO' }).addTo(map);
+        L.circleMarker(location, { radius:7, fillColor:'#1a3c34', color:'#fff', weight:2, fillOpacity:1 }).addTo(map);
+      } else {
+        document.getElementById('storyMap').replaceWith(Object.assign(document.createElement('p'), { textContent:'Location not available yet.' }));
+      }
+    }
+
+    fetch('../stories.json')
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        const stories = Array.isArray(data.stories) ? data.stories : (Array.isArray(data.sectors) ? data.sectors : []);
+        const story = stories.find(item => String(item.id) === String(storyId));
+        if (!story) throw new Error('Story not found');
+        renderStory(story, stories);
+      })
+      .catch(error => {
+        console.error('Could not load stories.json:', error);
+        showMissing(storyId === null ? 'Choose a story by adding ?id=0 to this page URL.' : 'This story could not be found.');
+      });
+  </script>
+</body>
+</html>
