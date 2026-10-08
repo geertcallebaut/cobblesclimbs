@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NMJ87NDBC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7NMJ87NDBC');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All stories | Cobbles & Climbs</title>
+    <meta name="description" content="Browse every archival cycling story on Cobbles & Climbs — Tour of Flanders, Paris-Roubaix, Merckx, World Championships and more.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.cobblesclimbs.com/sitemap.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cobblesclimbs.com/sitemap.html">
+    <meta property="og:title" content="All stories | Cobbles & Climbs">
+    <meta property="og:description" content="Browse every archival cycling story — Tour of Flanders, Paris-Roubaix, Merckx and more.">
+    <meta property="og:site_name" content="Cobbles & Climbs">
+    <meta property="og:locale" content="en_GB">
+
+    <meta name="theme-color" content="#1a3c34">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --cc-dark-green: #1a3c34;
+            --cc-green-mid: #2a5a4f;
+            --cc-route-orange: #c46b00;
+            --cc-cream: #f7f4ef;
+            --cc-paper: #faf8f5;
+            --cc-ink: #1c1c1c;
+            --cc-muted: #5c5c5c;
+            --cc-border: #e5e0d8;
+            --cc-gold: #b08d57;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body {
+            height: 100%; margin: 0;
+            font-family: "Roboto", Helvetica, Arial, sans-serif;
+            background: var(--cc-paper);
+            color: var(--cc-ink);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HEADER (same as index) ── */
+        .top-header {
+            background: linear-gradient(180deg, #1f453c 0%, var(--cc-dark-green) 100%);
+            color: white; padding: 16px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 3000; font-size: 0.95rem; font-weight: 500;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+            border-bottom: 3px solid var(--cc-gold);
+        }
+        .nav-left, .nav-right { display: flex; align-items: center; gap: 32px; }
+        .logo-left { display: flex; align-items: center; height: 54px; }
+        .header-logo {
+            height: 100%; width: auto; max-width: 195px; object-fit: contain;
+            filter: brightness(1.18) contrast(1.12); padding: 5px;
+            background: rgba(255,255,255,0.12); border-radius: 8px;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.18); transition: transform 0.25s ease;
+        }
+        .header-logo:hover { transform: scale(1.05); }
+        .short-title {
+            font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 1.5rem;
+            letter-spacing: -0.3px; color: white; flex: 1; text-align: center;
+            display: none; line-height: 1.1;
+        }
+        .mobile-tagline {
+            display: none; font-size: 0.6rem; font-weight: 400; letter-spacing: -0.3px;
+            color: #a8d5c8; margin-top: 4px; text-align: center; line-height: 1.25;
+        }
+        .logo-center {
+            position: absolute; left: 50%; transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 2rem;
+            letter-spacing: -0.5px; color: white; text-decoration: none;
+            white-space: nowrap; text-align: center; line-height: 1.1;
+        }
+        .logo-center span { color: white; }
+        .desktop-tagline {
+            display: none; font-size: 0.88rem; font-weight: 400;
+            letter-spacing: 0.2px; color: #b8d9ce; margin-top: 6px;
+        }
+        .social-icons a { color: white; margin-left: 18px; font-size: 1.28rem; transition: color 0.2s, transform 0.2s; text-decoration: none; }
+        .social-icons a:hover { color: var(--cc-gold); transform: translateY(-1px); }
+        .menu-button { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 8px; display: none; }
+        .mobile-social-dropdown {
+            position: absolute; top: 100%; right: 16px; background: var(--cc-dark-green);
+            border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            padding: 12px 16px; display: none; flex-direction: column; gap: 10px; z-index: 3100;
+        }
+        .mobile-social-dropdown.show { display: flex; }
+        .mobile-social-dropdown a {
+            color: white; font-size: 0.9rem; display: flex; align-items: center;
+            gap: 10px; text-decoration: none; white-space: nowrap;
+        }
+        .mobile-social-dropdown a:hover { color: #a8d5c8; }
+
+        /* ── CONTENT ── */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 64px;
+        }
+
+        .page-label {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--cc-gold);
+            margin: 0 0 10px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.3px;
+            color: var(--cc-dark-green);
+            margin: 0 0 10px;
+        }
+
+        .lead {
+            font-size: 1.05rem;
+            color: var(--cc-muted);
+            line-height: 1.55;
+            margin: 0 0 28px;
+            max-width: 560px;
+        }
+
+        .story-count {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--cc-dark-green);
+            margin: 0 0 18px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ── STORY LIST ── */
+        #storyList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        #storyList li a {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 16px;
+            background: white;
+            border: 1px solid var(--cc-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--cc-ink);
+            transition: border-color 0.18s, box-shadow 0.18s;
+        }
+        #storyList li a:hover {
+            border-color: var(--cc-gold);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        #storyList .thumb {
+            flex-shrink: 0;
+            width: 96px;
+            height: 54px;
+            border-radius: 5px;
+            object-fit: cover;
+            background: #ddd;
+        }
+        #storyList .info {
+            min-width: 0;
+            flex: 1;
+        }
+        #storyList .title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--cc-dark-green);
+            line-height: 1.25;
+            margin: 0 0 4px;
+        }
+        #storyList li a:hover .title { color: var(--cc-route-orange); }
+        #storyList .meta {
+            font-size: 0.78rem;
+            color: var(--cc-muted);
+        }
+        #storyList .meta i { margin-right: 4px; opacity: 0.65; }
+
+        .empty-msg, .error-msg {
+            font-size: 0.95rem;
+            color: var(--cc-muted);
+            padding: 24px 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 36px;
+            color: var(--cc-dark-green);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .back-link:hover { text-decoration: underline; color: var(--cc-route-orange); }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 28px 20px 40px;
+            font-size: 0.78rem;
+            color: #888;
+            border-top: 1px solid var(--cc-border);
+            background: white;
+        }
+        footer a { color: var(--cc-dark-green); text-decoration: none; font-weight: 500; }
+        footer a:hover { color: var(--cc-route-orange); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .top-header { padding: 10px 16px; }
+            .logo-left { height: 40px; }
+            .header-logo { max-width: 130px; }
+            .logo-center { display: none; }
+            .short-title { display: block; }
+            .mobile-tagline { display: block; }
+            .nav-right .social-icons { display: none; }
+            .menu-button { display: block; }
+            h1 { font-size: 1.85rem; }
+            .content { padding: 28px 16px 52px; }
+            #storyList .thumb { width: 72px; height: 40px; }
+            #storyList .title { font-size: 1.05rem; }
+        }
+        @media (min-width: 769px) {
+            .desktop-tagline { display: block; }
+            .short-title { display: none; }
+            .mobile-tagline { display: none; }
+        }
+        @media (min-width: 640px) {
+            #storyList {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header" role="banner">
+    <div class="nav-left">
+        <a href="/" class="logo-left" aria-label="Cobbles & Climbs — home" style="height:54px;">
+            <img src="channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" style="height:54px;width:auto;max-width:195px;" width="195" height="54" loading="eager">
+        </a>
+    </div>
+
+    <div style="flex:1;text-align:center;">
+        <span class="short-title">Cobbles &amp; Climbs</span>
+        <div class="mobile-tagline">The stories that shaped cycling</div>
+    </div>
+
+    <a href="/" class="logo-center" aria-label="Cobbles & Climbs — home">
+        Cobbles <span>&amp;</span> Climbs
+        <span class="desktop-tagline">The stories that shaped cycling</span>
+    </a>
+
+    <nav class="nav-right" aria-label="Social media links">
+        <div class="social-icons">
+            <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer" aria-label="Strava"><i class="fa-brands fa-strava"></i></a>
+            <a href="mailto:cobblesclimbs@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+        <button class="menu-button" id="menuButton" aria-label="Open social menu"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <div class="mobile-social-dropdown" id="mobileDropdown">
+        <a href="https://www.youtube.com/@CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://instagram.com/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.strava.com/clubs/CobblesClimbs" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-strava"></i> Strava</a>
+        <a href="mailto:cobblesclimbs@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
+    </div>
+</header>
+
+<main>
+<div class="content">
+
+    <span class="page-label">Archive</span>
+    <h1>All stories</h1>
+    <p class="lead">Every archival film on Cobbles &amp; Climbs — from the Tour of Flanders and Paris-Roubaix to Merckx and the World Championships.</p>
+
+    <p class="story-count" id="storyCount"></p>
+
+    <ul id="storyList">
+        <li class="empty-msg">Loading stories…</li>
+    </ul>
+
+    <a href="/" class="back-link">← Back home</a>
+
+</div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Cobbles &amp; Climbs •
+    <a href="/">Home</a> •
+    <a href="sitemap.html">All stories</a></p>
+</footer>
+
+<script>
+    document.getElementById('menuButton').addEventListener('click', function(e) {
+        e.stopPropagation();
+        document.getElementById('mobileDropdown').classList.toggle('show');
+    });
+    document.addEventListener('click', function() {
+        document.getElementById('mobileDropdown').classList.remove('show');
+    });
+</script>
+
+<script>
+(function() {
+    function toSlug(name) {
+        return String(name)
+            .toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9\s-]/g, '')
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+    }
+
+    function formatDate(iso) {
+        if (!iso) return '';
+        var m = String(iso).match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (!m) return iso;
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return months[parseInt(m[2], 10) - 1] + ' ' + parseInt(m[3], 10) + ', ' + m[1];
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    fetch('stories.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            var stories = (data.sectors || []).filter(function(s) { return s.name; });
+
+            // Newest first
+            stories.sort(function(a, b) {
+                return (b.upload_date || '').localeCompare(a.upload_date || '');
+            });
+
+            var countEl = document.getElementById('storyCount');
+            countEl.textContent = stories.length + ' stor' + (stories.length === 1 ? 'y' : 'ies');
+
+            var container = document.getElementById('storyList');
+            if (!stories.length) {
+                container.innerHTML = '<li class="empty-msg">No stories found.</li>';
+                return;
+            }
+
+            container.innerHTML = stories.map(function(s) {
+                var slug = toSlug(s.name);
+                var yt = (s.yt || '').trim();
+                var thumb = yt
+                    ? 'https://img.youtube.com/vi/' + yt + '/mqdefault.jpg'
+                    : '';
+                var date = formatDate(s.upload_date);
+                return '<li><a href="stories/' + slug + '.html">' +
+                    (thumb
+                        ? '<img class="thumb" src="' + thumb + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+                        : '<div class="thumb" style="background:#e5e0d8;"></div>') +
+                    '<div class="info">' +
+                        '<div class="title">' + escapeHtml(s.name) + '</div>' +
+                        (date ? '<div class="meta"><i class="fa-regular fa-calendar" aria-hidden="true"></i>' + date + '</div>' : '') +
+                    '</div></a></li>';
+            }).join('');
+        })
+        .catch(function() {
+            document.getElementById('storyList').innerHTML =
+                '<li class="error-msg">Could not load stories.json. Make sure the file is in the site root.</li>';
+            document.getElementById('storyCount').textContent = '';
+        });
+})();
+</script>
+
+</body>
+</html>
