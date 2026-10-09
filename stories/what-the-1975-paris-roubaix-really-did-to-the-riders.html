@@ -42,8 +42,8 @@
     <meta name="twitter:image" content="https://img.youtube.com/vi/djj39-2Fyps/maxresdefault.jpg">
 
     <!-- Geo -->
-    <meta name="geo.region" content="BE">
-    <meta name="geo.placename" content="Flanders, Belgium">
+    <meta name="geo.region" content="FR">
+    <meta name="geo.placename" content="Northern France">
 
     <!-- Structured data: VideoObject -->
     <script type="application/ld+json">
@@ -440,7 +440,7 @@
     <div class="story-meta">
         <span><i class="fa-regular fa-calendar" aria-hidden="true"></i>Sep 5, 2026</span>
         <span><i class="fa-solid fa-film" aria-hidden="true"></i>4K archival footage</span>
-        <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Flanders, Belgium</span>
+        <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Northern France</span>
     </div>
 
     <!-- Video -->
@@ -505,7 +505,8 @@
 <!-- Related stories from stories.json -->
 <script>
 (function() {
-    var currentName = "What the 1975 Paris-Roubaix REALLY did to the riders";
+    var h1 = document.querySelector('h1');
+    var currentName = h1 ? h1.textContent.trim() : '';
 
     function toSlug(name) {
         return name
@@ -549,15 +550,39 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     (function() {
-        var el  = document.getElementById('map');
-        var lat = parseFloat(el.getAttribute('data-lat'));
-        var lon = parseFloat(el.getAttribute('data-lon'));
-        if (!isFinite(lat) || !isFinite(lon)) return;
+        var el = document.getElementById('map');
+        if (!el) return;
+        var label = el.previousElementSibling; // "Where this story unfolded"
+
+        function hideMap() {
+            el.style.display = 'none';
+            if (label && label.classList.contains('section-label')) label.style.display = 'none';
+        }
+        // Accepteert ook een decimale komma ("50,78")
+        function num(v) { return parseFloat(String(v == null ? '' : v).replace(',', '.')); }
+
+        var lat = num(el.getAttribute('data-lat'));
+        var lon = num(el.getAttribute('data-lon'));
+        if (!isFinite(lat) || !isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) {
+            hideMap();
+            return;
+        }
+        // Leaflet niet geladen (adblocker, storing, offline)
+        if (typeof L === 'undefined') {
+            el.style.display = 'flex';
+            el.style.alignItems = 'center';
+            el.style.justifyContent = 'center';
+            el.style.background = 'var(--cc-cream)';
+            el.style.color = 'var(--cc-muted)';
+            el.style.fontSize = '0.9rem';
+            el.textContent = 'The map could not be loaded.';
+            return;
+        }
 
         var ccMap = L.map('map', { scrollWheelZoom: false }).setView([lat, lon], 12);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '\u00a9 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(ccMap);
 
         var ccIcon = L.divIcon({
@@ -566,9 +591,15 @@
             iconSize: [14, 14],
             iconAnchor: [7, 7]
         });
+
+        // Popup via DOM-node: de naam (met apostrof, |, aanhalingstekens...) kan geen JS-string meer breken
+        var h1 = document.querySelector('h1');
+        var popup = document.createElement('strong');
+        popup.textContent = h1 ? h1.textContent.trim() : '';
+
         L.marker([lat, lon], { icon: ccIcon })
           .addTo(ccMap)
-          .bindPopup('<strong>What the 1975 Paris-Roubaix REALLY did to the riders</strong>');
+          .bindPopup(popup);
     })();
 </script>
 
