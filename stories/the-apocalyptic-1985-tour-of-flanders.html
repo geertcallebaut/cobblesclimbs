@@ -151,7 +151,7 @@
         .logo-left { display: flex; align-items: center; height: 54px; }
         .header-logo {
             height: 100%; width: auto; max-width: 195px; object-fit: contain;
-            filter: brightness(1.18) contrast(1.12); padding: 5px;
+            filter: brightness(1.18) contrast(1.12); padding: 5px; box-sizing: content-box;
             background: rgba(255,255,255,0.12); border-radius: 8px;
             box-shadow: 0 0 0 3px rgba(255,255,255,0.18); transition: transform 0.25s ease;
         }
@@ -398,8 +398,8 @@
 <!-- ══ HEADER (identical structure to index) ══ -->
 <header class="top-header" role="banner">
     <div class="nav-left">
-        <a href="/" class="logo-left" aria-label="Cobbles & Climbs — home" style="height:54px;">
-            <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" style="height:54px;width:auto;max-width:195px;" width="195" height="54" loading="eager">
+        <a href="/" class="logo-left" aria-label="Cobbles & Climbs — home">
+            <img src="../channels4_profile.png" alt="Cobbles & Climbs logo" class="header-logo" width="195" height="54" loading="eager">
         </a>
     </div>
 
@@ -488,7 +488,7 @@
 <footer>
     <p>&copy; 2026 Cobbles &amp; Climbs •
     <a href="/">Home</a> •
-    <a href="../sitemap.html">All sectors</a></p>
+    <a href="../sitemap.html">All stories</a></p>
 </footer>
 
 <script>
