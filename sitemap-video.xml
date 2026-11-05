@@ -157,4 +157,16 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
+
+  <url>
+    <loc>https://www.cobblesclimbs.com/stories/riders-money-and-a-pyjama-brawl-the-1962-six-days-of-brussels.html</loc>
+    <video:video>
+      <video:title>Riders, money and a pyjama brawl | The 1962 Six Days of Brussels</video:title>
+      <video:description>Brussels, 1962. Six days racing is cycling&apos;s wildest show: night after night on the boards of the Palais des Sports, the biggest names in Belgian cycling ride for money, glory and the crowd. Rare archival footage takes you behind the scenes. World road champion Jean Stablinski explains why an hour on the track can be harder than three hours on the road. Willy Vannitsen, the best-looking rider in the peloton, reveals what he thinks about during hours of slow laps. Rik Van Steenbergen, king of the velodromes, talks about his 28 Six Days wins and why he can&apos;t stop racing. Manager Jean Van Buggenhout, the man they call Monsieur Vélo, runs Belgian cycling from behind the scenes, and tells the story of a 4 a.m. brawl that ended with Gerrit Schulte climbing onto his bike in his pyjamas. And veteran Pino Cerami answers the most indiscreet question of all: how much does a Six Days rider really earn, and how much of it is left after paying the masseur, the mechanic and the kitchen?</video:description>
+      <video:thumbnail_loc>https://img.youtube.com/vi/wyJxlFL0kA4/maxresdefault.jpg</video:thumbnail_loc>
+      <video:player_loc>https://www.youtube.com/embed/wyJxlFL0kA4</video:player_loc>
+      <video:publication_date>2026-11-05</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
 </urlset>
