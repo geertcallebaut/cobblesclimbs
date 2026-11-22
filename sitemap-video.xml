@@ -169,4 +169,16 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
+
+  <url>
+    <loc>https://www.cobblesclimbs.com/stories/what-cyclocross-looked-like-in-1958.html</loc>
+    <video:video>
+      <video:title>What cyclocross looked like in 1958</video:title>
+      <video:description>16 February 1958. Meulebeke, Flanders. The Belgian cyclocross championship. Firmin Van Kerrebroeck, 35 years old and already a four-time national champion, lines up once again. The course is pure Flanders mud and pain. He attacks early and never looks back. Behind him, Roger De Clercq digs deep but loses more than a minute. Young Rik Willems hangs on for third. When Van Kerrebroeck crosses the line, he claims his fifth Belgian title. One more would still come. On this cold February day in Meulebeke, the king of Belgian cyclo-cross reminds everyone who still rules the mud.</video:description>
+      <video:thumbnail_loc>https://img.youtube.com/vi/LDzuuyntymk/maxresdefault.jpg</video:thumbnail_loc>
+      <video:player_loc>https://www.youtube.com/embed/LDzuuyntymk</video:player_loc>
+      <video:publication_date>2026-11-22</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
 </urlset>
